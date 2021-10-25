@@ -17,7 +17,6 @@ window.addEventListener('load', () => {
     function draw(e) {
         if(!painting) return
 
-        ctx.lineWidth = 10
         ctx.lineCap = 'round'
 
         ctx.lineTo(e.clientX, e.clientY)
@@ -31,19 +30,13 @@ window.addEventListener('load', () => {
     canvas.addEventListener('mousemove', draw)
 })
 
-function color(color) {    
+function setColor(picker) {    
     const ctx = document.querySelector('#canvas').getContext('2d')
-    switch (color) {
-        case 'r':
-            ctx.strokeStyle = '#FF0000'
-            break;
-        case 'g':
-            ctx.strokeStyle = '#00FF00'
-            break;
-        case 'b':
-            ctx.strokeStyle = '#0000FF'
-            break;
-    }
+    ctx.strokeStyle = picker.value
+}
+function setWidth(picker) {    
+    const ctx = document.querySelector('#canvas').getContext('2d')
+    ctx.lineWidth = picker.valueAsNumber
 }
 
 function download(){

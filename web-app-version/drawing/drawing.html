@@ -8,13 +8,12 @@
 </head> 
 <body>
     <!--position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);-->
-    <canvas id="canvas" width="800px" height="350px" style="border: 2px; border-style: double;">
+    <canvas id="canvas" width="1260px" height="350px" style="border: 2px; border-style: double;">
     </canvas>
     <div>
-        <button type="button" onclick="color('r')">Red</button>
-        <button type="button" onclick="color('g')">Green</button>
-        <button type="button" onclick="color('b')">Blue</button>
-        <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a>
+        <input type="color" id="colorPicker" onchange="setColor(this)">
+        <input type="range" id="strokeWidthPicker" min="1" max="100" onchange="setWidth(this)">
+        <!-- <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a> -->
     </div>
     <script src="canvas.js"></script>
 </body>
