@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link ref="stylesheets" href="style.css">
+
+    <script src="tinymce\js\tinymce\tinymce.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" integrity="sha384-zTROYFVGOfTw7JV7KUu8udsvW2fx4lWOsCEDqhBreBwlHI4ioVRtmIvEThzJHGET" crossorigin="anonymous">
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js" integrity="sha384-GxNFqL3r9uRJQhR+47eDxuPoNE7yLftQM8LcxzgS4HT73tp970WS/wV5p8UzCOmb" crossorigin="anonymous"></script>
+
+    <title>  - web app</title>
+</head>
+<body>
+    <form method="post">
+        <textarea id="mytextarea">Hello, World!</textarea>
+      </form>
+    <div id="divOut"></div>
+
+    <script>
+       window.addEventListener('DOMContentLoaded', () => {
+           const divOut = document.querySelector('#divOut')
+           divOut.innerHTML = katex.renderToString("a = \\sqrt{x^5+y^8}")
+       })
+    </script>
+
+    <script>
+      tinymce.init({
+        selector: '#mytextarea',
+        skin: 'oxide-dark',
+        plugins: 'image',
+        a11y_advanced_options: true,
+        height: 500,
+        file_picker_types: 'image',
+        file_picker_callback: function (cb, value, meta) 
+        {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+
+            input.onchange = function () 
+            {
+                var file = this.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function () 
+                {
+                    var id = 'blobid' + (new Date()).getTime();
+                    var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+                    var base64 = reader.result.split(',')[1];
+                    var blobInfo = blobCache.create(id, file, base64);
+                    blobCache.add(blobInfo);
+                    
+                    cb(blobInfo.blobUri(), { title: file.name });
+                };
+                reader.readAsDataURL(file);
+            };
+            input.click();
+        }
+      });
+    </script>
+</body>
+</html>
