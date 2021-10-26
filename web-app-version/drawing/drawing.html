@@ -11,10 +11,13 @@
     <canvas id="canvas" width="1260px" height="350px" style="border: 2px; border-style: double;">
     </canvas>
     <div>
-        <input type="color" id="colorPicker" onchange="setColor(this)">
-        <input type="range" id="strokeWidthPicker" min="1" max="100" onchange="setWidth(this)">
+        <input type="color" id="strokeColorPicker" onchange="setStrokeColor(this)">
+        <input type="color" id="canvasColorPicker" value="#ffffff" oninput="setCanvasColor(this)">
+        <button type="button" id="eraserSetter" onclick="setEraser(this)">Eraser toggle</button>
+        <input type="range" id="strokeWidthPicker" value="1" min="1" max="100" onchange="setWidth(this)">
         <!-- <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a> -->
     </div>
+    
     <script src="canvas.js"></script>
 </body>
 </html>

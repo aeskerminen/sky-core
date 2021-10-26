@@ -1,3 +1,5 @@
+let eraser = false
+
 window.addEventListener('load', () => {
     const canvas = document.querySelector('#canvas')
     const ctx = canvas.getContext('2d')
@@ -19,10 +21,21 @@ window.addEventListener('load', () => {
 
         ctx.lineCap = 'round'
 
-        ctx.lineTo(e.clientX, e.clientY)
-        ctx.stroke()
-        ctx.beginPath()
-        ctx.moveTo(e.clientX, e.clientY)
+        if(!eraser) {
+            ctx.globalCompositeOperation="source-over";
+            ctx.lineTo(e.clientX, e.clientY)
+            ctx.stroke()
+            ctx.beginPath()
+            ctx.moveTo(e.clientX, e.clientY)
+        }
+        else {
+            ctx.globalCompositeOperation="destination-out";
+            ctx.lineTo(e.clientX, e.clientY)
+            ctx.stroke()
+            ctx.beginPath()
+            ctx.moveTo(e.clientX, e.clientY)
+        }
+       
     }
 
     canvas.addEventListener('mousedown', startPos)
@@ -30,13 +43,22 @@ window.addEventListener('load', () => {
     canvas.addEventListener('mousemove', draw)
 })
 
-function setColor(picker) {    
+function setStrokeColor(picker) {    
     const ctx = document.querySelector('#canvas').getContext('2d')
     ctx.strokeStyle = picker.value
 }
+
+function setCanvasColor(picker) {    
+    document.getElementById('canvas').style.backgroundColor = picker.value
+}
+
 function setWidth(picker) {    
     const ctx = document.querySelector('#canvas').getContext('2d')
     ctx.lineWidth = picker.valueAsNumber
+}
+
+function setEraser(picker) {
+    eraser = !eraser
 }
 
 function download(){
