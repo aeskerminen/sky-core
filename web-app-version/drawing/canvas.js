@@ -57,7 +57,7 @@ function setWidth(picker) {
     ctx.lineWidth = picker.valueAsNumber
 }
 
-function setEraser(picker) {
+function setEraser() {
     eraser = !eraser
 }
 
@@ -66,4 +66,11 @@ function download(){
     var image = document.getElementById("canvas").toDataURL("image/png")
                 .replace("image/png", "image/octet-stream");
     download.setAttribute("href", image);
+}
+
+module.exports = {
+    setEraser : setEraser,
+    setWidth : setWidth,
+    setCanvasColor : setCanvasColor,
+    setStrokeColor : setStrokeColor
 }
