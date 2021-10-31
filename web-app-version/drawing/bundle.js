@@ -7,6 +7,15 @@ Pressure.set('#canvas', {
         let ps = Pressure.map(force, 0, 1, 0, 100);
         ctx.lineWidth = ps
     }
+  }, {only: 'pointer'});
+
+  // These are the default configs set by Pressure
+Pressure.config({
+    polyfill: false,
+    polyfillSpeedUp: 1000,
+    polyfillSpeedDown: 0,
+    preventSelect: true,
+    only: null
   });
 },{"pressure":3}],2:[function(require,module,exports){
 let eraser = false
@@ -66,8 +75,6 @@ function setCanvasColor(picker) {
 function setWidth(picker) {    
     const ctx = document.querySelector('#canvas').getContext('2d')
     ctx.lineWidth = picker.valueAsNumber
-    // document.getElementById('circularcursor').style.width = picker.valueAsNumber
-    // document.getElementById('circularcursor').style.height = picker.valueAsNumber
 }
 
 function setEraser() {
