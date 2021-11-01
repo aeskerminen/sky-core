@@ -1,0 +1,11 @@
+body {
+    background-color: grey;
+    margin: 5px;
+}
+
+#drawboard {
+    touch-action: none;
+    cursor: crosshair;
+    border: 1px solid black;
+    box-shadow: 1px 1px black;
+}
