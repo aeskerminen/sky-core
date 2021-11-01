@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="style.css">
+  <title>Draw</title>
+  </head>
 <body>
-    
-    <canvas id="drawboard" width="320" height="320"></canvas>
+  <canvas touch-action="none" id="board" width="640" height="640" style="width:320px; height:320px;">
+  </canvas>
 
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+  <script src="js/vendors/pep.js"></script>
+  <script src="js/libs/Board.js"></script>
+  <script src="js/libs/Pointer.js"></script>
+  <script src="js/libs/Pen.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
