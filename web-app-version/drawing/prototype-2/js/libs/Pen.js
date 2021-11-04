@@ -65,8 +65,10 @@ var Pen = (function() {
                 }
             }
             case 'pen':
-                console.log(e.pressure)
-                return e.pressure * 8;
+                const slope = 8
+                const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
+                let m_pressure = map(e.pressure, 0, 1, 0, 100)
+                return m_pressure * slope;
             default:
                 return (e.pressure) ? e.pressure * 8 : 4;
         }
