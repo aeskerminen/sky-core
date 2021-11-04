@@ -8,7 +8,9 @@
 <body>
 
   <div id="toolbar">
-    <input type="color" id="pen_col_picker" value="#555555" oninput="setStrokeColor(this)">
+      <input type="color" id="pen_col_picker" value="#555555" oninput="setStrokeColor(this)">
+      <button type="button" id="zoom_canvas_in" onclick="changeCanvasZoom('plus')">+</button>
+      <button type="button" id="zoom_canvas_out" onclick="changeCanvasZoom('minus')">-</button>
   </div>
 
   <canvas touch-action="none" id="board" width="640" height="640" style="width:320px; height:320px;">

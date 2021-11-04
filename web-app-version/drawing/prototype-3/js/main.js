@@ -56,3 +56,16 @@ function drawOnCanvas(e, pointerObj, Pen) {
 function setStrokeColor(picker) {
     Pen.colors.fg = picker.value
 }
+
+function changeCanvasZoom(value) {
+    const step = 0.1
+    if(value === 'plus') {
+        Board.resolution += (Board.resolution < 5) ? step : 0
+    }
+    else if(value === 'minus') {
+        Board.resolution -= (Board.resolution > 0.5) ? step : 0
+    }
+    else {
+        console.log(`Invalid zoom mode: ${value}.`)
+    }
+}

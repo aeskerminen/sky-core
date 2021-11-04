@@ -26,20 +26,22 @@ var Board = (function() {
                 desynchronized: true
             });
 
-            this.dom.style.backgroundColor = this.bgColor
-            this.bg_picker = document.getElementById('canvasColorPicker')
-
             // Additional Configuration
             this.ctx.imageSmoothingEnabled = true;
 
             // Create buffer
             this.domMem = document.createElement('canvas');
             this.ctxMem = this.domMem.getContext('2d');
-            this.domMem.style.backgroundColor = this.bgColor;
+
+            // Get resize buttons
+            const p_button = document.getElementById('zoom_canvas_in')
+            const m_button = document.getElementById('zoom_canvas_out')
 
             // Set up sizing
             fitToWindow.bind(this)();
             window.addEventListener('resize', fitToWindow.bind(this));
+            p_button.addEventListener('click', fitToWindow.bind(this));
+            m_button.addEventListener('click', fitToWindow.bind(this));
 
             // Load canvas from local storage
              if (localStorage.dataURL) {
@@ -72,6 +74,8 @@ var Board = (function() {
     var fitToWindow = function fitToWindow() {
         var marginX = 10;
         var marginY = 10;
+
+        console.log('resize')
 
         var heightCss = window.innerHeight - marginY;
         var heightCanvas = heightCss * this.resolution;
