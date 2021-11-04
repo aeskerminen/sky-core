@@ -55,6 +55,7 @@ var Pen = (function() {
     }
 
     var getLineWidth = function getLineWidth(e) {
+        console.log(e.pointerType)
         switch (e.pointerType) {
             case 'touch': {
                 if (e.width < 10 && e.height < 10) {
