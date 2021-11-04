@@ -54,9 +54,5 @@ function drawOnCanvas(e, pointerObj, Pen) {
 }
 
 function setStrokeColor(picker) {
-
-}
-
-function setCanvasColor(picker) {
-    Board.bgColor = picker.value
+    Pen.colors.fg = picker.value
 }
