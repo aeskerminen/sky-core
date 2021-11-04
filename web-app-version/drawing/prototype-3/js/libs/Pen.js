@@ -36,7 +36,7 @@ var Pen = (function() {
                 case this.funcTypes.erase: {
                     this.set(context, {
                         color: this.colors.bg,
-                        lineWidth: 25
+                        lineWidth: getLineWidth(pointerEvent)
                     });
                     break;
                 }
@@ -55,6 +55,7 @@ var Pen = (function() {
     }
 
     var getLineWidth = function getLineWidth(e) {
+        // console.log(e.pointerType)
         switch (e.pointerType) {
             case 'touch': {
                 if (e.width < 10 && e.height < 10) {
@@ -64,11 +65,19 @@ var Pen = (function() {
                 }
             }
             case 'pen':
-                return e.pressure * 8;
+                const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
+                let m_pressure = map(e.pressure, 0, 1, 0, 20)
+
+                const slope = 0.1
+                let exp_pressure = (Math.pow(m_pressure, 1.25) + Math.pow(m_pressure, 2)) * slope
+                
+                console.log(exp_pressure);
+                return exp_pressure
             default:
                 return (e.pressure) ? e.pressure * 8 : 4;
         }
     }
+
 
     var checkEraseKeys = function checkEraseKeys(e) {
         if (e.buttons === 32) return true;
