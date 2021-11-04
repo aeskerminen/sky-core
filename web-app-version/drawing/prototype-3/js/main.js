@@ -59,5 +59,4 @@ function setStrokeColor(picker) {
 
 function setCanvasColor(picker) {
     Board.bgColor = picker.value
-    console.log(Board.bgColor)
 }

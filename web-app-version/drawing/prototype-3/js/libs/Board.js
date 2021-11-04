@@ -2,7 +2,7 @@
 
 var Board = (function() {
     var boardObject = {
-        resolution: 3,
+        resolution: 1,
         bg_picker: null,
         dom: null,
         ctx: null,
