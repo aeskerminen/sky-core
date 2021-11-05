@@ -11,6 +11,7 @@
       <input type="color" id="pen_col_picker" value="#555555" oninput="setStrokeColor(this)">
       <button type="button" id="zoom_canvas_in" onclick="changeCanvasZoom('plus')">+</button>
       <button type="button" id="zoom_canvas_out" onclick="changeCanvasZoom('minus')">-</button>
+      <a id="download" download="image.png"><button type="button" onClick="download()">S</button></a>
   </div>
 
   <canvas touch-action="none" id="board" width="640" height="640" style="width:320px; height:320px;">

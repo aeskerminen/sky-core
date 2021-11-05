@@ -16,7 +16,7 @@ body {
 }
 
 #toolbar {
-    width: 103px;
+    width: fit-content;
     background-color: white;
     box-shadow: 1px 1px 1px 0.5px black;
     padding: 5px;
