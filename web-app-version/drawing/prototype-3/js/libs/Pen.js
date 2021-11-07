@@ -69,10 +69,12 @@ var Pen = (function() {
                 let m_pressure = map(e.pressure, 0, 1, 0, 7.5)
 
                 const slope = 0.1
+                let exp_pressure = m_pressure
+
                 if(m_pressure < 7.25 / 2)
-                    let exp_pressure = (Math.pow(m_pressure, 1.25) + Math.pow(m_pressure, 2)) * slope
+                    exp_pressure = (Math.pow(m_pressure, 1.25) + Math.pow(m_pressure, 2)) * slope
                 else
-                    let exp_pressure = (Math.pow(m_pressure, 2.25) + Math.pow(m_pressure, 2)) * slope
+                    exp_pressure = (Math.pow(m_pressure, 2.25) + Math.pow(m_pressure, 2)) * slope
                 
                 console.log(exp_pressure);
                 return exp_pressure
