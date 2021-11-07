@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sky Notes',
       theme: ThemeData(primarySwatch: Colors.pink),
-      home: HomeScreen()
+      home: const HomeScreen()
     );
   }
 }
