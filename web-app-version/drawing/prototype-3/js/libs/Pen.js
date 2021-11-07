@@ -71,7 +71,7 @@ var Pen = (function() {
                 const slope = 0.1
                 let exp_pressure = m_pressure
 
-                if(m_pressure < 7.25 / 2)
+                if(m_pressure < 5)
                     exp_pressure = (Math.pow(m_pressure, 1.25) + Math.pow(m_pressure, 2)) * slope
                 else
                     exp_pressure = (Math.pow(m_pressure, 2.25) + Math.pow(m_pressure, 2)) * slope
