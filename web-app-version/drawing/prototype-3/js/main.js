@@ -60,7 +60,7 @@ function setStrokeColor(picker) {
 function changeCanvasZoom(value) {
     const step = 0.1
     if(value === 'plus') {
-        Board.resolution += (Board.resolution < 5) ? step : 0
+        Board.resolution += (Board.resolution < 5) ? step : 0       
     }
     else if(value === 'minus') {
         Board.resolution -= (Board.resolution > 0.5) ? step : 0
