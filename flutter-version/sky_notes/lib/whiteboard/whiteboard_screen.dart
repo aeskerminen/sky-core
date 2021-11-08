@@ -1,12 +1,11 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:sky_notes/whiteboard/line.dart';
 import 'package:sky_notes/whiteboard/sketcher.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+
 
 class DrawingPage extends StatefulWidget {
   @override
@@ -16,12 +15,17 @@ class DrawingPage extends StatefulWidget {
 class _DrawingPageState extends State<DrawingPage> {
   final GlobalKey _globalKey = GlobalKey();
   List<DrawnLine> lines = <DrawnLine>[];
-  DrawnLine line = DrawnLine([ui.Offset(0, 0)] ,Colors.black,0);
-  Color selectedColor = Colors.black;
+  DrawnLine line = DrawnLine(const [ui.Offset(0, 0)] ,Colors.black,0);
+  Color currentColor = Colors.black;
+  Color pickerColor = Colors.black;
   double selectedWidth = 5.0;
 
   StreamController<List<DrawnLine>> linesStreamController = StreamController<List<DrawnLine>>.broadcast();
   StreamController<DrawnLine> currentLineStreamController = StreamController<DrawnLine>.broadcast();
+
+  void changeColor(Color color) {
+    setState(() => pickerColor = color);
+  }
 
   Future<void> clear() async {
     setState(() {
@@ -32,8 +36,8 @@ class _DrawingPageState extends State<DrawingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellow[50],
-      body: Stack(
+      backgroundColor: Colors.white,
+      body: Stack( 
         children: [
           buildAllPaths(context),
           buildCurrentPath(context),
@@ -97,7 +101,7 @@ class _DrawingPageState extends State<DrawingPage> {
   void onPanStart(DragStartDetails details) {
     RenderBox box = context.findRenderObject() as RenderBox;
     Offset point = box.globalToLocal(details.globalPosition);
-    line = DrawnLine([point], selectedColor, selectedWidth);
+    line = DrawnLine([point], currentColor, selectedWidth);
   }
 
   void onPanUpdate(DragUpdateDetails details) {
@@ -105,7 +109,7 @@ class _DrawingPageState extends State<DrawingPage> {
     Offset point = box.globalToLocal(details.globalPosition);
 
     List<Offset> path = List.from(line.path)..add(point);
-    line = DrawnLine(path, selectedColor, selectedWidth);
+    line = DrawnLine(path, currentColor, selectedWidth);
     currentLineStreamController.add(line);
   }
 
@@ -113,6 +117,33 @@ class _DrawingPageState extends State<DrawingPage> {
     lines = List.from(lines)..add(line);
 
     linesStreamController.add(lines);
+  }
+
+  void _showMaterialDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Pick a color!'),
+          content: SingleChildScrollView(
+            child: ColorPicker(
+              pickerColor: pickerColor,
+              onColorChanged: changeColor,
+              showLabel: true,
+              pickerAreaHeightPercent: 0.8,
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Got it'),
+              onPressed: () {
+                setState(() => currentColor = pickerColor);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      });
   }
 
   Widget buildStrokeToolbar() {
@@ -143,7 +174,7 @@ class _DrawingPageState extends State<DrawingPage> {
         child: Container(
           width: strokeWidth * 2,
           height: strokeWidth * 2,
-          decoration: BoxDecoration(color: selectedColor, borderRadius: BorderRadius.circular(50.0)),
+          decoration: BoxDecoration(color: currentColor, borderRadius: BorderRadius.circular(50.0)),
         ),
       ),
     );
@@ -164,12 +195,6 @@ class _DrawingPageState extends State<DrawingPage> {
           const Divider(
             height: 20.0,
           ),
-          buildColorButton(Colors.red),
-          buildColorButton(Colors.blueAccent),
-          buildColorButton(Colors.deepOrange),
-          buildColorButton(Colors.green),
-          buildColorButton(Colors.lightBlue),
-          buildColorButton(Colors.black),
           buildColorButton(Colors.white),
         ],
       ),
@@ -181,12 +206,14 @@ class _DrawingPageState extends State<DrawingPage> {
       padding: const EdgeInsets.all(4.0),
       child: FloatingActionButton(
         mini: true,
-        backgroundColor: color,
+        backgroundColor: currentColor,
         child: Container(),
         onPressed: () {
-          setState(() {
-            selectedColor = color;
-          });
+          _showMaterialDialog();
+          
+          // setState(() {
+            // currentColor = color;
+          // });
         },
       ),
     );
@@ -195,7 +222,7 @@ class _DrawingPageState extends State<DrawingPage> {
   Widget buildClearButton() {
     return GestureDetector(
       onTap: clear,
-      child: CircleAvatar(
+      child: const CircleAvatar(
         child: Icon(
           Icons.create,
           size: 20.0,
