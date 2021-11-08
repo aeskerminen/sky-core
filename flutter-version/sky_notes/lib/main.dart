@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sky_notes/screen/homescreen.dart';
+import 'package:sky_notes/whiteboard/whiteboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sky Notes',
       theme: ThemeData(primarySwatch: Colors.pink),
-      home: const HomeScreen()
+      home:  DrawingPage()
     );
   }
 }
