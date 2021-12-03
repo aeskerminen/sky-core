@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class TextEditor extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class TextEditor extends StatefulWidget {
 class _TextEditorState extends State<TextEditor> {
   @override
   Widget build(BuildContext context) {
-    throw UnimplementedError();
+    return Scaffold(
+      appBar: AppBar(title: const Text('Text editor')),
+    );
   }
 }

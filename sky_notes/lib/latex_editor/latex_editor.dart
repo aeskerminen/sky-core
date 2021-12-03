@@ -29,44 +29,41 @@ class _LatexEditorState extends State<LatexEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('KaTeX Flutter Home Page'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    decoration: const InputDecoration(
-                        labelText: 'Your LaTeX code here',
-                        helperText:
-                            'Use \$ as delimiter. Use \$\$ for display LaTeX.'),
-                    controller: _laTeXInputController,
-                  ),
-                ),
-                Container(
-                    child: Builder(
-                  builder: (context) => KaTeX(
-                    laTeXCode: Text(_laTeX,
-                        style: Theme.of(context).textTheme.bodyText2),
-                  ),
-                ))
-              ],
+    return Container(
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration: const InputDecoration(
+                    labelText: 'Your LaTeX code here',
+                    helperText:
+                        'Use \$ as delimiter. Use \$\$ for display LaTeX.'),
+                controller: _laTeXInputController,
+              ),
             ),
-          ),
+            Container(
+                child: Builder(
+              builder: (context) => KaTeX(
+                laTeXCode:
+                    Text(_laTeX, style: Theme.of(context).textTheme.bodyText2),
+              ),
+            ))
+          ],
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: _renderLaTeX,
-          tooltip: 'Render again. Only working on mobile platform.',
-          label: const Text('Render LaTeX'),
-          icon: const Icon(Icons.crop_rotate),
-        ));
+      ),
+    ));
+    // floatingActionButton: FloatingActionButton.extended(
+    //   onPressed: _renderLaTeX,
+    //   tooltip: 'Render again. Only working on mobile platform.',
+    //   label: const Text('Render LaTeX'),
+    //   icon: const Icon(Icons.crop_rotate),
+    // ));
   }
 
   void _renderLaTeX() {
