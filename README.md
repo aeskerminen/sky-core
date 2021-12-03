@@ -11,7 +11,7 @@ Users are greeted with an extremely intuitive working environment, where differe
 The tabs consist of a text-editing environment, LaTeX editor and a whiteboard for taking notes with pen tablets.
 
 ### Whiteboard
-![Drawing environment](/assets/readme/canvas_demo_1.png)
+![Drawing environment](/assets/readme/canvas_demo_2.png)
 
 The Whiteboard is a minimalistic environment with dynamic and theoretically infinite space. The canvas is pressure-sensitive and compatible with most pen tablets. Users can change the size of the canvas and the color of the pen.
 
