@@ -13,9 +13,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sky Notes',
-      theme: ThemeData(primarySwatch: Colors.pink),
-      home:  DrawingPage()
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: const TabBar(tabs: [
+              Tab(icon: Icon(Icons.pending_actions)),
+              Tab(icon: Icon(Icons.pending_actions)),
+              Tab(icon: Icon(Icons.pending_actions)),
+            ]),
+          ),
+          body: TabBarView(
+              children: [DrawingPage(), DrawingPage(), DrawingPage()]),
+        ),
+      ),
     );
   }
 }
-
