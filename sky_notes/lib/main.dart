@@ -16,19 +16,46 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sky Notes',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: const TabBar(tabs: [
-              Tab(icon: Icon(Icons.pending_actions)),
-              Tab(icon: Icon(Icons.pending_actions)),
-              Tab(icon: Icon(Icons.pending_actions)),
-            ]),
+      home: Row(
+        children: [
+          Expanded(
+              flex: 1,
+              child: Scaffold(
+                appBar: AppBar(
+                  title: const Text("Sky Notes"),
+                ),
+              )),
+          Expanded(
+            flex: 4,
+            child: DefaultTabController(
+                length: 3,
+                child: Material(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          color: Colors.blue,
+                          child: const TabBar(tabs: [
+                            Tab(icon: Icon(Icons.pending_actions)),
+                            Tab(icon: Icon(Icons.pending_actions)),
+                            Tab(icon: Icon(Icons.pending_actions)),
+                          ]),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 11,
+                        child: TabBarView(children: [
+                          DrawingPage(),
+                          TextEditor(),
+                          LatexEditor()
+                        ]),
+                      )
+                    ],
+                  ),
+                )),
           ),
-          body: TabBarView(
-              children: [DrawingPage(), LatexEditor(), TextEditor()]),
-        ),
+        ],
       ),
     );
   }

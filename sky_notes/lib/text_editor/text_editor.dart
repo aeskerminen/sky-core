@@ -9,8 +9,8 @@ class TextEditor extends StatefulWidget {
 class _TextEditorState extends State<TextEditor> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Text editor')),
+    return const Scaffold(
+      body: Text("Text editor..."),
     );
   }
 }
