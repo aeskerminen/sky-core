@@ -40,7 +40,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   katex_flutter: ^4.0.2
-
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
+      ref: fd519be1e8398c6b6c2062c2447bac960a71bc02
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

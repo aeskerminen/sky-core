@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:katex_flutter/katex_flutter.dart';
 
 class LatexEditor extends StatefulWidget {
-  LatexEditor({Key? key}) : super(key: key);
+  const LatexEditor({Key? key}) : super(key: key);
+
   @override
   _LatexEditorState createState() => _LatexEditorState();
 }
