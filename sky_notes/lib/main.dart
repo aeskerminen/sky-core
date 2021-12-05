@@ -122,39 +122,47 @@ class TagBar extends StatelessWidget {
             color: Colors.white,
             border: Border.all(color: Colors.black, width: 2)),
         child: Padding(
-          padding: const EdgeInsets.all(1),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(7.5)),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black, width: 1.5)),
-                  child: const Padding(
-                    padding: EdgeInsets.all(3.0),
-                    child: Text("Tag 1"),
+            padding: const EdgeInsets.all(1),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: const [
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "MAA8"),
+                  Tag(
+                    tagName: "Impossible",
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(7.5)),
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black, width: 1.5)),
-                  child: const Padding(
-                    padding: EdgeInsets.all(3.0),
-                    child: Text("Tag 1"),
+                  Tag(
+                    tagName: "To Learn",
                   ),
-                ),
+                  Tag(
+                    tagName: "A-level",
+                  )
+                ],
               ),
-            ],
-          ),
+            )),
+      ),
+    );
+  }
+}
+
+class Tag extends StatelessWidget {
+  final String? tagName;
+
+  const Tag({Key? key, this.tagName}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(7.5)),
+            color: Colors.white,
+            border: Border.all(color: Colors.black, width: 1.5)),
+        child: Padding(
+          padding: const EdgeInsets.all(3.0),
+          child: Text(tagName.toString()),
         ),
       ),
     );
