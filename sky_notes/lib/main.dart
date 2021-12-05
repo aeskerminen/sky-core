@@ -50,7 +50,7 @@ class WorkView extends StatelessWidget {
             DrawingPage()
           ]),
           floatingActionButton: Align(
-            alignment: const Alignment(0.0, 1),
+            alignment: const Alignment(0.0, 1.025),
             child: SizedBox(
               width: 200,
               height: 40,
@@ -117,30 +117,28 @@ class TagBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
+        height: 40,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(7.5)),
             color: Colors.white,
             border: Border.all(color: Colors.black, width: 2)),
-        child: Padding(
-            padding: const EdgeInsets.all(1),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: const [
-                  Tag(tagName: "Mathematics"),
-                  Tag(tagName: "MAA8"),
-                  Tag(
-                    tagName: "Impossible",
-                  ),
-                  Tag(
-                    tagName: "To Learn",
-                  ),
-                  Tag(
-                    tagName: "A-level",
-                  )
-                ],
-              ),
-            )),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.all(3.0),
+          children: const <Widget>[
+            Tag(tagName: "Mathematics"),
+            Tag(tagName: "MAA8"),
+            Tag(
+              tagName: "Impossible",
+            ),
+            Tag(
+              tagName: "To Learn",
+            ),
+            Tag(
+              tagName: "A-level",
+            )
+          ],
+        ),
       ),
     );
   }
