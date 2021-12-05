@@ -33,15 +33,19 @@ class MainApp extends StatelessWidget {
           child: DefaultTabController(
             length: 3,
             child: Scaffold(
-              appBar: AppBar(
-                title: const TabBar(tabs: [
-                  Tab(icon: Icon(Icons.pending_actions)),
-                  Tab(icon: Icon(Icons.pending_actions)),
-                  Tab(icon: Icon(Icons.pending_actions)),
-                ]),
-              ),
               body: TabBarView(
                   children: [TextEditor(), LatexEditor(), DrawingPage()]),
+              floatingActionButton: SizedBox(
+                width: 300,
+                child: Container(
+                  color: Colors.black,
+                  child: const TabBar(tabs: [
+                    Tab(icon: Icon(Icons.pending_actions)),
+                    Tab(icon: Icon(Icons.pending_actions)),
+                    Tab(icon: Icon(Icons.pending_actions)),
+                  ]),
+                ),
+              ),
             ),
           ),
         ),
