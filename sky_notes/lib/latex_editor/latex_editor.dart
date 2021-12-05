@@ -10,15 +10,13 @@ class LatexEditor extends StatefulWidget {
 
 class _LatexEditorState extends State<LatexEditor> {
   final TextEditingController _laTeXInputController = TextEditingController(
-      text: r'What do you think about $L'
+      text: r'$L'
           '\''
           r' = {L}{\sqrt{1-\frac{v^2}{c^2}}}$ ?'
           '\n'
-          r'And some display $\LaTeX$: $$\boxed{\rm{A function: } f(x) = \frac{5}{3} \cdot x}$$'
+          r'$\LaTeX$: $$\boxed{\rm{A function: } f(x) = \frac{3}{\sqrt[4]{3}}}$$'
           '\n'
-          r'$\KaTeX$-Flutter provides easy processing of $LaTeX$ embedded into any text.'
-          '\n'
-          r'This package was developped for testapp.schule education project. Find us on pub.dev/packages/katex_flutter !');
+          r'$\KaTeX$-Flutter provides easy processing of $LaTeX$ embedded into any text.');
   late String _laTeX;
 
   @override
@@ -29,8 +27,8 @@ class _LatexEditorState extends State<LatexEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Padding(
+    return Scaffold(
+        body: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
         child: Column(
@@ -53,18 +51,20 @@ class _LatexEditorState extends State<LatexEditor> {
                 laTeXCode:
                     Text(_laTeX, style: Theme.of(context).textTheme.bodyText2),
               ),
-            ))
+            )),
+            FlatButton(
+                onPressed: _renderLaTeX, child: const Text("Press me father"))
           ],
         ),
       ),
     ));
-    // floatingActionButton: FloatingActionButton.extended(
-    //   onPressed: _renderLaTeX,
-    //   tooltip: 'Render again. Only working on mobile platform.',
-    //   label: const Text('Render LaTeX'),
-    //   icon: const Icon(Icons.crop_rotate),
-    // ));
   }
+  // floatingActionButton: FloatingActionButton.extended(
+  //     onPressed: _renderLaTeX,
+  //     tooltip: 'Render again. Only working on mobile platform.',
+  //     label: const Text('Render LaTeX'),
+  //     icon: const Icon(Icons.crop_rotate),
+  //   ))
 
   void _renderLaTeX() {
     setState(() {
