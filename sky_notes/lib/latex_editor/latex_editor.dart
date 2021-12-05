@@ -52,7 +52,7 @@ class _LatexEditorState extends State<LatexEditor> {
                     Text(_laTeX, style: Theme.of(context).textTheme.bodyText2),
               ),
             )),
-            FlatButton(
+            TextButton(
                 onPressed: _renderLaTeX, child: const Text("Press me father"))
           ],
         ),
