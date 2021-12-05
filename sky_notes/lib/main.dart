@@ -27,57 +27,9 @@ class _MainAppState extends State<MainApp> {
       theme: ThemeData(primarySwatch: Colors.blue),
       home: Row(children: const [
         Expanded(flex: 1, child: SideBar()),
-        Divider(
-          indent: 1,
-          endIndent: 2,
-        ),
-        Expanded(
-          flex: 4,
-          child: WorkView(),
-        ),
+        Divider(indent: 1, endIndent: 2),
+        Expanded(flex: 4, child: WorkView()),
       ]),
-    );
-  }
-}
-
-class SideBar extends StatelessWidget {
-  const SideBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sky Notes"),
-      ),
-      body: Container(
-        color: Colors.blueGrey,
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                child: const Text("file structure"),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(7.5)),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black, width: 2.5)),
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: Row(
-                    children: const [Text("Tag 1"), Text("Tag 2")],
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
@@ -112,6 +64,99 @@ class WorkView extends StatelessWidget {
               ),
             ),
           )),
+    );
+  }
+}
+
+class SideBar extends StatelessWidget {
+  const SideBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Sky Notes"),
+      ),
+      body: Container(
+        color: Colors.white,
+        child: Column(
+          children: const [FileTree(), TagBar()],
+        ),
+      ),
+    );
+  }
+}
+
+class FileTree extends StatelessWidget {
+  const FileTree({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          child: const Text("file structure"),
+        ),
+      ),
+    );
+  }
+}
+
+class TagBar extends StatelessWidget {
+  const TagBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(7.5)),
+            color: Colors.white,
+            border: Border.all(color: Colors.black, width: 2)),
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(7.5)),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black, width: 1.5)),
+                  child: const Padding(
+                    padding: EdgeInsets.all(3.0),
+                    child: Text("Tag 1"),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(7.5)),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black, width: 1.5)),
+                  child: const Padding(
+                    padding: EdgeInsets.all(3.0),
+                    child: Text("Tag 1"),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
