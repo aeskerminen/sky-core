@@ -55,7 +55,7 @@ class WorkView extends StatelessWidget {
               width: 200,
               height: 40,
               child: Container(
-                color: Colors.black,
+                color: Colors.cyan,
                 child: const TabBar(tabs: [
                   Tab(icon: Icon(Icons.pending_actions)),
                   Tab(icon: Icon(Icons.pending_actions)),
@@ -118,7 +118,7 @@ class FileTree extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Colors.blueGrey,
+                  color: Colors.blue,
                 ),
                 child: ListView(
                   scrollDirection: Axis.vertical,
@@ -155,10 +155,9 @@ class TagBar extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: 40,
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(7.5)),
-            color: Colors.white,
-            border: Border.all(color: Colors.black, width: 2)),
+        decoration: const BoxDecoration(
+          color: Colors.blue,
+        ),
         child: ListView(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.all(3.0),
@@ -188,17 +187,13 @@ class Tag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(7.5)),
-            color: Colors.white,
-            border: Border.all(color: Colors.black, width: 1.5)),
-        child: Padding(
-          padding: const EdgeInsets.all(3.0),
-          child: Text(tagName.toString()),
-        ),
+    return Card(
+      elevation: 5,
+      color: Colors.white,
+      shadowColor: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Text(tagName.toString()),
       ),
     );
   }
