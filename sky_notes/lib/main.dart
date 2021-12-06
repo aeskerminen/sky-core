@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sky_notes/latex_editor/latex_editor.dart';
 import 'package:sky_notes/text_editor/text_editor.dart';
 import 'package:sky_notes/whiteboard/whiteboard_screen.dart';
@@ -25,7 +24,7 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Sky Notes',
-        theme: ThemeData(primarySwatch: Colors.blue),
+        theme: ThemeData(primarySwatch: Colors.grey),
         home: Scaffold(
           appBar: AppBar(
             title: const Text("Sky Notes"),
@@ -60,7 +59,7 @@ class WorkView extends StatelessWidget {
               width: 200,
               height: 40,
               child: Container(
-                color: Colors.cyan,
+                color: Colors.grey[200],
                 child: const TabBar(tabs: [
                   Tab(icon: Icon(Icons.pending_actions)),
                   Tab(icon: Icon(Icons.pending_actions)),
@@ -103,7 +102,7 @@ class FileTree extends StatelessWidget {
       padding: const EdgeInsets.all(5.0),
       child: Card(
         elevation: 8,
-        color: Colors.blue,
+        color: Colors.grey[400],
         shadowColor: Colors.black,
         child: Column(
           children: [
@@ -177,7 +176,7 @@ class TagBar extends StatelessWidget {
         height: 50,
         child: Card(
           elevation: 8,
-          color: Colors.blue,
+          color: Colors.grey[400],
           shadowColor: Colors.black,
           child: ListView(
             scrollDirection: Axis.horizontal,
