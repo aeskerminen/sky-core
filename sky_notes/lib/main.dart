@@ -112,6 +112,17 @@ class FileTree extends StatelessWidget {
                 padding: const EdgeInsets.all(5.0),
                 children: const <Widget>[
                   Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "Mathematics"),
                   Tag(tagName: "MAA8"),
                   Tag(
                     tagName: "Impossible",
