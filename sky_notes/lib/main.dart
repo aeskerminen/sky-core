@@ -172,7 +172,7 @@ class TagBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
-      child: Container(
+      child: SizedBox(
         height: 50,
         child: Card(
           elevation: 8,
