@@ -30,11 +30,7 @@ class _MainAppState extends State<MainApp> {
           appBar: AppBar(
             title: const Text("Sky Notes"),
           ),
-          body: Row(children: const [
-            // Expanded(flex: 1, child: SideBar()),
-            Divider(indent: 1, endIndent: 2),
-            Expanded(flex: 4, child: WorkView()),
-          ]),
+          body: const WorkView(),
           drawer: const Drawer(
             elevation: 16,
             child: SideBar(),
