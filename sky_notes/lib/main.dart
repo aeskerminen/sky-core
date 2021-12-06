@@ -24,14 +24,22 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sky Notes',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: Row(children: const [
-        Expanded(flex: 1, child: SideBar()),
-        Divider(indent: 1, endIndent: 2),
-        Expanded(flex: 4, child: WorkView()),
-      ]),
-    );
+        title: 'Sky Notes',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text("Sky Notes"),
+          ),
+          body: Row(children: const [
+            // Expanded(flex: 1, child: SideBar()),
+            Divider(indent: 1, endIndent: 2),
+            Expanded(flex: 4, child: WorkView()),
+          ]),
+          drawer: const Drawer(
+            elevation: 16,
+            child: SideBar(),
+          ),
+        ));
   }
 }
 
@@ -77,9 +85,7 @@ class SideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sky Notes"),
-      ),
+      appBar: AppBar(),
       body: Container(
         color: Colors.white,
         child: Column(
