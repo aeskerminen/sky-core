@@ -137,7 +137,7 @@ class FileTree extends StatelessWidget {
               ),
             ),
             const Expanded(
-                flex: 2,
+                flex: 1,
                 child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Padding(
@@ -147,6 +147,8 @@ class FileTree extends StatelessWidget {
                         cursorColor: Colors.black,
                         obscureText: false,
                         decoration: InputDecoration(
+                            isCollapsed: true,
+                            contentPadding: EdgeInsets.all(10),
                             filled: true,
                             fillColor: Colors.white,
                             border: UnderlineInputBorder(),
