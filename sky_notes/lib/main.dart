@@ -82,7 +82,7 @@ class SideBar extends StatelessWidget {
       body: Container(
         color: Colors.white,
         child: Column(
-          children: const [FileTree(), TagBar()],
+          children: const [Expanded(child: FileTree()), TagBar()],
         ),
       ),
     );
@@ -96,13 +96,50 @@ class FileTree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          child: const Text("file structure"),
+    return Column(
+      children: [
+        const Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: TextField(
+              obscureText: false,
+              decoration: InputDecoration(
+                  isCollapsed: false,
+                  contentPadding: EdgeInsets.all(5),
+                  hintText: "Mathematics...",
+                  border: UnderlineInputBorder(),
+                  labelText: "Search for notes"),
+            ),
+          ),
         ),
-      ),
+        Expanded(
+            flex: 8,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.blueGrey,
+                ),
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  padding: const EdgeInsets.all(5.0),
+                  children: const <Widget>[
+                    Tag(tagName: "Mathematics"),
+                    Tag(tagName: "MAA8"),
+                    Tag(
+                      tagName: "Impossible",
+                    ),
+                    Tag(
+                      tagName: "To Learn",
+                    ),
+                    Tag(
+                      tagName: "A-level",
+                    )
+                  ],
+                ),
+              ),
+            ))
+      ],
     );
   }
 }
