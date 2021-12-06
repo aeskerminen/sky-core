@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sky_notes/latex_editor/latex_editor.dart';
 import 'package:sky_notes/text_editor/text_editor.dart';
 import 'package:sky_notes/whiteboard/whiteboard_screen.dart';
@@ -96,50 +97,54 @@ class FileTree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Expanded(
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: TextField(
-              obscureText: false,
-              decoration: InputDecoration(
-                  isCollapsed: false,
-                  contentPadding: EdgeInsets.all(5),
-                  hintText: "Mathematics...",
-                  border: UnderlineInputBorder(),
-                  labelText: "Search for notes"),
-            ),
-          ),
-        ),
-        Expanded(
-            flex: 8,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  padding: const EdgeInsets.all(5.0),
-                  children: const <Widget>[
-                    Tag(tagName: "Mathematics"),
-                    Tag(tagName: "MAA8"),
-                    Tag(
-                      tagName: "Impossible",
-                    ),
-                    Tag(
-                      tagName: "To Learn",
-                    ),
-                    Tag(
-                      tagName: "A-level",
-                    )
-                  ],
-                ),
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Card(
+        elevation: 8,
+        color: Colors.blue,
+        shadowColor: Colors.black,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 10,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                padding: const EdgeInsets.all(5.0),
+                children: const <Widget>[
+                  Tag(tagName: "Mathematics"),
+                  Tag(tagName: "MAA8"),
+                  Tag(
+                    tagName: "Impossible",
+                  ),
+                  Tag(
+                    tagName: "To Learn",
+                  ),
+                  Tag(
+                    tagName: "A-level",
+                  )
+                ],
               ),
-            ))
-      ],
+            ),
+            const Expanded(
+                flex: 2,
+                child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: TextField(
+                        style: TextStyle(color: Colors.black),
+                        cursorColor: Colors.black,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: UnderlineInputBorder(),
+                            hintText: "Notes..."),
+                      ),
+                    )))
+          ],
+        ),
+      ),
     );
   }
 }
@@ -152,28 +157,30 @@ class TagBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(5.0),
       child: Container(
-        height: 40,
-        decoration: const BoxDecoration(
+        height: 50,
+        child: Card(
+          elevation: 8,
           color: Colors.blue,
-        ),
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.all(3.0),
-          children: const <Widget>[
-            Tag(tagName: "Mathematics"),
-            Tag(tagName: "MAA8"),
-            Tag(
-              tagName: "Impossible",
-            ),
-            Tag(
-              tagName: "To Learn",
-            ),
-            Tag(
-              tagName: "A-level",
-            )
-          ],
+          shadowColor: Colors.black,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.all(3.0),
+            children: const <Widget>[
+              Tag(tagName: "Mathematics"),
+              Tag(tagName: "MAA8"),
+              Tag(
+                tagName: "Impossible",
+              ),
+              Tag(
+                tagName: "To Learn",
+              ),
+              Tag(
+                tagName: "A-level",
+              )
+            ],
+          ),
         ),
       ),
     );
