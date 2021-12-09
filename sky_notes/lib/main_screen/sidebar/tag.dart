@@ -13,7 +13,10 @@ class Tag extends StatelessWidget {
       shadowColor: Colors.black,
       child: Padding(
         padding: const EdgeInsets.all(5.0),
-        child: Text(tagName.toString()),
+        child: Text(
+          tagName.toString(),
+          style: const TextStyle(color: Colors.black),
+        ),
       ),
     );
   }

@@ -25,14 +25,18 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Sky Notes',
-        theme: ThemeData(primarySwatch: Colors.grey),
+        theme: ThemeData(
+            brightness: Brightness.dark,
+            scaffoldBackgroundColor: Colors.blueGrey,
+            primarySwatch: Colors.grey,
+            fontFamily: 'Georgia'),
         home: Scaffold(
           appBar: AppBar(
             title: const Text("Sky Notes"),
           ),
           body: const WorkView(),
           drawer: const Drawer(
-            elevation: 16,
+            elevation: 8,
             child: SideBar(),
           ),
         ));
@@ -47,30 +51,31 @@ class WorkView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 3,
-        child: Scaffold(
-            body: TabBarView(children: [
-              const TextEditor(),
-              const LatexEditor(),
-              DrawingPage()
-            ]),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.startFloat,
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.arrow_upward_rounded),
-              backgroundColor: Colors.white.withOpacity(0.9),
-              elevation: 0,
-              mini: true,
-            )));
+      length: 3,
+      child: Scaffold(
+        body: TabBarView(
+            children: [const TextEditor(), const LatexEditor(), DrawingPage()]),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.arrow_upward_rounded),
+          backgroundColor: Colors.white.withOpacity(0.9),
+          elevation: 0,
+          mini: true,
+        ),
+        bottomSheet: const SizedBox(
+          width: 200,
+          height: 40,
+          child: TabBar(
+              indicatorColor: Colors.white,
+              labelColor: Colors.white,
+              tabs: [
+                Tab(icon: Icon(Icons.pending_actions)),
+                Tab(icon: Icon(Icons.pending_actions)),
+                Tab(icon: Icon(Icons.pending_actions)),
+              ]),
+        ),
+      ),
+    );
   }
 }
-
-// Container(
-//                 color: Colors.grey[200],
-//                 child: const TabBar(tabs: [
-//                   Tab(icon: Icon(Icons.pending_actions)),
-//                   Tab(icon: Icon(Icons.pending_actions)),
-//                   Tab(icon: Icon(Icons.pending_actions)),
-//                 ]),
-//               ))
