@@ -42,6 +42,9 @@ class _MainAppState extends State<MainApp> {
   }
 }
 
+final _controller = PageController();
+int pageIndex = 0;
+
 class WorkView extends StatelessWidget {
   const WorkView({
     Key? key,
@@ -52,27 +55,19 @@ class WorkView extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        body: TabBarView(
+        body: PageView(
+            controller: _controller,
             children: [const TextEditor(), const LatexEditor(), DrawingPage()]),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.arrow_upward_rounded),
+          onPressed: () {
+            pageIndex >= 2 ? pageIndex = 0 : pageIndex++;
+            _controller.jumpToPage(pageIndex);
+          },
+          child: const Icon(Icons.pages),
           backgroundColor: Colors.black.withOpacity(0.9),
-          elevation: 0,
-          mini: true,
-        ),
-        bottomSheet: const SizedBox(
-          width: 200,
-          height: 40,
-          child: TabBar(
-              indicatorColor: Colors.black,
-              labelColor: Colors.black,
-              tabs: [
-                Tab(icon: Icon(Icons.pending_actions)),
-                Tab(icon: Icon(Icons.pending_actions)),
-                Tab(icon: Icon(Icons.pending_actions)),
-              ]),
+          elevation: 10,
+          mini: false,
         ),
       ),
     );
