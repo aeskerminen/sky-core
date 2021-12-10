@@ -26,9 +26,9 @@ class _MainAppState extends State<MainApp> {
     return MaterialApp(
         title: 'Sky Notes',
         theme: ThemeData(
-            brightness: Brightness.dark,
-            scaffoldBackgroundColor: Colors.blueGrey,
-            primarySwatch: Colors.grey,
+            brightness: Brightness.light,
+            scaffoldBackgroundColor: Colors.white,
+            primarySwatch: Colors.blue,
             fontFamily: 'Georgia'),
         home: Scaffold(
           appBar: AppBar(
@@ -59,7 +59,7 @@ class WorkView extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
           child: const Icon(Icons.arrow_upward_rounded),
-          backgroundColor: Colors.white.withOpacity(0.9),
+          backgroundColor: Colors.black.withOpacity(0.9),
           elevation: 0,
           mini: true,
         ),
@@ -67,8 +67,8 @@ class WorkView extends StatelessWidget {
           width: 200,
           height: 40,
           child: TabBar(
-              indicatorColor: Colors.white,
-              labelColor: Colors.white,
+              indicatorColor: Colors.black,
+              labelColor: Colors.black,
               tabs: [
                 Tab(icon: Icon(Icons.pending_actions)),
                 Tab(icon: Icon(Icons.pending_actions)),
