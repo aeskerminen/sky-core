@@ -66,7 +66,7 @@ class WorkView extends StatelessWidget {
           },
           child: const Icon(Icons.pages),
           backgroundColor: Colors.black.withOpacity(0.9),
-          elevation: 10,
+          elevation: 8,
           mini: false,
         ),
       ),

@@ -45,17 +45,17 @@ class _LatexEditorState extends State<LatexEditor> {
                     controller: _laTeXInputController,
                   ),
                 ),
-                Container(
-                    child: Builder(
+                Builder(
                   builder: (context) => KaTeX(
                     laTeXCode: Text(_laTeX,
                         style: Theme.of(context).textTheme.bodyText2),
                   ),
-                )),
+                ),
               ],
             ),
           ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended(
           onPressed: _renderLaTeX,
           tooltip: 'Render again. Only working on mobile platform.',
