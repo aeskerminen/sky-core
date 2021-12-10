@@ -27,8 +27,7 @@ class _MainAppState extends State<MainApp> {
         title: 'Sky Notes',
         theme: ThemeData(
             brightness: Brightness.light,
-            scaffoldBackgroundColor: Colors.white,
-            primarySwatch: Colors.blue,
+            scaffoldBackgroundColor: Colors.grey,
             fontFamily: 'Georgia'),
         home: Scaffold(
           appBar: AppBar(
@@ -54,7 +53,7 @@ class WorkView extends StatelessWidget {
       length: 3,
       child: Scaffold(
         body: TabBarView(
-            children: [HomePage(), const LatexEditor(), DrawingPage()]),
+            children: [const TextEditor(), const LatexEditor(), DrawingPage()]),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
