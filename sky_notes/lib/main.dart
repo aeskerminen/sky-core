@@ -54,7 +54,7 @@ class WorkView extends StatelessWidget {
       length: 3,
       child: Scaffold(
         body: TabBarView(
-            children: [const TextEditor(), const LatexEditor(), DrawingPage()]),
+            children: [HomePage(), const LatexEditor(), DrawingPage()]),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
