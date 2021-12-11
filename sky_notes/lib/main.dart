@@ -24,21 +24,29 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Sky Notes',
-        theme: ThemeData(
-            brightness: Brightness.light,
-            scaffoldBackgroundColor: Colors.grey,
-            fontFamily: 'Georgia'),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Sky Notes"),
-          ),
-          body: const WorkView(),
-          drawer: const Drawer(
-            elevation: 8,
-            child: SideBar(),
-          ),
-        ));
+      title: 'Sky Notes',
+      theme: ThemeData(
+          brightness: Brightness.light,
+          scaffoldBackgroundColor: Colors.grey,
+          fontFamily: 'Georgia'),
+      home: Scaffold(
+        body: const WorkView(),
+        drawer: const Drawer(
+          backgroundColor: Colors.grey,
+          elevation: 8,
+          child: SideBar(),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        floatingActionButton: Builder(builder: (context) {
+          return FloatingActionButton(
+              child: const Icon(Icons.notes_sharp),
+              backgroundColor: Colors.black.withOpacity(0.9),
+              elevation: 8,
+              mini: false,
+              onPressed: () => Scaffold.of(context).openDrawer());
+        }),
+      ),
+    );
   }
 }
 
