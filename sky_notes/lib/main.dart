@@ -42,7 +42,7 @@ class _MainAppState extends State<MainApp> {
               child: const Icon(Icons.notes_sharp),
               backgroundColor: Colors.black.withOpacity(0.9),
               elevation: 8,
-              mini: false,
+              mini: true,
               onPressed: () => Scaffold.of(context).openDrawer());
         }),
       ),
@@ -75,7 +75,7 @@ class WorkView extends StatelessWidget {
           child: const Icon(Icons.pages),
           backgroundColor: Colors.black.withOpacity(0.9),
           elevation: 8,
-          mini: false,
+          mini: true,
         ),
       ),
     );
