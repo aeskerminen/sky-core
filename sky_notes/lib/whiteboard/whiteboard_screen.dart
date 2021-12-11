@@ -6,7 +6,6 @@ import 'package:sky_notes/whiteboard/line.dart';
 import 'package:sky_notes/whiteboard/sketcher.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-
 class DrawingPage extends StatefulWidget {
   @override
   _DrawingPageState createState() => _DrawingPageState();
@@ -15,13 +14,15 @@ class DrawingPage extends StatefulWidget {
 class _DrawingPageState extends State<DrawingPage> {
   final GlobalKey _globalKey = GlobalKey();
   List<DrawnLine> lines = <DrawnLine>[];
-  DrawnLine line = DrawnLine(const [ui.Offset(0, 0)] ,Colors.black,0);
+  DrawnLine line = DrawnLine(const [ui.Offset(0, 0)], Colors.black, 0);
   Color currentColor = Colors.black;
   Color pickerColor = Colors.black;
   double selectedWidth = 5.0;
 
-  StreamController<List<DrawnLine>> linesStreamController = StreamController<List<DrawnLine>>.broadcast();
-  StreamController<DrawnLine> currentLineStreamController = StreamController<DrawnLine>.broadcast();
+  StreamController<List<DrawnLine>> linesStreamController =
+      StreamController<List<DrawnLine>>.broadcast();
+  StreamController<DrawnLine> currentLineStreamController =
+      StreamController<DrawnLine>.broadcast();
 
   void changeColor(Color color) {
     setState(() => pickerColor = color);
@@ -35,15 +36,18 @@ class _DrawingPageState extends State<DrawingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack( 
-        children: [
-          buildAllPaths(context),
-          buildCurrentPath(context),
-          buildStrokeToolbar(),
-          buildColorToolbar(),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Stack(
+          children: [
+            buildAllPaths(context),
+            buildCurrentPath(context),
+            buildStrokeToolbar(),
+            buildColorToolbar(),
+          ],
+        ),
       ),
     );
   }
@@ -64,9 +68,7 @@ class _DrawingPageState extends State<DrawingPage> {
             stream: currentLineStreamController.stream,
             builder: (context, snapshot) {
               return CustomPaint(
-                painter: Sketcher(
-                  [line]
-                ),
+                painter: Sketcher([line]),
               );
             },
           ),
@@ -88,9 +90,7 @@ class _DrawingPageState extends State<DrawingPage> {
           stream: linesStreamController.stream,
           builder: (context, snapshot) {
             return CustomPaint(
-              painter: Sketcher(
-                lines
-              ),
+              painter: Sketcher(lines),
             );
           },
         ),
@@ -121,29 +121,29 @@ class _DrawingPageState extends State<DrawingPage> {
 
   void _showMaterialDialog() {
     showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Pick a color!'),
-          content: SingleChildScrollView(
-            child: ColorPicker(
-              pickerColor: pickerColor,
-              onColorChanged: changeColor,
-              showLabel: true,
-              pickerAreaHeightPercent: 0.8,
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Pick a color!'),
+            content: SingleChildScrollView(
+              child: ColorPicker(
+                pickerColor: pickerColor,
+                onColorChanged: changeColor,
+                showLabel: true,
+                pickerAreaHeightPercent: 0.8,
+              ),
             ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Got it'),
-              onPressed: () {
-                setState(() => currentColor = pickerColor);
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      });
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Got it'),
+                onPressed: () {
+                  setState(() => currentColor = pickerColor);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 
   Widget buildStrokeToolbar() {
@@ -174,7 +174,8 @@ class _DrawingPageState extends State<DrawingPage> {
         child: Container(
           width: strokeWidth * 2,
           height: strokeWidth * 2,
-          decoration: BoxDecoration(color: currentColor, borderRadius: BorderRadius.circular(50.0)),
+          decoration: BoxDecoration(
+              color: currentColor, borderRadius: BorderRadius.circular(50.0)),
         ),
       ),
     );
@@ -210,9 +211,9 @@ class _DrawingPageState extends State<DrawingPage> {
         child: Container(),
         onPressed: () {
           _showMaterialDialog();
-          
+
           // setState(() {
-            // currentColor = color;
+          // currentColor = color;
           // });
         },
       ),

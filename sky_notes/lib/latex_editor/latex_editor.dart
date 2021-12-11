@@ -27,41 +27,46 @@ class _LatexEditorState extends State<LatexEditor> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    decoration: const InputDecoration(
-                        labelText: 'Your LaTeX code here',
-                        helperText:
-                            'Use \$ as delimiter. Use \$\$ for display LaTeX.'),
-                    controller: _laTeXInputController,
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      decoration: const InputDecoration(
+                          labelText: 'Your LaTeX code here',
+                          helperText:
+                              'Use \$ as delimiter. Use \$\$ for display LaTeX.'),
+                      controller: _laTeXInputController,
+                    ),
                   ),
-                ),
-                Builder(
-                  builder: (context) => KaTeX(
-                    laTeXCode: Text(_laTeX,
-                        style: Theme.of(context).textTheme.bodyText2),
+                  Builder(
+                    builder: (context) => KaTeX(
+                      laTeXCode: Text(_laTeX,
+                          style: Theme.of(context).textTheme.bodyText2),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: _renderLaTeX,
-          tooltip: 'Render again. Only working on mobile platform.',
-          label: const Text('Render LaTeX'),
-          icon: const Icon(Icons.crop_rotate),
-        ));
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: _renderLaTeX,
+            tooltip: 'Render again. Only working on mobile platform.',
+            label: const Text('Render LaTeX'),
+            icon: const Icon(Icons.crop_rotate),
+          )),
+    );
   }
   //
 
