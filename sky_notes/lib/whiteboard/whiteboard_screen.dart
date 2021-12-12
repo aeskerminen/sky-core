@@ -206,6 +206,7 @@ class _DrawingPageState extends State<DrawingPage> {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: FloatingActionButton(
+        heroTag: 'btn3',
         mini: true,
         backgroundColor: currentColor,
         child: Container(),

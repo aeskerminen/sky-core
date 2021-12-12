@@ -65,9 +65,10 @@ class WorkView extends StatelessWidget {
       child: Scaffold(
         body: PageView(
             controller: _controller,
-            children: [const TextEditor(), const LatexEditor(), DrawingPage()]),
+            children: [const EditorPage(), const LatexEditor(), DrawingPage()]),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
+          heroTag: 'btn1',
           onPressed: () {
             pageIndex >= 2 ? pageIndex = 0 : pageIndex++;
             _controller.jumpToPage(pageIndex);

@@ -61,6 +61,7 @@ class _LatexEditorState extends State<LatexEditor> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton.extended(
+            heroTag: 'btn2',
             onPressed: _renderLaTeX,
             tooltip: 'Render again. Only working on mobile platform.',
             label: const Text('Render LaTeX'),
