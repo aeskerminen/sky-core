@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sky_notes/latex_editor/latex_editor.dart';
 import 'package:sky_notes/main_screen/sidebar/sidebar.dart';
 import 'package:sky_notes/text_editor/text_editor.dart';
-import 'package:sky_notes/whiteboard/draw_editor.dart';
+import 'package:sky_notes/whiteboard/whiteboard_screen.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {
@@ -65,7 +65,7 @@ class WorkView extends StatelessWidget {
       child: Scaffold(
         body: PageView(
             controller: _controller,
-            children: const [TextEditor(), LatexEditor(), DrawEditor()]),
+            children: [const TextEditor(), const LatexEditor(), DrawingPage()]),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
