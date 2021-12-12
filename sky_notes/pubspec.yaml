@@ -39,6 +39,7 @@ dependencies:
     git:
       url: https://github.com/MagTuxGit/flutter-quill.git
       ref: flutter_28
+  whiteboardkit: ^0.2.0
 
 dev_dependencies:
   flutter_test:
