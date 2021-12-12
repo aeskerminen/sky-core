@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sky_notes/latex_editor/latex_editor.dart';
-import 'package:sky_notes/main_screen/sidebar/sidebar.dart';
+import 'package:sky_notes/main_screen/sidebar.dart';
 import 'package:sky_notes/text_editor/text_editor.dart';
 import 'package:sky_notes/whiteboard/whiteboard_screen.dart';
 import 'package:window_size/window_size.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sky_notes/main_screen/sidebar/tag.dart';
+import 'package:sky_notes/main_screen/tag.dart';
 
 class FileTree extends StatelessWidget {
   const FileTree({

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sky_notes/main_screen/sidebar/filetree.dart';
-import 'package:sky_notes/main_screen/sidebar/tagbar.dart';
+import 'package:sky_notes/main_screen/filetree.dart';
+import 'package:sky_notes/main_screen/tagbar.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({
