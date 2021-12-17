@@ -39,7 +39,7 @@ dependencies:
   
 
 dev_dependencies:
-  zefyr: ^1.0.0-dev.1.0
+  zefyrka: ^1.1.1
   flutter_test:
     sdk: flutter
   katex_flutter: ^4.0.2
