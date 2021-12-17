@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:quill_delta/quill_delta.dart';
 import 'package:zefyr/zefyr.dart';
@@ -35,8 +36,11 @@ class EditorPageState extends State<EditorPage> {
           backgroundColor: Colors.white,
           body: Column(
             children: [
-              ZefyrToolbar(
-                children: [ZefyrToolbar.basic(controller: _controller)],
+              Container(
+                color: Colors.grey,
+                child: ZefyrToolbar(
+                  children: [ZefyrToolbar.basic(controller: _controller)],
+                ),
               ),
               ZefyrEditor(
                 padding: const EdgeInsets.all(16),
@@ -53,7 +57,7 @@ class EditorPageState extends State<EditorPage> {
     // For simplicity we hardcode a simple document with one line of text
     // saying "Zefyr Quick Start".
     // (Note that delta must always end with newline.)
-    final Delta delta = Delta()..insert("Zefyr Quick Start\n");
+    final Delta delta = Delta()..insert("Notes...\n");
     return NotusDocument.fromDelta(delta);
   }
 }

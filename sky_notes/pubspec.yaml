@@ -34,17 +34,21 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_colorpicker: ^0.6.1
+  flutter_colorpicker: ^1.0.3
+  dependencies:
   
-  zefyr: ^1.0.0-rc.1
 
 dev_dependencies:
+  zefyr:
+    git:
+      url: https://github.com/memspace/zefyr.git
+      ref: master    #branch name
+      path: packages/zefyr
   flutter_test:
     sdk: flutter
   katex_flutter: ^4.0.2
-  file_picker: 4.2.7
-  filesystem_picker: 2.0.0
-  path_provider: 2.0.8
+  file_picker: ^4.2.8
+  image_picker: ^0.8.4+4
   window_size:
     git:
       url: git://github.com/google/flutter-desktop-embedding.git
@@ -57,6 +61,8 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
+dependency_overrides:
+  quiver: ^3.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
