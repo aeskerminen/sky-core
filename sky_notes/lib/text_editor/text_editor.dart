@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:quill_delta/quill_delta.dart';
-import 'package:zefyr/zefyrka.dart';
+import 'package:zefyrka/zefyrka.dart';
+import 'package:quill_format/quill_format.dart';
 
 class EditorPage extends StatefulWidget {
   const EditorPage({Key? key}) : super(key: key);

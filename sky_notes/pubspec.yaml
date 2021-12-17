@@ -40,6 +40,7 @@ dependencies:
 
 dev_dependencies:
   zefyrka: ^1.1.1
+  quill_delta: ^3.0.0-nullsafety.2  
   flutter_test:
     sdk: flutter
   katex_flutter: ^4.0.2
@@ -58,7 +59,8 @@ dev_dependencies:
   flutter_lints: ^1.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+dependency_overrides:
+  quiver: ^3.0.0
 # The following section is specific to Flutter.
 flutter:
 
