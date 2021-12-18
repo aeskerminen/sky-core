@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:sky_notes/whiteboard/line.dart';
-import 'package:sky_notes/whiteboard/sketcher.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:sky_notes/screens/whiteboard/line.dart';
+import 'package:sky_notes/screens/whiteboard/sketcher.dart';
 
 class DrawingPage extends StatefulWidget {
   @override
