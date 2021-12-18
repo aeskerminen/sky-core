@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sky_notes/whiteboard/line.dart';
+import 'package:sky_notes/screens/whiteboard/line.dart';
 
 class Sketcher extends CustomPainter {
   final List<DrawnLine> lines;
