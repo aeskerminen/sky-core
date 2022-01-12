@@ -47,7 +47,13 @@ class Home extends StatelessWidget {
               height: 50,
               width: 225,
               child: Container(
-                color: const Color(0xFF383838),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF383838),
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: const [
+                    BoxShadow(blurRadius: 4, offset: Offset(2, 3))
+                  ],
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
@@ -74,16 +80,27 @@ class ToolbarButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 7, right: 7),
       child: Container(
-          height: 38.5,
-          width: 38.5,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                  color: Colors.black, blurRadius: 4, offset: Offset(3, 4))
-            ],
-          )),
+        height: 38.5,
+        width: 38.5,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(color: Colors.black, blurRadius: 4, offset: Offset(3, 4))
+          ],
+        ),
+        child: TextButton(
+          onPressed: () => {},
+          child: const Icon(
+            Icons.settings,
+            color: Colors.black,
+          ),
+          style: TextButton.styleFrom(
+              shape: const CircleBorder(),
+              alignment: Alignment.center,
+              padding: EdgeInsets.zero),
+        ),
+      ),
     );
   }
 }
