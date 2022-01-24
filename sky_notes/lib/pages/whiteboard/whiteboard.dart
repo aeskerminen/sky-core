@@ -79,18 +79,20 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 5,
           ),
           FloatingActionButton(
-            tooltip: 'Increase Area',
+            tooltip: 'Color Black',
             child: const Icon(Icons.add),
-            onPressed: () => placeholder(),
+            onPressed: () => saveSettings(defaultSettings),
             heroTag: null,
           ),
           const SizedBox(
             height: 5,
           ),
           FloatingActionButton(
-            tooltip: 'Decrease Area',
+            tooltip: 'Color Blue',
             child: const Icon(Icons.remove),
-            onPressed: () => placeholder(),
+            onPressed: () => saveSettings(Paint()
+              ..color = Colors.blue
+              ..strokeWidth = 4.0),
             heroTag: null,
           ),
         ]));
@@ -111,10 +113,7 @@ class Sketcher extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = Colors.blue
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 4.0;
+    Paint paint = currentSettings;
 
     for (int i = 0; i < points.length - 1; i++) {
       if (points[i] != Offset.zero && points[i + 1] != Offset.zero) {
@@ -122,4 +121,19 @@ class Sketcher extends CustomPainter {
       }
     }
   }
+}
+
+final Paint defaultSettings = Paint()
+  ..color = Colors.black
+  ..strokeWidth = 4.0
+  ..strokeCap = StrokeCap.round;
+
+Paint currentSettings = defaultSettings;
+
+Paint saveSettings(Paint paint) {
+  currentSettings = Paint()
+    ..color = paint.color
+    ..strokeWidth = paint.strokeWidth;
+
+  return currentSettings;
 }
