@@ -88,6 +88,7 @@ class _SwitchState extends State<Switch> {
         color: Colors.grey,
         selectedColor: Colors.black,
         fillColor: Colors.white,
+        borderWidth: 2.5,
         borderRadius: BorderRadius.circular(5),
         onPressed: (int index) {
           setState(() {
