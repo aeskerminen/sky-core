@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,7 +46,7 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               height: 50,
-              width: 190,
+              width: 215,
               child: Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFF383838),
@@ -56,17 +57,54 @@ class Home extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    ToolbarButton(),
-                    ToolbarButton(),
-                    ToolbarButton(),
-                    ToolbarButton()
-                  ],
+                  children: const [Switch(), ToolbarButton(), ToolbarButton()],
                 ),
               ),
             ),
           ),
         ));
+  }
+}
+
+class Switch extends StatefulWidget {
+  const Switch({Key? key}) : super(key: key);
+
+  @override
+  _SwitchState createState() => _SwitchState();
+}
+
+class _SwitchState extends State<Switch> {
+  final List<bool> isSelected = [false, false];
+  int index = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(6.0),
+      child: ToggleButtons(
+        children: const <Widget>[
+          Icon(Icons.draw),
+          Icon(Icons.pages),
+        ],
+        color: Colors.grey,
+        selectedColor: Colors.black,
+        fillColor: Colors.white,
+        borderRadius: BorderRadius.circular(5),
+        onPressed: (int index) {
+          setState(() {
+            for (int buttonIndex = 0;
+                buttonIndex < isSelected.length;
+                buttonIndex++) {
+              if (buttonIndex == index) {
+                isSelected[buttonIndex] = true;
+              } else {
+                isSelected[buttonIndex] = false;
+              }
+            }
+          });
+        },
+        isSelected: isSelected,
+      ),
+    );
   }
 }
 
