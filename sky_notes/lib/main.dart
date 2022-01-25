@@ -45,13 +45,13 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               height: 50,
-              width: 225,
+              width: 190,
               child: Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFF383838),
                   borderRadius: BorderRadius.circular(5),
                   boxShadow: const [
-                    BoxShadow(blurRadius: 4, offset: Offset(2, 3))
+                    // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
                   ],
                 ),
                 child: Row(
@@ -78,16 +78,13 @@ class ToolbarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 7, right: 7),
+      padding: const EdgeInsets.only(left: 4, right: 4),
       child: Container(
         height: 38.5,
         width: 38.5,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(color: Colors.black, blurRadius: 4, offset: Offset(3, 4))
-          ],
         ),
         child: TextButton(
           onPressed: () => {},
@@ -96,9 +93,7 @@ class ToolbarButton extends StatelessWidget {
             color: Colors.black,
           ),
           style: TextButton.styleFrom(
-              shape: const CircleBorder(),
-              alignment: Alignment.center,
-              padding: EdgeInsets.zero),
+              alignment: Alignment.center, padding: EdgeInsets.zero),
         ),
       ),
     );
