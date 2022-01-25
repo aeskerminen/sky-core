@@ -81,10 +81,7 @@ class _SwitchState extends State<Switch> {
     return Padding(
       padding: const EdgeInsets.all(6.0),
       child: ToggleButtons(
-        children: const <Widget>[
-          Icon(Icons.draw),
-          Icon(Icons.pages),
-        ],
+        children: const <Widget>[Icon(Icons.file_copy_sharp), Icon(Icons.draw)],
         color: Colors.grey,
         selectedColor: Colors.black,
         fillColor: Colors.white,
