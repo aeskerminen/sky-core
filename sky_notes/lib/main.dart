@@ -79,7 +79,7 @@ class _SwitchState extends State<Switch> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6.0),
+      padding: const EdgeInsets.all(4.0),
       child: ToggleButtons(
         children: const <Widget>[Icon(Icons.file_copy_sharp), Icon(Icons.draw)],
         color: Colors.grey,
