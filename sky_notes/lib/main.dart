@@ -74,7 +74,7 @@ class Switch extends StatefulWidget {
 }
 
 class _SwitchState extends State<Switch> {
-  final List<bool> isSelected = [false, false];
+  final List<bool> isSelected = [true, false];
   int index = 0;
   @override
   Widget build(BuildContext context) {
