@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 void main() {
@@ -31,38 +32,113 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
+class TBIntent extends Intent {}
+
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  bool _visible = true;
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 10),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          color: Colors.white,
-        ),
-        bottomSheet: Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 50,
-              width: 215,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFF383838),
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: const [
-                    // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [Switch(), ToolbarButton(), ToolbarButton()],
-                ),
-              ),
+      body: Container(
+        color: Colors.white,
+      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   label: Text(_visible ? 'Hide' : 'Show'),
+      //   onPressed: () => setState(() => _visible = !_visible),
+      // ),
+      bottomSheet: Shortcuts(
+        shortcuts: {
+          LogicalKeySet(LogicalKeyboardKey.alt): TBIntent(),
+        },
+        child: Actions(
+          actions: {
+            TBIntent: CallbackAction<TBIntent>(
+                onInvoke: (intent) => setState(() => _visible = !_visible))
+          },
+          child: Focus(
+            autofocus: true,
+            child: SlidingToolbar(
+              child: PreferredSize(
+                  preferredSize: const Size.fromHeight(100),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 50,
+                        width: 215,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF383838),
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Switch(),
+                              ToolbarButton(),
+                              ToolbarButton()
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )),
+              controller: _controller,
+              visible: _visible,
             ),
           ),
-        ));
+        ),
+      ),
+    );
+  }
+}
+
+class SlidingToolbar extends StatelessWidget implements PreferredSizeWidget {
+  SlidingToolbar({
+    required this.child,
+    required this.controller,
+    required this.visible,
+  });
+
+  final PreferredSizeWidget child;
+  final AnimationController controller;
+  final bool visible;
+
+  @override
+  Size get preferredSize => child.preferredSize;
+
+  @override
+  Widget build(BuildContext context) {
+    visible ? controller.reverse() : controller.forward();
+    return SlideTransition(
+      position: Tween<Offset>(begin: Offset.zero, end: const Offset(0, 0.065))
+          .animate(
+        CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn),
+      ),
+      child: child,
+    );
   }
 }
 
