@@ -50,7 +50,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 10),
+      duration: const Duration(milliseconds: 400),
     );
   }
 
@@ -66,7 +66,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       // ),
       bottomSheet: Shortcuts(
         shortcuts: {
-          LogicalKeySet(LogicalKeyboardKey.alt): TBIntent(),
+          LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyQ):
+              TBIntent(),
         },
         child: Actions(
           actions: {
@@ -135,7 +136,7 @@ class SlidingToolbar extends StatelessWidget implements PreferredSizeWidget {
     return SlideTransition(
       position: Tween<Offset>(begin: Offset.zero, end: const Offset(0, 0.065))
           .animate(
-        CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn),
+        CurvedAnimation(parent: controller, curve: Curves.linear),
       ),
       child: child,
     );
