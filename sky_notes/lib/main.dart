@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:hotkey_manager/hotkey_manager.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -44,10 +43,25 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   bool _visible = true;
   late final AnimationController _controller;
+  final HotKey _hotKey = HotKey(
+    KeyCode.keyQ,
+    modifiers: [KeyModifier.control],
+    // Set hotkey scope (default is HotKeyScope.system)
+    scope: HotKeyScope.inapp, // Set as inapp-wide hotkey.
+  );
 
   @override
   void initState() {
     super.initState();
+
+    hotKeyManager.register(
+      _hotKey,
+      keyDownHandler: (hotKey) {
+        setState(() {
+          _visible = !_visible;
+        });
+      },
+    );
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 400),
@@ -59,58 +73,48 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       body: Container(
         color: Colors.white,
-      ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   label: Text(_visible ? 'Hide' : 'Show'),
-      //   onPressed: () => setState(() => _visible = !_visible),
-      // ),
-      bottomSheet: Shortcuts(
-        shortcuts: {
-          LogicalKeySet(LogicalKeyboardKey.control, LogicalKeyboardKey.keyQ):
-              TBIntent(),
-        },
-        child: Actions(
-          actions: {
-            TBIntent: CallbackAction<TBIntent>(
-                onInvoke: (intent) => setState(() => _visible = !_visible))
-          },
-          child: Focus(
-            autofocus: true,
-            child: SlidingToolbar(
-              child: PreferredSize(
-                  preferredSize: const Size.fromHeight(100),
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 50,
-                        width: 215,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF383838),
-                            borderRadius: BorderRadius.circular(5),
-                            boxShadow: const [
-                              // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
-                            ],
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Switch(),
-                              ToolbarButton(),
-                              ToolbarButton()
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  )),
-              controller: _controller,
-              visible: _visible,
-            ),
+        child: const DefaultTabController(
+          length: 2,
+          child: TabBarView(
+            children: [
+              Icon(Icons.pages),
+              Icon(Icons.pages),
+            ],
           ),
         ),
+      ),
+      bottomSheet: SlidingToolbar(
+        child: PreferredSize(
+            preferredSize: const Size.fromHeight(100),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  height: 50,
+                  width: 215,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF383838),
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [
+                        // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Switch(),
+                        ToolbarButton(),
+                        ToolbarButton()
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )),
+        controller: _controller,
+        visible: _visible,
       ),
     );
   }
