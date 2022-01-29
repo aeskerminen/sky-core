@@ -77,8 +77,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       length: 2,
       child: Scaffold(
         backgroundColor: Colors.grey,
-        appBar: const TabBar(
-            tabs: [Tab(icon: Icon(Icons.pages)), Tab(icon: Icon(Icons.pages))]),
         body: const TabBarView(
           children: [
             MyHomePage(),
