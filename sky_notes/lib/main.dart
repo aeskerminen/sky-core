@@ -34,6 +34,8 @@ class MyApp extends StatelessWidget {
 
 class TBIntent extends Intent {}
 
+late final AnimationController _controller;
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -43,7 +45,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   bool _visible = true;
-  late final AnimationController _controller;
 
   final HotKey _hotKey = HotKey(
     KeyCode.keyQ,
@@ -66,7 +67,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 200),
     );
   }
 
@@ -184,6 +185,7 @@ class _SwitchState extends State<Switch> {
               } else {
                 isSelected[buttonIndex] = false;
               }
+              DefaultTabController.of(context)!.animateTo(index);
             }
           });
         },
