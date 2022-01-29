@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';
+import 'package:sky_notes/pages/whiteboard/whiteboard.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -43,6 +44,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   bool _visible = true;
   late final AnimationController _controller;
+
   final HotKey _hotKey = HotKey(
     KeyCode.keyQ,
     modifiers: [KeyModifier.control],
@@ -70,51 +72,55 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: const DefaultTabController(
-          length: 2,
-          child: TabBarView(
-            children: [
-              Icon(Icons.pages),
-              Icon(Icons.pages),
-            ],
-          ),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.grey,
+        appBar: const TabBar(
+            tabs: [Tab(icon: Icon(Icons.pages)), Tab(icon: Icon(Icons.pages))]),
+        body: const TabBarView(
+          children: [
+            MyHomePage(),
+            Icon(
+              Icons.draw,
+              color: Colors.black,
+            ),
+          ],
         ),
-      ),
-      bottomSheet: SlidingToolbar(
-        child: PreferredSize(
-            preferredSize: const Size.fromHeight(100),
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 50,
-                  width: 215,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF383838),
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: const [
-                        // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Switch(),
-                        ToolbarButton(),
-                        ToolbarButton()
-                      ],
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: SlidingToolbar(
+          child: PreferredSize(
+              preferredSize: const Size.fromHeight(100),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 50,
+                    width: 215,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF383838),
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: const [
+                          // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Switch(),
+                          ToolbarButton(),
+                          ToolbarButton()
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            )),
-        controller: _controller,
-        visible: _visible,
+              )),
+          controller: _controller,
+          visible: _visible,
+        ),
       ),
     );
   }
