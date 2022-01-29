@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 
 void main() => runApp(const MyApp());
 
@@ -39,63 +40,67 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     return Scaffold(
-        body: GestureDetector(
-          onTap: () {
-            setState(() {});
+      body: GestureDetector(
+        onTap: () {
+          setState(() {});
+        },
+        onPanUpdate: (DragUpdateDetails details) {
+          setState(() {
+            RenderBox box = context.findRenderObject() as RenderBox;
+            Offset point = box.globalToLocal(details.globalPosition);
+            points = List.from(points)..add(point);
+          });
+        },
+        onPanEnd: (DragEndDetails details) {
+          points.add(Offset.zero);
+        },
+        child: sketchArea,
+      ),
+      floatingActionButton:
+          Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+        FloatingActionButton(
+          tooltip: 'Clear Screen',
+          backgroundColor: Colors.blue,
+          child: const Icon(Icons.refresh),
+          onPressed: () {
+            setState(() => points.clear());
           },
-          onPanUpdate: (DragUpdateDetails details) {
-            setState(() {
-              RenderBox box = context.findRenderObject() as RenderBox;
-              Offset point = box.globalToLocal(details.globalPosition);
-              points = List.from(points)..add(point);
-            });
-          },
-          onPanEnd: (DragEndDetails details) {
-            points.add(Offset.zero);
-          },
-          child: sketchArea,
+          heroTag: null,
         ),
-        floatingActionButton:
-            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          FloatingActionButton(
-            tooltip: 'Clear Screen',
-            backgroundColor: Colors.blue,
-            child: const Icon(Icons.refresh),
-            onPressed: () {
-              setState(() => points.clear());
-            },
-            heroTag: null,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          FloatingActionButton(
-            tooltip: 'Undo Action',
-            child: const Icon(Icons.undo),
-            onPressed: () => placeholder(),
-            heroTag: null,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          FloatingActionButton(
-            tooltip: 'Color Black',
-            child: const Icon(Icons.add),
-            onPressed: () => saveSettings(defaultSettings),
-            heroTag: null,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          FloatingActionButton(
-            tooltip: 'Color Blue',
-            child: const Icon(Icons.remove),
-            onPressed: () => saveSettings(Paint()
-              ..color = Colors.blue
-              ..strokeWidth = 4.0),
-            heroTag: null,
-          ),
-        ]));
+        const SizedBox(
+          height: 5,
+        ),
+        FloatingActionButton(
+          tooltip: 'Undo Action',
+          child: const Icon(Icons.undo),
+          onPressed: () => placeholder(),
+          heroTag: null,
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        FloatingActionButton(
+          tooltip: 'Color Black',
+          child: const Icon(Icons.add),
+          onPressed: () => saveSettings(defaultSettings),
+          heroTag: null,
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        FloatingActionButton(
+          tooltip: 'Color Blue',
+          child: const Icon(Icons.remove),
+          onPressed: () => saveSettings(Paint()
+            ..color = Colors.blue
+            ..strokeWidth = 4.0),
+          heroTag: null,
+        ),
+        const CircleColorPicker(
+          size: Size(240, 240),
+        )
+      ]),
+    );
   }
 }
 
