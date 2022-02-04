@@ -30,6 +30,10 @@ dependencies:
   flutter:
     sdk: flutter
   hotkey_manager: ^0.1.6
+  zefyrka:
+    git:
+      url: https://github.com/glynskyi/zefyrka
+      ref: main
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
