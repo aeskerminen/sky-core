@@ -78,7 +78,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       length: 2,
       child: Scaffold(
         backgroundColor: Colors.grey,
-        body: TabBarView(
+        body: const TabBarView(
           children: [MyHomePage(), TextEditor()],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -95,7 +95,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     child: Container(
                       decoration: BoxDecoration(
                         color: const Color(0xFF383838),
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(0),
                         boxShadow: const [
                           // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
                         ],
@@ -167,7 +167,7 @@ class _SwitchState extends State<Switch> {
         selectedColor: Colors.black,
         fillColor: Colors.white,
         borderWidth: 2.5,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(0),
         onPressed: (int index) {
           setState(() {
             for (int buttonIndex = 0;
@@ -201,7 +201,7 @@ class ToolbarButton extends StatelessWidget {
         height: 38.5,
         width: 38.5,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(0),
           color: Colors.white,
         ),
         child: TextButton(
