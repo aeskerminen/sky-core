@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';
+import 'package:sky_notes/pages/text_editor/text_editor.dart';
 import 'package:sky_notes/pages/whiteboard/whiteboard.dart';
 
 void main() async {
@@ -77,14 +78,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       length: 2,
       child: Scaffold(
         backgroundColor: Colors.grey,
-        body: const TabBarView(
-          children: [
-            MyHomePage(),
-            Icon(
-              Icons.draw,
-              color: Colors.black,
-            ),
-          ],
+        body: TabBarView(
+          children: [MyHomePage(), TextEditor()],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: SlidingToolbar(
