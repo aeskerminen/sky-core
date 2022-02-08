@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hotkey_manager/hotkey_manager.dart';
+import 'package:sky_notes/pages/text_editor/text_editor.dart';
+import 'package:sky_notes/pages/whiteboard/whiteboard.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -30,43 +33,158 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
+class TBIntent extends Intent {}
+
+late final AnimationController _controller;
+
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  bool _visible = true;
+
+  final HotKey _hotKey = HotKey(
+    KeyCode.keyQ,
+    modifiers: [KeyModifier.control],
+    // Set hotkey scope (default is HotKeyScope.system)
+    scope: HotKeyScope.inapp, // Set as inapp-wide hotkey.
+  );
+
+  @override
+  void initState() {
+    super.initState();
+
+    hotKeyManager.register(
+      _hotKey,
+      keyDownHandler: (hotKey) {
+        setState(() {
+          _visible = !_visible;
+        });
+      },
+    );
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-          color: Colors.white,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.grey,
+        body: const TabBarView(
+          children: [MyHomePage(), TextEditor()],
         ),
-        bottomSheet: Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(
-              height: 50,
-              width: 225,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFF383838),
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: const [
-                    BoxShadow(blurRadius: 4, offset: Offset(2, 3))
-                  ],
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: SlidingToolbar(
+          child: PreferredSize(
+              preferredSize: const Size.fromHeight(100),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 50,
+                    width: 215,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF383838),
+                        borderRadius: BorderRadius.circular(0),
+                        boxShadow: const [
+                          // BoxShadow(blurRadius: 4, offset: Offset(2, 3))
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Switch(),
+                          ToolbarButton(),
+                          ToolbarButton()
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    ToolbarButton(),
-                    ToolbarButton(),
-                    ToolbarButton(),
-                    ToolbarButton()
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ));
+              )),
+          controller: _controller,
+          visible: _visible,
+        ),
+      ),
+    );
+  }
+}
+
+class SlidingToolbar extends StatelessWidget implements PreferredSizeWidget {
+  SlidingToolbar({
+    required this.child,
+    required this.controller,
+    required this.visible,
+  });
+
+  final PreferredSizeWidget child;
+  final AnimationController controller;
+  final bool visible;
+
+  @override
+  Size get preferredSize => child.preferredSize;
+
+  @override
+  Widget build(BuildContext context) {
+    visible ? controller.reverse() : controller.forward();
+    return SlideTransition(
+      position: Tween<Offset>(begin: Offset.zero, end: const Offset(0, 0.065))
+          .animate(
+        CurvedAnimation(parent: controller, curve: Curves.linear),
+      ),
+      child: child,
+    );
+  }
+}
+
+class Switch extends StatefulWidget {
+  const Switch({Key? key}) : super(key: key);
+
+  @override
+  _SwitchState createState() => _SwitchState();
+}
+
+class _SwitchState extends State<Switch> {
+  final List<bool> isSelected = [true, false];
+  int index = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: ToggleButtons(
+        children: const <Widget>[Icon(Icons.file_copy_sharp), Icon(Icons.draw)],
+        color: Colors.grey,
+        selectedColor: Colors.black,
+        fillColor: Colors.white,
+        borderWidth: 2.5,
+        borderRadius: BorderRadius.circular(0),
+        onPressed: (int index) {
+          setState(() {
+            for (int buttonIndex = 0;
+                buttonIndex < isSelected.length;
+                buttonIndex++) {
+              if (buttonIndex == index) {
+                isSelected[buttonIndex] = true;
+              } else {
+                isSelected[buttonIndex] = false;
+              }
+              DefaultTabController.of(context)!.animateTo(index);
+            }
+          });
+        },
+        isSelected: isSelected,
+      ),
+    );
   }
 }
 
@@ -78,16 +196,13 @@ class ToolbarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 7, right: 7),
+      padding: const EdgeInsets.only(left: 4, right: 4),
       child: Container(
         height: 38.5,
         width: 38.5,
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(0),
           color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(color: Colors.black, blurRadius: 4, offset: Offset(3, 4))
-          ],
         ),
         child: TextButton(
           onPressed: () => {},
@@ -96,9 +211,7 @@ class ToolbarButton extends StatelessWidget {
             color: Colors.black,
           ),
           style: TextButton.styleFrom(
-              shape: const CircleBorder(),
-              alignment: Alignment.center,
-              padding: EdgeInsets.zero),
+              alignment: Alignment.center, padding: EdgeInsets.zero),
         ),
       ),
     );
