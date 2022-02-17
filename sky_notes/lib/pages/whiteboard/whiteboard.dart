@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       body: GestureDetector(
-        onTap: () {
+        onPanDown: (details) {
           setState(() {});
         },
         onPanUpdate: (DragUpdateDetails details) {
