@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         FloatingActionButton(
           tooltip: 'Color Black',
           child: const Icon(Icons.add),
-          onPressed: () => saveSettings(defaultSettings),
+          onPressed: () => currentSettings.color = Colors.black,
           heroTag: null,
         ),
         const SizedBox(
@@ -91,14 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
         FloatingActionButton(
           tooltip: 'Color Blue',
           child: const Icon(Icons.remove),
-          onPressed: () => saveSettings(Paint()
-            ..color = Colors.blue
-            ..strokeWidth = 4.0),
+          onPressed: () => currentSettings.color = Colors.blue,
           heroTag: null,
         ),
-        const CircleColorPicker(
-          size: Size(240, 240),
-        )
+        // const CircleColorPicker(
+        //   size: Size(240, 240),
+        // )
       ]),
     );
   }
@@ -135,10 +133,10 @@ final Paint defaultSettings = Paint()
 
 Paint currentSettings = defaultSettings;
 
-Paint saveSettings(Paint paint) {
-  currentSettings = Paint()
-    ..color = paint.color
-    ..strokeWidth = paint.strokeWidth;
+// Paint saveSettings(Paint paint) {
+//   currentSettings = Paint()
+//     ..color = paint.color
+//     ..strokeWidth = paint.strokeWidth;
 
-  return currentSettings;
-}
+//   return currentSettings;
+// }
