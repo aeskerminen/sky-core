@@ -28,14 +28,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Offset> points = <Offset>[];
-  double currentValue = 5.0;
 
   createAlertDialog(BuildContext context) {
     return showDialog(
         context: context,
         builder: (context) {
           return const AlertDialog(
-              content: SingleChildScrollView(child: CircleColorPicker()));
+              content: SingleChildScrollView(
+            child: CircleColorPicker(),
+          ));
         });
   }
 
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             FloatingActionButton(
               tooltip: 'Clear Screen',
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.black,
               child: const Icon(Icons.refresh),
               onPressed: () {
                 setState(() => points.clear());
@@ -85,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             FloatingActionButton(
               tooltip: 'Undo Action',
+              backgroundColor: Colors.black,
               child: const Icon(Icons.undo),
               onPressed: () => placeholder(),
               heroTag: null,
@@ -94,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             FloatingActionButton(
               tooltip: 'Color Black',
+              backgroundColor: Colors.black,
               child: const Icon(Icons.add),
               onPressed: () => currentSettings.color = Colors.black,
               heroTag: null,
@@ -103,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             FloatingActionButton(
               tooltip: 'Color Blue',
+              backgroundColor: Colors.black,
               child: const Icon(Icons.remove),
               onPressed: () => currentSettings.color = Colors.blue,
               heroTag: null,
@@ -110,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 5),
             FloatingActionButton(
               tooltip: 'Color',
+              backgroundColor: Colors.black,
               onPressed: () => createAlertDialog(context),
               child: const Icon(Icons.color_lens),
               heroTag: null,
@@ -119,13 +124,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: RotatedBox(
                     quarterTurns: 3,
                     child: Slider(
-                      value: currentValue,
-                      onChanged: (newValue) {
-                        setState(() => currentValue = newValue);
-                      },
-                      min: 1.0,
-                      max: 10.0,
-                    )))
+                        activeColor: Colors.black,
+                        value: currentSettings.strokeWidth,
+                        onChanged: (newValue) {
+                          setState(
+                              () => currentSettings.strokeWidth = newValue);
+                        },
+                        min: 1.0,
+                        max: 50.0,
+                        divisions: 50,
+                        label: currentSettings.strokeWidth.round().toString())))
           ]),
     );
   }
@@ -159,7 +167,7 @@ class Sketcher extends CustomPainter {
 
 final Paint defaultSettings = Paint()
   ..color = Colors.black
-  ..strokeWidth = 4.0
+  ..strokeWidth = 5.0
   ..strokeCap = StrokeCap.round;
 
 Paint currentSettings = defaultSettings;
