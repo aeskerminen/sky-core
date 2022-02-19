@@ -28,26 +28,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<Offset> points = <Offset>[];
+  double currentValue = 5.0;
 
   createAlertDialog(BuildContext context) {
-    double currentValue = 5.0;
     return showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-              title: const Text('Select color and stroke'),
-              content: SingleChildScrollView(
-                  child: Column(children: [
-                const CircleColorPicker(),
-                Slider(
-                  value: currentValue,
-                  onChanged: (newValue) {
-                    setState(() => currentValue = newValue);
-                  },
-                  min: 1.0,
-                  max: 10.0,
-                )
-              ])));
+          return const AlertDialog(
+              content: SingleChildScrollView(child: CircleColorPicker()));
         });
   }
 
@@ -79,64 +67,66 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         child: sketchArea,
       ),
-      floatingActionButton:
-          Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-        FloatingActionButton(
-          tooltip: 'Clear Screen',
-          backgroundColor: Colors.blue,
-          child: const Icon(Icons.refresh),
-          onPressed: () {
-            setState(() => points.clear());
-          },
-          heroTag: null,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        FloatingActionButton(
-          tooltip: 'Undo Action',
-          child: const Icon(Icons.undo),
-          onPressed: () => placeholder(),
-          heroTag: null,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        FloatingActionButton(
-          tooltip: 'Color Black',
-          child: const Icon(Icons.add),
-          onPressed: () => currentSettings.color = Colors.black,
-          heroTag: null,
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        FloatingActionButton(
-          tooltip: 'Color Blue',
-          child: const Icon(Icons.remove),
-          onPressed: () => currentSettings.color = Colors.blue,
-          heroTag: null,
-        ),
-        const SizedBox(height: 5),
-        FloatingActionButton(
-          tooltip: 'Color',
-          onPressed: () => createAlertDialog(context),
-          child: const Icon(Icons.color_lens),
-          heroTag: null,
-        )
-        // Expanded(
-        //     child: Slider(
-        //   value: currentValue,
-        //   onChanged: (newValue) {
-        //     setState(() => currentValue = newValue);
-        //   },
-        //   min: 1.0,
-        //   max: 10.0,
-        // ))
-        // const CircleColorPicker(
-        //   size: Size(240, 240),
-        // )
-      ]),
+      floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              tooltip: 'Clear Screen',
+              backgroundColor: Colors.blue,
+              child: const Icon(Icons.refresh),
+              onPressed: () {
+                setState(() => points.clear());
+              },
+              heroTag: null,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            FloatingActionButton(
+              tooltip: 'Undo Action',
+              child: const Icon(Icons.undo),
+              onPressed: () => placeholder(),
+              heroTag: null,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            FloatingActionButton(
+              tooltip: 'Color Black',
+              child: const Icon(Icons.add),
+              onPressed: () => currentSettings.color = Colors.black,
+              heroTag: null,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            FloatingActionButton(
+              tooltip: 'Color Blue',
+              child: const Icon(Icons.remove),
+              onPressed: () => currentSettings.color = Colors.blue,
+              heroTag: null,
+            ),
+            const SizedBox(height: 5),
+            FloatingActionButton(
+              tooltip: 'Color',
+              onPressed: () => createAlertDialog(context),
+              child: const Icon(Icons.color_lens),
+              heroTag: null,
+            ),
+            SizedBox(
+                width: 50,
+                child: RotatedBox(
+                    quarterTurns: 3,
+                    child: Slider(
+                      value: currentValue,
+                      onChanged: (newValue) {
+                        setState(() => currentValue = newValue);
+                      },
+                      min: 1.0,
+                      max: 10.0,
+                    )))
+          ]),
     );
   }
 }
@@ -173,10 +163,3 @@ final Paint defaultSettings = Paint()
   ..strokeCap = StrokeCap.round;
 
 Paint currentSettings = defaultSettings;
-
-// Paint saveSettings(Paint paint) {
-//   currentSettings = Paint()
-//     ..color = paint.color
-//     ..strokeWidth = paint.strokeWidth;
-//   return currentSettings;
-// }
