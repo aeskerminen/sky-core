@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
 
@@ -28,6 +29,28 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Offset> points = <Offset>[];
 
+  createAlertDialog(BuildContext context) {
+    double currentValue = 5.0;
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: const Text('Select color and stroke'),
+              content: SingleChildScrollView(
+                  child: Column(children: [
+                const CircleColorPicker(),
+                Slider(
+                  value: currentValue,
+                  onChanged: (newValue) {
+                    setState(() => currentValue = newValue);
+                  },
+                  min: 1.0,
+                  max: 10.0,
+                )
+              ])));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final Container sketchArea = Container(
@@ -41,14 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       body: GestureDetector(
-        onPanDown: (details) {
-          setState(() {});
+        onPanDown: (DragDownDetails details) {
+          setState(() {
+            points.add(details.localPosition);
+          });
         },
         onPanUpdate: (DragUpdateDetails details) {
           setState(() {
-            RenderBox box = context.findRenderObject() as RenderBox;
-            Offset point = box.globalToLocal(details.globalPosition);
-            points = List.from(points)..add(point);
+            points = List.from(points)..add(details.localPosition);
           });
         },
         onPanEnd: (DragEndDetails details) {
@@ -94,6 +117,22 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () => currentSettings.color = Colors.blue,
           heroTag: null,
         ),
+        const SizedBox(height: 5),
+        FloatingActionButton(
+          tooltip: 'Color',
+          onPressed: () => createAlertDialog(context),
+          child: const Icon(Icons.color_lens),
+          heroTag: null,
+        )
+        // Expanded(
+        //     child: Slider(
+        //   value: currentValue,
+        //   onChanged: (newValue) {
+        //     setState(() => currentValue = newValue);
+        //   },
+        //   min: 1.0,
+        //   max: 10.0,
+        // ))
         // const CircleColorPicker(
         //   size: Size(240, 240),
         // )
@@ -121,6 +160,8 @@ class Sketcher extends CustomPainter {
     for (int i = 0; i < points.length - 1; i++) {
       if (points[i] != Offset.zero && points[i + 1] != Offset.zero) {
         canvas.drawLine(points[i], points[i + 1], paint);
+      } else if (points[i] != Offset.zero && points[i + 1] == Offset.zero) {
+        canvas.drawPoints(PointMode.points, [points[i]], currentSettings);
       }
     }
   }
@@ -137,6 +178,5 @@ Paint currentSettings = defaultSettings;
 //   currentSettings = Paint()
 //     ..color = paint.color
 //     ..strokeWidth = paint.strokeWidth;
-
 //   return currentSettings;
 // }
