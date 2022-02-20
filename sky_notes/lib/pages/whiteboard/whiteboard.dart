@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_circle_color_picker/flutter_circle_color_picker.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 void main() => runApp(const MyApp());
 
@@ -33,9 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
     return showDialog(
         context: context,
         builder: (context) {
-          return const AlertDialog(
+          return AlertDialog(
               content: SingleChildScrollView(
-            child: CircleColorPicker(),
+            child: HueRingPicker(
+              pickerColor: currentSettings.color,
+              onColorChanged: (color) =>
+                  setState(() => currentSettings.color = color),
+              enableAlpha: false,
+              displayThumbColor: true,
+            ),
           ));
         });
   }
