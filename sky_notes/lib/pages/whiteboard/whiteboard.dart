@@ -26,9 +26,17 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  List<Offset> points = <Offset>[];
+class DrawingArea {
+  Offset point = Offset.zero;
+  Paint areaPaint = Paint();
 
+  DrawingArea({required this.point, required this.areaPaint});
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  List<DrawingArea> points = [];
+
+  // AlertDialog pop-up let's the user change color
   createAlertDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -61,16 +69,32 @@ class _MyHomePageState extends State<MyHomePage> {
       body: GestureDetector(
         onPanDown: (DragDownDetails details) {
           setState(() {
-            points.add(details.localPosition);
+            points.add(DrawingArea(
+                point: details.localPosition,
+                areaPaint: Paint()
+                  ..color = currentSettings.color
+                  ..strokeWidth = currentSettings.strokeWidth
+                  ..strokeCap = currentSettings.strokeCap));
           });
         },
         onPanUpdate: (DragUpdateDetails details) {
           setState(() {
-            points = List.from(points)..add(details.localPosition);
+            points = List.from(points)
+              ..add(DrawingArea(
+                  point: details.localPosition,
+                  areaPaint: Paint()
+                    ..color = currentSettings.color
+                    ..strokeWidth = currentSettings.strokeWidth
+                    ..strokeCap = currentSettings.strokeCap));
           });
         },
         onPanEnd: (DragEndDetails details) {
-          points.add(Offset.zero);
+          points.add(DrawingArea(
+              point: Offset.zero,
+              areaPaint: Paint()
+                ..color = currentSettings.color
+                ..strokeWidth = currentSettings.strokeWidth
+                ..strokeCap = currentSettings.strokeCap));
         },
         child: sketchArea,
       ),
@@ -148,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
 void placeholder() {}
 
 class Sketcher extends CustomPainter {
-  final List<Offset> points;
+  final List<DrawingArea> points;
 
   Sketcher(this.points);
 
@@ -159,13 +183,15 @@ class Sketcher extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = currentSettings;
-
     for (int i = 0; i < points.length - 1; i++) {
-      if (points[i] != Offset.zero && points[i + 1] != Offset.zero) {
-        canvas.drawLine(points[i], points[i + 1], paint);
-      } else if (points[i] != Offset.zero && points[i + 1] == Offset.zero) {
-        canvas.drawPoints(PointMode.points, [points[i]], currentSettings);
+      if (points[i].point != Offset.zero &&
+          points[i + 1].point != Offset.zero) {
+        Paint paint = points[i].areaPaint;
+        canvas.drawLine(points[i].point, points[i + 1].point, paint);
+      } else if (points[i].point != Offset.zero &&
+          points[i + 1].point == Offset.zero) {
+        Paint paint = points[i].areaPaint;
+        canvas.drawPoints(PointMode.points, [points[i].point], paint);
       }
     }
   }
