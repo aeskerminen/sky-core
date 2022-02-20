@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: RotatedBox(
                     quarterTurns: 3,
                     child: Slider(
-                        activeColor: Colors.black,
+                        activeColor: currentSettings.color,
                         value: currentSettings.strokeWidth,
                         onChanged: (newValue) {
                           setState(
