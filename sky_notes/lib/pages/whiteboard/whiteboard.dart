@@ -69,12 +69,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: GestureDetector(
         onPanDown: (DragDownDetails details) {
           setState(() {
-            points.add(DrawingArea(
-                point: details.localPosition,
-                areaPaint: Paint()
-                  ..color = currentSettings.color
-                  ..strokeWidth = currentSettings.strokeWidth
-                  ..strokeCap = currentSettings.strokeCap));
+            points = List.from(points)
+              ..add(DrawingArea(
+                  point: details.localPosition,
+                  areaPaint: Paint()
+                    ..color = currentSettings.color
+                    ..strokeWidth = currentSettings.strokeWidth
+                    ..strokeCap = currentSettings.strokeCap));
+            points.add(DrawingArea(point: Offset.zero, areaPaint: Paint()));
           });
         },
         onPanUpdate: (DragUpdateDetails details) {
@@ -89,12 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         onPanEnd: (DragEndDetails details) {
-          points.add(DrawingArea(
-              point: Offset.zero,
-              areaPaint: Paint()
-                ..color = currentSettings.color
-                ..strokeWidth = currentSettings.strokeWidth
-                ..strokeCap = currentSettings.strokeCap));
+          points.add(DrawingArea(point: Offset.zero, areaPaint: Paint()));
         },
         child: sketchArea,
       ),
