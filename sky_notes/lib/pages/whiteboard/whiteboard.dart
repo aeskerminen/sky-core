@@ -1,4 +1,6 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 void main() => runApp(const MyApp());
 
@@ -24,8 +26,33 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+class DrawingArea {
+  Offset point = Offset.zero;
+  Paint areaPaint = Paint();
+
+  DrawingArea({required this.point, required this.areaPaint});
+}
+
 class _MyHomePageState extends State<MyHomePage> {
-  List<Offset> points = <Offset>[];
+  List<DrawingArea> points = [];
+
+  // AlertDialog pop-up let's the user change color
+  createAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              content: SingleChildScrollView(
+            child: HueRingPicker(
+              pickerColor: currentSettings.color,
+              onColorChanged: (color) =>
+                  setState(() => currentSettings.color = color),
+              enableAlpha: false,
+              displayThumbColor: true,
+            ),
+          ));
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,68 +66,110 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     return Scaffold(
-        body: GestureDetector(
-          onTap: () {
-            setState(() {});
-          },
-          onPanUpdate: (DragUpdateDetails details) {
-            setState(() {
-              RenderBox box = context.findRenderObject() as RenderBox;
-              Offset point = box.globalToLocal(details.globalPosition);
-              points = List.from(points)..add(point);
-            });
-          },
-          onPanEnd: (DragEndDetails details) {
-            points.add(Offset.zero);
-          },
-          child: sketchArea,
-        ),
-        floatingActionButton:
-            Column(mainAxisAlignment: MainAxisAlignment.end, children: [
-          FloatingActionButton(
-            tooltip: 'Clear Screen',
-            backgroundColor: Colors.blue,
-            child: const Icon(Icons.refresh),
-            onPressed: () {
-              setState(() => points.clear());
-            },
-            heroTag: null,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          FloatingActionButton(
-            tooltip: 'Undo Action',
-            child: const Icon(Icons.undo),
-            onPressed: () => placeholder(),
-            heroTag: null,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          FloatingActionButton(
-            tooltip: 'Increase Area',
-            child: const Icon(Icons.add),
-            onPressed: () => placeholder(),
-            heroTag: null,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          FloatingActionButton(
-            tooltip: 'Decrease Area',
-            child: const Icon(Icons.remove),
-            onPressed: () => placeholder(),
-            heroTag: null,
-          ),
-        ]));
+      body: GestureDetector(
+        onPanDown: (DragDownDetails details) {
+          setState(() {
+            points = List.from(points)
+              ..add(DrawingArea(
+                  point: details.localPosition,
+                  areaPaint: Paint()
+                    ..color = currentSettings.color
+                    ..strokeWidth = currentSettings.strokeWidth
+                    ..strokeCap = currentSettings.strokeCap));
+            points.add(DrawingArea(point: Offset.zero, areaPaint: Paint()));
+          });
+        },
+        onPanUpdate: (DragUpdateDetails details) {
+          setState(() {
+            points = List.from(points)
+              ..add(DrawingArea(
+                  point: details.localPosition,
+                  areaPaint: Paint()
+                    ..color = currentSettings.color
+                    ..strokeWidth = currentSettings.strokeWidth
+                    ..strokeCap = currentSettings.strokeCap));
+          });
+        },
+        onPanEnd: (DragEndDetails details) {
+          points.add(DrawingArea(point: Offset.zero, areaPaint: Paint()));
+        },
+        child: sketchArea,
+      ),
+      floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              tooltip: 'Clear Screen',
+              backgroundColor: Colors.black,
+              child: const Icon(Icons.refresh),
+              onPressed: () {
+                setState(() => points.clear());
+              },
+              heroTag: null,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            FloatingActionButton(
+              tooltip: 'Undo Action',
+              backgroundColor: Colors.black,
+              child: const Icon(Icons.undo),
+              onPressed: () => placeholder(),
+              heroTag: null,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            FloatingActionButton(
+              tooltip: 'Color Black',
+              backgroundColor: Colors.black,
+              child: const Icon(Icons.add),
+              onPressed: () => currentSettings.color = Colors.black,
+              heroTag: null,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            FloatingActionButton(
+              tooltip: 'Color Blue',
+              backgroundColor: Colors.black,
+              child: const Icon(Icons.remove),
+              onPressed: () => currentSettings.color = Colors.blue,
+              heroTag: null,
+            ),
+            const SizedBox(height: 5),
+            FloatingActionButton(
+              tooltip: 'Color',
+              backgroundColor: Colors.black,
+              onPressed: () => createAlertDialog(context),
+              child: const Icon(Icons.color_lens),
+              heroTag: null,
+            ),
+            SizedBox(
+                width: 50,
+                child: RotatedBox(
+                    quarterTurns: 3,
+                    child: Slider(
+                        activeColor: currentSettings.color,
+                        value: currentSettings.strokeWidth,
+                        onChanged: (newValue) {
+                          setState(
+                              () => currentSettings.strokeWidth = newValue);
+                        },
+                        min: 1.0,
+                        max: 50.0,
+                        divisions: 50,
+                        label: currentSettings.strokeWidth.round().toString())))
+          ]),
+    );
   }
 }
 
 void placeholder() {}
 
 class Sketcher extends CustomPainter {
-  final List<Offset> points;
+  final List<DrawingArea> points;
 
   Sketcher(this.points);
 
@@ -111,15 +180,23 @@ class Sketcher extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = Colors.blue
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 4.0;
-
     for (int i = 0; i < points.length - 1; i++) {
-      if (points[i] != Offset.zero && points[i + 1] != Offset.zero) {
-        canvas.drawLine(points[i], points[i + 1], paint);
+      if (points[i].point != Offset.zero &&
+          points[i + 1].point != Offset.zero) {
+        Paint paint = points[i].areaPaint;
+        canvas.drawLine(points[i].point, points[i + 1].point, paint);
+      } else if (points[i].point != Offset.zero &&
+          points[i + 1].point == Offset.zero) {
+        Paint paint = points[i].areaPaint;
+        canvas.drawPoints(PointMode.points, [points[i].point], paint);
       }
     }
   }
 }
+
+final Paint defaultSettings = Paint()
+  ..color = Colors.black
+  ..strokeWidth = 5.0
+  ..strokeCap = StrokeCap.round;
+
+Paint currentSettings = defaultSettings;
