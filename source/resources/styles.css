@@ -1,7 +1,6 @@
 html, body{
     margin: 0px;
     padding: 0px;
-    height: 200%;
 }
 
 #neutralinoapp {
@@ -37,7 +36,9 @@ html, body{
 
 .latex-box {
   height: auto;
-  width: auto;
 
+  width: auto;
   min-width: 200px;
+
+  padding: 10px;
 }
