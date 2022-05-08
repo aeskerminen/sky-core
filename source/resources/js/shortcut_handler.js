@@ -6,14 +6,16 @@ document.onkeyup = function (e) {
             var div = document.createElement("div");
             div.classList.add("draggable");
             div.classList.add("draggable-box");
+            div.classList.add("latex-box");
 
-            var p = document.createElement("p");
+            // var p = document.createElement("p");
+
             
             var s = document.createElement("span");
             s.id = "answer";
 
-            p.append(s);
-            div.append(p);
+            // p.append(s);
+            div.append(s);
             
             document.body.append(div);
 
