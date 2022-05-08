@@ -1,0 +1,40 @@
+html, body{
+    margin: 0px;
+    padding: 0px;
+    height: 200%;
+}
+
+#neutralinoapp {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #FFD700;
+}
+
+#neutralinoapp h1 {
+    position: relative;
+    float: left;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Arial;
+    font-size: 48px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.draggable-box {
+  background: #eee;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  position: absolute;
+  left:0;top: 0;
+  width: 200px;
+  height:200px;
+  font-size:2rem;
+}
+
+.no-select {
+  user-select: none;
+}
