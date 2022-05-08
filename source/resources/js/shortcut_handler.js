@@ -17,7 +17,7 @@ document.onkeyup = function (e) {
         
           var editor1cfg = {}      
           editor1cfg.toolbar = "basic";   
-          editor1cfg.editorResizeMode = "none";   
+          editor1cfg.editorResizeMode = "none";  
           var editor1 = new RichTextEditor(".e_div1", editor1cfg);
 
           div.onmousedown = function(e) {
