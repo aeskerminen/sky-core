@@ -12,8 +12,12 @@
 
 <body>
 
-  <!-- <div class="draggable">drag me</div>
-  <div class="draggable">drag me</div> -->
+  <div class="container fixed-bottom rounded" style="background-color: whitesmoke; width: 200px; ">
+    <div class="d-flex justify-content-center ">
+      <button type="button" class="btn btn-dark m-2">Settigns</button>
+      <button type="button" class="btn btn-dark m-2">Notes</button>
+    </div>
+  </div>
 
   <!-- MATHQUILL -->
   <link rel="stylesheet" href="js/mathquill/mathquill.css"/>
@@ -23,7 +27,11 @@
   var MQ = MathQuill.getInterface(2);
   </script>
 
-  <!-- CUSTOM -->
+  <!-- RICHTEXTEDITOR -->
+  <link rel="stylesheet" href="js/richtexteditor/rte_theme_default.css"/>
+  <script type="text/javascript" src="js/richtexteditor/rte.js"></script>
+  <script type="text/javascript" src="js/richtexteditor/plugins/all_plugins.js"></script>
+
   <!-- <script src="js/drag.js"></script> -->
   <script src="js/shortcut_handler.js"></script>
 
