@@ -1,18 +1,16 @@
+let count = 0;
+
 document.onkeyup = function (e) {
     var evt = window.event || e;   
         if (evt.keyCode == 80 && evt.altKey) {
-            console.log("PRESS");   
-
             var div = document.createElement("div");
             div.classList.add("draggable");
             div.classList.add("draggable-box");
             div.classList.add("latex-box");
 
-            // var p = document.createElement("p");
-
-            
             var s = document.createElement("span");
-            s.id = "answer";
+
+            s.id = "answer" + count.toString();
 
             // p.append(s);
             div.append(s);
@@ -59,7 +57,7 @@ document.onkeyup = function (e) {
                 }
             }
 
-            var answerSpan = document.getElementById('answer');
+            var answerSpan = document.getElementById('answer' + count.toString());
             var answerMathField = MQ.MathField(answerSpan, {
               handlers: {
                 edit: function() {
@@ -68,5 +66,7 @@ document.onkeyup = function (e) {
                 }
               }
             });
+
+            count++;
         }
 }
