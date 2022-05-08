@@ -24,27 +24,27 @@ document.onkeyup = function (e) {
         
                 initX = e.offsetX;
                 initY = e.offsetY;
+
                 isMouseDown = true;
         
                 window.addEventListener("mousemove", mousemove);
                 window.addEventListener("mouseup", mouseup);
         
                 function mousemove(e){
+                   
                     if (isMouseDown) {
-                      var cx = e.clientX - initX,
-                            cy = e.clientY - initY;
+                      var cx = e.pageX - initX,
+                            cy = e.pageY - initY;
                       if (cx < 0) {
                         cx = 0;
                       }
                       if (cy < 0) {
                         cy = 0;
                       }
-                      if (window.innerWidth - e.clientX + initX < width) {
+                      if (window.innerWidth - e.pageX + initX < width) {
                         cx = window.innerWidth - width;
                       }
-                      if (e.clientY > window.innerHeight - height+ initY) {
-                        cy = window.innerHeight - height;
-                      }
+                     
                       div.style.left = cx + 'px';
                       div.style.top = cy + 'px';
                     }
