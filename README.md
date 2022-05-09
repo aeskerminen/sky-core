@@ -14,4 +14,4 @@ __Copyright (C) Sky Notes, Inc - All Rights Reserved__
 > Proprietary and confidential
 
 > Written by Artturi Kerminen <kerminenartturi@gmail.com>, November 2021
-=======
+
