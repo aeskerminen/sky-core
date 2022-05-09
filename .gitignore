@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Created by https://www.toptal.com/developers/gitignore/api/flutter,visualstudiocode,dart,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=flutter,visualstudiocode,dart,node
@@ -243,3 +244,18 @@ dist
 !.vscode/*.code-snippets
 
 # End of https://www.toptal.com/developers/gitignore/api/flutter,visualstudiocode,dart,node
+=======
+# Developer tools' files
+.lite_workspace.lua
+
+# Neutralinojs binaries and builds
+/bin
+/dist
+
+# Neutralinojs client (minified)
+neutralino.js
+
+# Neutralinojs related files
+.storage
+*.log
+>>>>>>> b465682 (Add all)
