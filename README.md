@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Sky Notes
 
 Sky Notes is a minimalistic note-taking application with support for LaTeX formulas and drawing.
@@ -15,11 +14,4 @@ __Copyright (C) Sky Notes, Inc - All Rights Reserved__
 > Proprietary and confidential
 
 > Written by Artturi Kerminen <kerminenartturi@gmail.com>, November 2021
-=======
-# neutralinojs-zero
-An empty Neutralinojs app, extend as you wish
 
-```
-neu create myapp --template neutralinojs/neutralinojs-zero
-```
->>>>>>> b465682 (Add all)
