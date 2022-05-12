@@ -4,13 +4,13 @@ Sky Notes is a minimalistic note-taking application with support for LaTeX formu
 
 ## Development roadmap
 Sky Notes development roadmap
-- [] Editor area
-    - [] LaTeX fields
-    - [] Rich Text fields 
-    - [] Drawing fields
-- [] Note hierarchy
-- [] Note serializing
-- [] UI & UX
+- [ ] Editor area
+    - [ ] LaTeX fields
+    - [ ] Rich Text fields 
+    - [ ] Drawing fields
+- [ ] Note hierarchy
+- [ ] Note serializing
+- [ ] UI & UX
 
 ## Contributing
 For now Sky Notes will remain closed-source, as the company executives have decided on making it commercial. This is subject to change in the future.
