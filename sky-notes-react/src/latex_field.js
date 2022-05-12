@@ -10,18 +10,17 @@ function LatexField () {
 
     return (
       <Draggable>
-        <div>
-          <EditableMathField
-            latex={latex}
-            onChange={(mathField) => {
-              setLatex(mathField.latex())
-            }}
-          />
-        </div>
+          <div className='box'>
+            <EditableMathField
+              latex={latex}
+              onChange={(mathField) => {
+                setLatex(mathField.latex())
+              }}
+            />
+          </div>
       </Draggable>
         
     );
 }
 
 export default LatexField;
-    

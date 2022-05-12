@@ -10,6 +10,7 @@ class App extends React.Component {
       <div>
         <Menubutton></Menubutton>
         <LatexField></LatexField>
+        <LatexField></LatexField>
       </div>
     );
   }
