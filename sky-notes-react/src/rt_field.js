@@ -32,3 +32,5 @@ class RTField extends Component {
     );
   }
 }
+
+export default RTField;
