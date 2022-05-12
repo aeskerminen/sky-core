@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import Menubutton from './menu_button';
 import LatexField from './latex_field';
+import DrawField from './draw_field';
+
 
 class App extends React.Component {
   render() {
@@ -11,6 +13,7 @@ class App extends React.Component {
         <Menubutton></Menubutton>
         <LatexField></LatexField>
         <LatexField></LatexField>
+        <DrawField></DrawField>
       </div>
     );
   }
