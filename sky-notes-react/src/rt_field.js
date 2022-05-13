@@ -22,7 +22,7 @@ class RTField extends Component {
 
   render () {
     return (
-      <Draggable>
+      <Draggable handle='.handle'>
         <div className='box'>
           <div className='handle' style={m_style}></div>
           <RichTextEditor
