@@ -3,11 +3,9 @@ const m_style = {
     width: '15px',
     height: '15px',
     backgroundColor: 'black',
-    borderStyle: 'solid',
-    borderColor: 'lightblue',
-    borderWidth: '2px',
-    top: '-7.5px',
-    left: '-7.5px',
+    border: '2px solid lightblue',
+    top: '-9.5px',
+    left: '-9.5px',
     borderRadius: '9.5px'
   }              
 
