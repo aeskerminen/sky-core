@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Draggable from 'react-draggable';
 import RichTextEditor from 'react-rte';
+import m_style from './handle_style';
 
 class RTField extends Component {
   state = {
@@ -23,6 +24,7 @@ class RTField extends Component {
     return (
       <Draggable>
         <div className='box'>
+          <div className='handle' style={m_style}></div>
           <RichTextEditor
           value={this.state.value}
           onChange={this.onChange}
