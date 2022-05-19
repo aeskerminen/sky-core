@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 function Appbar() {
     return (
         <AppBar style={{position: 'relative'}}>
-          <Toolbar>
+          <Toolbar variant="dense">
           <Typography
             variant="h6"
             noWrap
