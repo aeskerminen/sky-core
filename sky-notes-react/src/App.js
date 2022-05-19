@@ -19,12 +19,11 @@ class App extends React.Component {
 
         <Grid container spacing={0}>
           <Grid item xs={2}>
-            <Paper style={{overflowY: 'auto', backgroundColor: 'gray'}} sx={{m:2}}>
-              yes
+            <Paper elevation={5} style={{overflowY: 'auto', backgroundColor: 'cream'}} sx={{m:2, height: '91.5vh'}}>
             </Paper>
           </Grid>
           <Grid item xs={10}>
-            <Paper style={{overflowY: 'auto', backgroundColor: 'gray'}} sx={{m:2}}>
+            <Paper elevation={5} style={{overflowY: 'auto', backgroundColor: 'cream'}} sx={{m:2, height: '91.5vh'}}>
               <RTField></RTField>
             </Paper>
           </Grid>
