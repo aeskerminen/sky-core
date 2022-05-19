@@ -50,13 +50,13 @@ function NoteManager() {
                   sx={{ height: 340, flexGrow: 1, maxWidth: 500, overflowY: 'auto', overflowX: 'hidden' }}
                   >
                     <TreeItem nodeId="1" label="Applications">
-                    <TreeItem nodeId="2" label="Calendar" />
+                      <TreeItem nodeId="2" label="Calendar" />
                     </TreeItem>
                     <TreeItem nodeId="5" label="Documents">
-                    <TreeItem nodeId="10" label="OSS" />
-                    <TreeItem nodeId="6" label="MUI">
+                      <TreeItem nodeId="10" label="OSS" />
+                      <TreeItem nodeId="6" label="MUI">
                         <TreeItem nodeId="8" label="index.js" />
-                    </TreeItem>
+                      </TreeItem>
                     </TreeItem>
                 </TreeView>
               </Item>
