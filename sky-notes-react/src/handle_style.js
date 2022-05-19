@@ -3,9 +3,10 @@ const m_style = {
     width: '15px',
     height: '15px',
     backgroundColor: 'black',
-    top: '-7.5px',
-    left: '-7.5px',
-    borderRadius: '7.5px'
+    border: '2px solid lightblue',
+    top: '-9.5px',
+    left: '-9.5px',
+    borderRadius: '9.5px'
   }              
 
 export default m_style;

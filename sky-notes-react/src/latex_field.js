@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Draggable from 'react-draggable';
 import { addStyles, EditableMathField } from 'react-mathquill'
 import m_style from './handle_style';
+import { ResizableBox } from 'react-resizable';
+
 
 
 addStyles()
