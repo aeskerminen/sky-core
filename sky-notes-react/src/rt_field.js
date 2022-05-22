@@ -6,6 +6,8 @@ import { createEditor, Editor, Transforms, Text } from 'slate'
 // Import the Slate components and React plugin.
 import { Slate, Editable, withReact } from 'slate-react'
 
+import { addStyles, EditableMathField } from 'react-mathquill'
+
 const initialValue = [
   {
     type: 'paragraph',
@@ -31,6 +33,15 @@ const CustomEditor = {
     return !!match
   },
 
+  isLatexBlockActive(editor) {
+    const [match] = Editor.nodes(editor, {
+      match: n => n.type === 'latex',
+    })
+
+    return !!match
+  },
+
+
   toggleBoldMark(editor) {
     const isActive = CustomEditor.isBoldMarkActive(editor)
     Transforms.setNodes(
@@ -48,14 +59,39 @@ const CustomEditor = {
       { match: n => Editor.isBlock(editor, n) }
     )
   },
-}
 
+  toggleLatexBlock(editor) {
+    const isActive = CustomEditor.isLatexBlockActive(editor)
+    Transforms.setNodes(
+      editor,
+      { type: isActive ? null : 'latex' },
+      { match: n => Editor.isBlock(editor, n) }
+    )
+  },
+}
 
 // Define a React component renderer for our code blocks.
 const CodeElement = props => {
   return (
     <pre {...props.attributes}>
       <code>{props.children}</code>
+    </pre>
+  )
+}
+
+// Define a React component renderer for our LaTeX blocks.
+const LatexElement = props => {
+  const [latex, setLatex] = useState('\\frac{1}{\\sqrt{2}}\\cdot 2');
+
+  addStyles();
+  return (
+    <pre {...props.attributes}>
+      <EditableMathField autofocus>
+        latex={latex}
+                onChange={(mathField) => {
+                  setLatex(mathField.latex())
+                }}
+        </EditableMathField>
     </pre>
   )
 }
@@ -75,7 +111,7 @@ const Leaf = props => {
     </span>
   )
 } 
-
+  
 const RTField = () => {
   const editor = useMemo(() => withReact(createEditor()), [])
 
@@ -83,6 +119,8 @@ const RTField = () => {
     switch (props.element.type) {
       case 'code':
         return <CodeElement {...props} />
+      case 'latex':
+        return <LatexElement {...props}></LatexElement>
       default:
         return <DefaultElement {...props} />
     }
@@ -110,6 +148,14 @@ const RTField = () => {
           }}
         >
           Code Block
+        </button>
+        <button
+          onMouseDown={event => {
+            event.preventDefault()
+            CustomEditor.toggleLatexBlock(editor)
+          }}
+        >
+          LaTeX Block
         </button>
       </div>
       <Editable
