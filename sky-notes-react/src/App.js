@@ -3,6 +3,8 @@ import * as React from 'react';
 import { Box, Typography, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
+import RTField from './rt_field';
+
 
 class App extends React.Component {
   render() {
@@ -19,7 +21,9 @@ class App extends React.Component {
                 <Box sx={{backgroundColor: 'gray', p:1, minWidth: '5%'}}>Box 1</Box>
                 <Box sx={{backgroundColor: 'gray', p:1, minWidth: '5%'}}>Box 1</Box>
               </Stack>
-              <Box sx={{backgroundColor: 'white', m:0, p:0, height: '96%' }}></Box>
+                <Box sx={{backgroundColor: 'white', m:0, p:1, height: '94.25%' }}>
+                  <RTField xs={{m:2}}></RTField>
+                </Box>
               </Box>
           </Grid>
         </Grid>

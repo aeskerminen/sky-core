@@ -13,6 +13,14 @@ const initialValue = [
     type: 'paragraph',
     children: [{ text: 'A line of text in a paragraph.' }],
   },
+  {
+    type: 'latex',
+    children: [{ text: '\n' }],
+  },
+  {
+    type: 'paragraph',
+    children: [{ text: 'A line of text in a paragraph.' }],
+  },
 ]
 
 const CustomEditor = {
@@ -33,15 +41,6 @@ const CustomEditor = {
     return !!match
   },
 
-  isLatexBlockActive(editor) {
-    const [match] = Editor.nodes(editor, {
-      match: n => n.type === 'latex',
-    })
-
-    return !!match
-  },
-
-
   toggleBoldMark(editor) {
     const isActive = CustomEditor.isBoldMarkActive(editor)
     Transforms.setNodes(
@@ -59,15 +58,6 @@ const CustomEditor = {
       { match: n => Editor.isBlock(editor, n) }
     )
   },
-
-  toggleLatexBlock(editor) {
-    const isActive = CustomEditor.isLatexBlockActive(editor)
-    Transforms.setNodes(
-      editor,
-      { type: isActive ? null : 'latex' },
-      { match: n => Editor.isBlock(editor, n) }
-    )
-  },
 }
 
 // Define a React component renderer for our code blocks.
@@ -80,19 +70,22 @@ const CodeElement = props => {
 }
 
 // Define a React component renderer for our LaTeX blocks.
-const LatexElement = props => {
+const LatexElement = ({attributes, children, element}) => {
   const [latex, setLatex] = useState('\\frac{1}{\\sqrt{2}}\\cdot 2');
 
   addStyles();
   return (
-    <pre {...props.attributes}>
-      <EditableMathField autofocus>
+    <div {...attributes}>
+      <div contentEditable={false}>
+      <EditableMathField >
         latex={latex}
                 onChange={(mathField) => {
                   setLatex(mathField.latex())
                 }}
         </EditableMathField>
-    </pre>
+      </div> 
+        {children}
+    </div>
   )
 }
 
@@ -152,7 +145,8 @@ const RTField = () => {
         <button
           onMouseDown={event => {
             event.preventDefault()
-            CustomEditor.toggleLatexBlock(editor)
+            // CustomEditor.toggleLatexBlock(editor)
+            // InsertLatex(editor);
           }}
         >
           LaTeX Block
