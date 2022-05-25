@@ -8,6 +8,8 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 // MathQuill dependency
+import "./jquery"
+import "./mathquill-0.10.1/mathquill"
 import "react-mathquill/dist/react-mathquill";
 
 // mathquill4quill include
