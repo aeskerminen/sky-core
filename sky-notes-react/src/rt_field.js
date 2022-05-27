@@ -1,59 +1,49 @@
-import React, {Component, PropTypes} from 'react';
-import Draggable from 'react-draggable';
-import RichTextEditor from 'react-rte';
-import m_style from './handle_style';
+// KaTeX dependency
+import katex from "katex";
+import "katex/dist/katex.css";
 
-const toolbarConfig = {
-  // Optionally specify the groups to display (displayed in the order listed).
-  display: ['INLINE_STYLE_BUTTONS', 'BLOCK_TYPE_BUTTONS', 'LINK_BUTTONS', 'BLOCK_TYPE_DROPDOWN', 'HISTORY_BUTTONS'],
-  INLINE_STYLE_BUTTONS: [
-    {label: 'Bold', style: 'BOLD', className: 'custom-css-class'},
-    {label: 'Italic', style: 'ITALIC'},
-    {label: 'Underline', style: 'UNDERLINE'}
-  ],
-  BLOCK_TYPE_DROPDOWN: [
-    {label: 'Normal', style: 'unstyled'},
-    {label: 'Heading Large', style: 'header-one'},
-    {label: 'Heading Medium', style: 'header-two'},
-    {label: 'Heading Small', style: 'header-three'}
-  ],
-  BLOCK_TYPE_BUTTONS: [
-    {label: 'UL', style: 'unordered-list-item'},
-    {label: 'OL', style: 'ordered-list-item'}
-  ]
-};
 
-class RTField extends Component {
-  state = {
-    value: RichTextEditor.createEmptyValue()
+// Quill dependency
+import ReactQuill, { Quill } from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
+// MathQuill dependency
+import "./jquery"
+import "./mathquill-0.10.1/mathquill.css"
+import "react-mathquill/dist/react-mathquill";
+
+// mathquill4quill include
+import mathquill4quill from "mathquill4quill"
+import "./mathquill4quill.css";
+
+// demo page
+import React from "react";
+
+window.katex = katex;
+
+export default class RTField extends React.Component {
+  reactQuill = React.createRef();
+
+  componentDidMount() {
+    const enableMathQuillFormulaAuthoring = mathquill4quill({ Quill, katex });
+    enableMathQuillFormulaAuthoring(
+      this.reactQuill.current.editor,
+      this.props.options
+    );
   }
 
-  onChange = (value) => {
-    this.setState({value});
-    if (this.props.onChange) {
-      // Send the changes up to the parent component as an HTML string.
-      // This is here to demonstrate using `.toString()` but in a real app it
-      // would be better to avoid generating a string on each change.
-      this.props.onChange(
-        value.toString('html')
-      );
-    }
-  };
-
-  render () {
+  render() {
     return (
-      <Draggable handle='.handle'>
-        <div className='box'>
-          <div className='handle' style={m_style}></div>
-          <RichTextEditor
-          toolbarConfig={toolbarConfig}
-          value={this.state.value}
-          onChange={this.onChange}
-          />
-        </div>
-      </Draggable>
+      <ReactQuill
+        ref={this.reactQuill}
+        id="editor"
+        modules={{
+          formula: true,
+          toolbar: [["video", "bold", "italic", "underline", "formula"]]
+        }}
+        placeholder="Type text here, or click on the formula button to enter math."
+        theme="snow"
+      />
     );
   }
 }
-
-export default RTField;
