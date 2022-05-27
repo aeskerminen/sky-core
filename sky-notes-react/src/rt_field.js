@@ -9,7 +9,7 @@ import "react-quill/dist/quill.snow.css";
 
 // MathQuill dependency
 import "./jquery"
-import "./mathquill-0.10.1/mathquill"
+import "./mathquill-0.10.1/mathquill.css"
 import "react-mathquill/dist/react-mathquill";
 
 // mathquill4quill include
