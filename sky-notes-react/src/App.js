@@ -4,7 +4,7 @@ import { Box, Typography, Stack } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 import RTField from './rt_field';
-
+import DrawField from './draw_field';
 
 class App extends React.Component {
   render() {
@@ -22,7 +22,8 @@ class App extends React.Component {
                 <Box sx={{backgroundColor: 'gray', p:1, minWidth: '5%'}}>Box 1</Box>
               </Stack>
                 <Box sx={{backgroundColor: 'white', m:0, p:1, height: '94.25%' }}>
-                  <RTField xs={{m:2}}></RTField>
+                  {/* <RTField xs={{m:2}}></RTField> */}
+                  <DrawField xs={{m:2}}></DrawField>
                 </Box>
               </Box>
           </Grid>
