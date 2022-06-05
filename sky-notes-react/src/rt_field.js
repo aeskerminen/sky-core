@@ -1,188 +1,49 @@
-// Import React dependencies.
-import React, { useState, useCallback, useMemo } from 'react'
-// Import the Slate editor factory.
-import { createEditor, Editor, Transforms, Text } from 'slate'
-
-// Import the Slate components and React plugin.
-import { Slate, Editable, withReact } from 'slate-react'
-
-import { addStyles, EditableMathField } from 'react-mathquill'
-
-const initialValue = [
-  {
-    type: 'paragraph',
-    children: [{ text: 'A line of text in a paragraph.' }],
-  },
-]
-
-const CustomEditor = {
-  isBoldMarkActive(editor) {
-    const [match] = Editor.nodes(editor, {
-      match: n => n.bold === true,
-      universal: true,
-    })
-
-    return !!match
-  },
-
-  isCodeBlockActive(editor) {
-    const [match] = Editor.nodes(editor, {
-      match: n => n.type === 'code',
-    })
-
-    return !!match
-  },
-
-  isLatexBlockActive(editor) {
-    const [match] = Editor.nodes(editor, {
-      match: n => n.type === 'latex',
-    })
-
-    return !!match
-  },
+// KaTeX dependency
+import katex from "katex";
+import "katex/dist/katex.css";
 
 
-  toggleBoldMark(editor) {
-    const isActive = CustomEditor.isBoldMarkActive(editor)
-    Transforms.setNodes(
-      editor,
-      { bold: isActive ? null : true },
-      { match: n => Text.isText(n), split: true }
-    )
-  },
+// Quill dependency
+import ReactQuill, { Quill } from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
-  toggleCodeBlock(editor) {
-    const isActive = CustomEditor.isCodeBlockActive(editor)
-    Transforms.setNodes(
-      editor,
-      { type: isActive ? null : 'code' },
-      { match: n => Editor.isBlock(editor, n) }
-    )
-  },
+// MathQuill dependency
+import "./jquery"
+import "./mathquill-0.10.1/mathquill.css"
+import "react-mathquill/dist/react-mathquill";
 
-  toggleLatexBlock(editor) {
-    const isActive = CustomEditor.isLatexBlockActive(editor)
-    Transforms.setNodes(
-      editor,
-      { type: isActive ? null : 'latex' },
-      { match: n => Editor.isBlock(editor, n) }
-    )
-  },
-}
+// mathquill4quill include
+import mathquill4quill from "mathquill4quill"
+import "./mathquill4quill.css";
 
-// Define a React component renderer for our code blocks.
-const CodeElement = props => {
-  return (
-    <pre {...props.attributes}>
-      <code>{props.children}</code>
-    </pre>
-  )
-}
+// demo page
+import React from "react";
 
-// Define a React component renderer for our LaTeX blocks.
-const LatexElement = props => {
-  const [latex, setLatex] = useState('\\frac{1}{\\sqrt{2}}\\cdot 2');
+window.katex = katex;
 
-  addStyles();
-  return (
-    <pre {...props.attributes}>
-      <EditableMathField autofocus>
-        latex={latex}
-                onChange={(mathField) => {
-                  setLatex(mathField.latex())
-                }}
-        </EditableMathField>
-    </pre>
-  )
-}
+export default class RTField extends React.Component {
+  reactQuill = React.createRef();
 
-const DefaultElement = props => {
-  return <p {...props.attributes}>{props.children}</p>
-}
+  componentDidMount() {
+    const enableMathQuillFormulaAuthoring = mathquill4quill({ Quill, katex });
+    enableMathQuillFormulaAuthoring(
+      this.reactQuill.current.editor,
+      this.props.options
+    );
+  }
 
-// Define a React component to render leaves with bold text.
-const Leaf = props => {
-  return (
-    <span
-      {...props.attributes}
-      style={{ fontWeight: props.leaf.bold ? 'bold' : 'normal' }}
-    >
-      {props.children}
-    </span>
-  )
-} 
-  
-const RTField = () => {
-  const editor = useMemo(() => withReact(createEditor()), [])
-
-  const renderElement = useCallback(props => {
-    switch (props.element.type) {
-      case 'code':
-        return <CodeElement {...props} />
-      case 'latex':
-        return <LatexElement {...props}></LatexElement>
-      default:
-        return <DefaultElement {...props} />
-    }
-  }, [])
-
-  const renderLeaf = useCallback(props => {
-    return <Leaf {...props}></Leaf>
-  }, [])
-
-  return(
-    <Slate editor={editor} value={initialValue}>
-      <div>
-        <button
-          onMouseDown={event => {
-            event.preventDefault()
-            CustomEditor.toggleBoldMark(editor)
-          }}
-        >
-          Bold
-        </button>
-        <button
-          onMouseDown={event => {
-            event.preventDefault()
-            CustomEditor.toggleCodeBlock(editor)
-          }}
-        >
-          Code Block
-        </button>
-        <button
-          onMouseDown={event => {
-            event.preventDefault()
-            CustomEditor.toggleLatexBlock(editor)
-          }}
-        >
-          LaTeX Block
-        </button>
-      </div>
-      <Editable
-        editor={editor}
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        onKeyDown={event => {
-          if(!event.ctrlKey)
-            return
-
-          switch(event.key) {
-            case "'": {
-              event.preventDefault();
-              CustomEditor.toggleCodeBlock(editor);
-              break;
-            }
-            case 'b': {
-              event.preventDefault();
-              CustomEditor.toggleBoldMark(editor);
-              break;
-            }
-          }
+  render() {
+    return (
+      <ReactQuill
+        ref={this.reactQuill}
+        id="editor"
+        modules={{
+          formula: true,
+          toolbar: [["video", "bold", "italic", "underline", "formula"]]
         }}
-      ></Editable>
-    </Slate>
-  );
-
+        placeholder="Type text here, or click on the formula button to enter math."
+        theme="snow"
+      />
+    );
+  }
 }
-
-export default RTField;
