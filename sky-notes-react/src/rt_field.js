@@ -39,7 +39,11 @@ export default class RTField extends React.Component {
         id="editor"
         modules={{
           formula: true,
-          toolbar: [["video", "bold", "italic", "underline", "formula"]]
+          toolbar: [[{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image'],
+      ['clean'], ['formula']]
         }}
         placeholder="Type text here, or click on the formula button to enter math."
         theme="snow"
