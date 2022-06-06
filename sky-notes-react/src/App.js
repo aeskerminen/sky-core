@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Box, Typography, Stack } from '@mui/material';
+import { Box, Typography, Stack, Button } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 import RTField from './rt_field';
@@ -12,7 +12,13 @@ class App extends React.Component {
         <Grid container spacing={0}>
           <Grid item xs={2}>
             <Box sx={{backgroundColor: '#b3e5fc', m:0, p:0, height: '100vh' }}>
-
+              <Stack>
+                <Box sx={{backgroundColor: '#01579b', mt:0.5, mb: 0.25, ml: 0.5, mr: 0.5, p:0.5 }}>
+                  <div>
+                    <Button style={{maxHeight: '25px', minWidth: '100%'}} variant="contained" size="small">MAA12 Kpl 2.1</Button>
+                  </div>
+                </Box>
+              </Stack>
             </Box>
           </Grid>
           <Grid item xs={10}>
