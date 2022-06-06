@@ -1,7 +1,6 @@
 import React from 'react'
 import Draggable from 'react-draggable';
 import CanvasDraw from "react-canvas-draw";
-import m_style from './handle_style';
 
 
 
