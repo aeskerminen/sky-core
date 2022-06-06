@@ -11,16 +11,16 @@
   ],
   "modes": {
     "window": {
-      "title": "sky-notes",
-      "width": 800,
-      "height": 500,
+      "title": "Sky Notes",
+      "width": 1920,
+      "height": 1080,
       "minWidth": 400,
       "minHeight": 200,
       "icon": "/sky-notes-react/public/logo192.png"
     }
   },
   "cli": {
-    "binaryName": "sky-notes",
+    "binaryName": "Sky Notes",
     "resourcesPath": "/sky-notes-react/build/",
     "extensionsPath": "/extensions/",
     "clientLibrary": "/sky-notes-react/public/neutralino.js",
