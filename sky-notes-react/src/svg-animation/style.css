@@ -11,6 +11,7 @@ body{
 }
 
 #logo {
+    background-color: rgb(91, 100, 186);
     position: absolute;
     top: 50%;
     left: 50%;
