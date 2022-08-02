@@ -16,17 +16,15 @@ export default class Editor extends React.Component {
 
     noteChanged(event) {
         this.setState({
-            content: 'tesss'
+            content: event
         })
-        console.log(this.state)
-
         
     }
 
     render() {
         return(
             // <textarea style={{width: '100%', height: '100%'}} className='rounded p-3 drop-shadow flex-1' onChange={this.noteChanged}></textarea>
-            <RichTextEditor value={this.state.content} onChange={this.noteChanged}></RichTextEditor>
+            <RichTextEditor sticky={true} value={this.state.content} onChange={this.noteChanged}></RichTextEditor>
         )
     }
 }
