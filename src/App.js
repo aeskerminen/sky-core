@@ -17,16 +17,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-async function getCities(db) {
-  const citiesCol = collection(db, 'notes');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  // return cityList;
-  console.log(cityList)
+async function getNote(db, id) {
+  const notesCol = collection(db, 'notes');
+  const noteSnapshot = await getDocs(notesCol);
+
+  let r = ''
+
+  const noteList = noteSnapshot.docs.forEach(element => {
+    const d = element.data()
+    if(d.name === id) {
+      r = d.content
+    }
+  });
+
+  return r
 }
 
-function loadNote() {
+function updateRTE() {
 
+  const note = getNote(db, 'maa12')
+  note.then((val) => {
+    console.log(val)
+  })
+
+
+  return(
+    <Editor val={'s'}></Editor>
+  )
 }
 
 class Note extends React.Component {
@@ -42,7 +59,7 @@ class Note extends React.Component {
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
           </div>
-          <button onClick={loadNote} type='button' className="inline-flex items-center ml-2 px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500  transition ease-in-out duration-150" disabled="">
+          <button type='button' className="inline-flex items-center ml-2 px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500  transition ease-in-out duration-150" disabled="">
             Select
           </button>
         </div>
@@ -87,7 +104,7 @@ function App() {
             </div>
           </div>
           <div className='col-span-4 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
-                <Editor></Editor>
+              {updateRTE()}
           </div>
         </div>
       </div>
