@@ -5,6 +5,8 @@ import Editor from './Editor';
 import {initializeApp} from 'firebase/app'
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
+import { ReactSketchCanvas } from 'react-sketch-canvas';
+
 const firebaseConfig = {
   apiKey: "AIzaSyBnYWP06n84p_vLSQpUPYdIapnhyh2H9Zw",
   authDomain: "skm2022-3667a.firebaseapp.com",
@@ -30,21 +32,28 @@ async function getNote(db, id) {
     }
   });
 
-  return r
+  arr.push(r)
+
+  console.log(arr)
 }
 
 function updateRTE() {
-
+  let content = ""
   const note = getNote(db, 'maa12')
   note.then((val) => {
     console.log(val)
+    content = val
   })
 
 
   return(
-    <Editor val={'s'}></Editor>
+    <React.Suspense fallback="loading...">
+      <Editor val={content}></Editor>
+    </React.Suspense>
   )
 }
+
+const arr = []
 
 class Note extends React.Component {
   render() {
@@ -59,7 +68,7 @@ class Note extends React.Component {
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
           </div>
-          <button type='button' className="inline-flex items-center ml-2 px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500  transition ease-in-out duration-150" disabled="">
+          <button type='button' onClick={() => { getNote(db, "maa12") }} className="inline-flex items-center ml-2 px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500  transition ease-in-out duration-150" disabled="">
             Select
           </button>
         </div>
@@ -103,8 +112,19 @@ function App() {
               <Note name={'MAA12 Kpl 3.1'}></Note>
             </div>
           </div>
-          <div className='col-span-4 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
-              {updateRTE()}
+          <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
+                <Editor className='h-full' value={"val"}></Editor>
+          </div>
+          <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
+                <ReactSketchCanvas className='p-2 h-full'
+                  style={{
+                    border: "0.075rem solid #000000",
+                    borderRadius: "0.25rem"}}
+                  width="400"
+                  height="900"
+                  strokeWidth={4}
+                  strokeColor="red"
+                />
           </div>
         </div>
       </div>
