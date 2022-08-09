@@ -15,6 +15,10 @@ export default class Timer extends Component {
 
     componentDidMount() {
         //initialized
+       this.startTimer()
+    }
+
+    startTimer() {
         this.myInterval = setInterval(() => {
             const { hours, minutes, seconds } = this.state
 
@@ -44,8 +48,8 @@ export default class Timer extends Component {
                     seconds: 59
                 }))
             }
-        
-        }, 1000)
+    
+    }, 1000)    
     }
 
 
@@ -69,8 +73,17 @@ export default class Timer extends Component {
     }
 
     turnOn = () => {
+        // clearInterval(this.myInterval)
+        // this.startTimer()
         this.setState({
             isActive: true
+        })
+    }
+
+    turnOff = () => {
+        clearInterval(this.myInterval)
+        this.setState({
+            isActive: false
         })
     }
 
@@ -108,14 +121,26 @@ export default class Timer extends Component {
     }
 //can't be over 60
     incrDownS = () => {
+
+    if (this.seconds === 0){
+        this.setState(({ seconds }) => ({
+            seconds: 59
+        }))
+    }
+    else if (this.seconds === 59){
+        this.setState(({ seconds }) => ({
+            seconds: 0
+        }))
+    }
+    else {
         this.setState(({ seconds }) => ({
             seconds: seconds - 1
         }))
     }
-    
+    }
 
     render() {
-        const {hours, minutes, seconds } = this.state
+        const {isActive, hours, minutes, seconds } = this.state
         return (
              
 
@@ -132,6 +157,8 @@ export default class Timer extends Component {
                     ? <h1>00:00:00 Busted!</h1>
                     : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
                 }
+                <button onClick={isActive ? this.turnOff : this.turnOn}> || </button>
+
                 <div>
                 <button onClick={this.incrDownH}>-hours</button>
                 <button onClick={this.incrDownM}>-minutes</button>
