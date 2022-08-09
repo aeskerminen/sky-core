@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Timer from './Timer'
 import Editor from './Editor';
 
 import {initializeApp} from 'firebase/app'
@@ -82,9 +82,13 @@ function App() {
   return (
     <div className='h-screen'>
       <div className="container py-2 flex items-center max-w-full bg-slate-600 shadow" style={{height: '6%'}}>
+        
         <div className='container max-w-fit p-2 m-2 rounded'>
           <h1 className='font-sans font-bold text-white text-xl tracking-widest drop-shadow'>SKY NOTES</h1>
+          
         </div>
+        <div className="font-sans font-bold text-white"><Timer></Timer></div>
+        
         <div className="flex flex-row-reverse">
           {/* <div className="container bg-white rounded max-w-fit mx-2 p-2 my-0 drop-shadow-lg">
             <p className='font-mono inline'>Notes</p>
