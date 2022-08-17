@@ -73,10 +73,6 @@ export default class Timer extends Component {
         })
     }
 
-
-
-
-
     
     turnOn = () => {
         this.startTimer()
@@ -92,56 +88,78 @@ export default class Timer extends Component {
         }))
     }
 
-
-
-
-
-
     incrUpH = () => {
         this.setState(({ hours }) => ({
-            hours: hours + 1
-        }))
-    }
+                hours: hours + 1
+            }))
+        }
+        
+
     incrUpM = () => {
-        this.setState(({ minutes }) => ({
-            minutes: minutes + 1
-        }))
-    }
+        if (this.state.minutes === 59){
+            this.setState(({ minutes }) => ({
+                minutes: minutes - 59
+            }))
+        }
+        else{
+            this.setState(({ minutes }) => ({
+                minutes: minutes + 1
+            }))
+        }
+        }
+    
     incrUpS = () => {
-        this.setState(({ seconds }) => ({
-            seconds: seconds + 1
-        }))
+        if (this.state.seconds === 59){
+            this.setState(({ seconds }) => ({
+                seconds: seconds - 59
+            }))
+        }
+    
+        else {
+            this.setState(({ seconds }) => ({
+                seconds: seconds + 1
+            }))
+        }
     }
 
 // can't be negative fix!!
 
     incrDownH = () => {
-        if (this.hours != 0) {
-        this.setState(({ hours }) => ({
-            hours: hours - 1
-        }))
-    }
-    }
+        if (this.state.hours === 0){
+            this.setState(({ hours }) => ({
+                hours: hours
+            }))
+        }
+        else{
+            this.setState(({ hours }) => ({
+                hours: hours - 1
+            }))
+        }
+        }
 
 //can't be over 60
    incrDownM = () => {
+    if (this.state.minutes === 0){
+        this.setState(({ minutes }) => ({
+            minutes: minutes + 59
+        }))
+    }
+    else{
         this.setState(({ minutes }) => ({
             minutes: minutes - 1
         }))
     }
+    }
 //can't be over 60
-    incrDownS = () => {
+    
+incrDownS = () => {
 
-    if (this.seconds === 0){
+    if (this.state.seconds === 0){
         this.setState(({ seconds }) => ({
-            seconds: 59
+            seconds: seconds + 59
         }))
     }
-    else if (this.seconds === 59){
-        this.setState(({ seconds }) => ({
-            seconds: 0
-        }))
-    }
+
     else {
         this.setState(({ seconds }) => ({
             seconds: seconds - 1
