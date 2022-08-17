@@ -122,7 +122,6 @@ export default class Timer extends Component {
         }
     }
 
-// can't be negative fix!!
 
     incrDownH = () => {
         if (this.state.hours === 0){
@@ -137,7 +136,7 @@ export default class Timer extends Component {
         }
         }
 
-//can't be over 60
+
    incrDownM = () => {
     if (this.state.minutes === 0){
         this.setState(({ minutes }) => ({
@@ -150,7 +149,7 @@ export default class Timer extends Component {
         }))
     }
     }
-//can't be over 60
+
     
 incrDownS = () => {
 
