@@ -15,8 +15,6 @@ export default class Timer extends Component {
 
     componentDidMount() {
         //initialized
-       this.startTimer()
-       clearInterval(this.myInterval)
     }
 
     startTimer() {
@@ -176,8 +174,7 @@ incrDownS = () => {
                 <button onClick={this.incrUpH}><small>⌃&nbsp;&nbsp;</small></button>
                 <button onClick={this.incrUpM}><small>⌃&nbsp;</small></button>
                 <button onClick={this.incrUpS}><small>&nbsp;&nbsp;⌃</small></button>
-                {/* <button onClick={this.turnOn}>start</button>
-                <button onClick={this.reset}>reset</button> */}
+                
                 </div>
 
 
@@ -185,7 +182,7 @@ incrDownS = () => {
                 <div>
                     <div>{  minutes === 0 && seconds === 0 && hours === 0
                             ? <h1>00:00:00</h1>
-                            : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}  <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button></h1>
+                            : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}  <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button><button onClick={this.reset}>⏹</button></h1>
                         }
                     </div>
                     <div>
@@ -195,7 +192,6 @@ incrDownS = () => {
                 </div>
 
 
-                {/* <button onClick={this.reset}>reset</button> */}
 
                 <div>
                 <button onClick={this.incrDownH}><small>⌄&nbsp;&nbsp;</small></button>
