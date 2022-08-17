@@ -155,26 +155,36 @@ export default class Timer extends Component {
              
 
             <div>
-                {/* <div>
-                <button onClick={this.incrUpH}>+hours</button>
-                <button onClick={this.incrUpM}>+minutes</button>
-                <button onClick={this.incrUpS}>+seconds</button>
+                <div>
+                <button onClick={this.incrUpH}><small>⌃&nbsp;&nbsp;</small></button>
+                <button onClick={this.incrUpM}><small>⌃&nbsp;</small></button>
+                <button onClick={this.incrUpS}><small>&nbsp;&nbsp;⌃</small></button>
                 {/* <button onClick={this.turnOn}>start</button>
                 <button onClick={this.reset}>reset</button> */}
-                {/* </div> */}
+                </div>
 
-                { minutes === 0 && seconds === 0 && hours === 0
-                    ? <h1>00:00:00 Busted!</h1>
-                    : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
-                }
-                <button onClick={isActive ? this.turnOff : this.turnOn}> || </button>
+
+
+                <div>
+                    <div>{  minutes === 0 && seconds === 0 && hours === 0
+                            ? <h1>00:00:00</h1>
+                            : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}  <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button></h1>
+                        }
+                    </div>
+                    <div>
+                    
+                    </div>
+                
+                </div>
+
+
                 {/* <button onClick={this.reset}>reset</button> */}
 
-                {/* <div>
-                <button onClick={this.incrDownH}>-hours</button>
-                <button onClick={this.incrDownM}>-minutes</button>
-                <button onClick={this.incrDownS}>-seconds</button>
-                </div> */}
+                <div>
+                <button onClick={this.incrDownH}><small>⌄&nbsp;&nbsp;</small></button>
+                <button onClick={this.incrDownM}><small>⌄&nbsp;</small></button>
+                <button onClick={this.incrDownS}><small>&nbsp;&nbsp;⌄</small></button>
+                </div>
 
             </div>
         )
