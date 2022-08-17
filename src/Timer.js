@@ -5,7 +5,7 @@ export default class Timer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isActive: true,
+            isActive: false,
             hours: 1,
             minutes: 0, 
             seconds: 0
@@ -16,6 +16,7 @@ export default class Timer extends Component {
     componentDidMount() {
         //initialized
        this.startTimer()
+       clearInterval(this.myInterval)
     }
 
     startTimer() {
@@ -72,20 +73,29 @@ export default class Timer extends Component {
         })
     }
 
+
+
+
+
+    
     turnOn = () => {
-        // clearInterval(this.myInterval)
-        // this.startTimer()
-        this.setState({
+        this.startTimer()
+        this.setState(({ isActive }) => ({
             isActive: true
-        })
+        }))
     }
 
     turnOff = () => {
         clearInterval(this.myInterval)
-        this.setState({
+        this.setState(({ isActive }) => ({
             isActive: false
-        })
+        }))
     }
+
+
+
+
+
 
     incrUpH = () => {
         this.setState(({ hours }) => ({
@@ -145,26 +155,26 @@ export default class Timer extends Component {
              
 
             <div>
-                <div>
+                {/* <div>
                 <button onClick={this.incrUpH}>+hours</button>
                 <button onClick={this.incrUpM}>+minutes</button>
                 <button onClick={this.incrUpS}>+seconds</button>
                 {/* <button onClick={this.turnOn}>start</button>
                 <button onClick={this.reset}>reset</button> */}
-                </div>
+                {/* </div> */}
 
                 { minutes === 0 && seconds === 0 && hours === 0
                     ? <h1>00:00:00 Busted!</h1>
                     : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</h1>
                 }
                 <button onClick={isActive ? this.turnOff : this.turnOn}> || </button>
-                <button onClick={this.reset}>reset</button>
+                {/* <button onClick={this.reset}>reset</button> */}
 
-                <div>
+                {/* <div>
                 <button onClick={this.incrDownH}>-hours</button>
                 <button onClick={this.incrDownM}>-minutes</button>
                 <button onClick={this.incrDownS}>-seconds</button>
-                </div>
+                </div> */}
 
             </div>
         )
