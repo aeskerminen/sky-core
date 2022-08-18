@@ -6,18 +6,21 @@ import React from 'react';
 export default class Editor extends React.Component {
     constructor(props) {
         super(props)
+
         this.state = {
             name: 'test_name',
-            content: 'test'
+            content: props.value
         }
-
+        
         this.noteChanged = this.noteChanged.bind(this)
     }
 
-    noteChanged(event) {
+    noteChanged(event) {    
         this.setState({
             content: event
         })
+
+        console.log(this.state.content)
         
     }
 
@@ -28,3 +31,4 @@ export default class Editor extends React.Component {
         )
     }
 }
+
