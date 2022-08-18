@@ -83,35 +83,45 @@ export default class Timer extends Component {
 
     incrUpM = () => {
 
-        this.state.minutes === 59 ? this.setState(({ minutes }) => ({minutes: 0})) : this.setState(({ minutes }) => ({minutes: minutes + 1}))
+        this.state.minutes === 59 
+        ? this.setState(({ minutes }) => ({minutes: 0})) 
+        : this.setState(({ minutes }) => ({minutes: minutes + 1}))
     
     
     }
     
     incrUpS = () => {
 
-        this.state.seconds === 59 ? this.setState(({ seconds }) => ({seconds: 0})) : this.setState(({ seconds }) => ({seconds: seconds + 1}))
+        this.state.seconds === 59 
+        ? this.setState(({ seconds }) => ({seconds: 0})) 
+        : this.setState(({ seconds }) => ({seconds: seconds + 1}))
         
     }
     
-    
+
     incrDownH = () => {
 
-        this.state.hours === 0 ? this.setState(({ hours }) => ({hours: hours})) : this.setState(({ hours }) => ({hours: hours - 1}))
+        this.state.hours === 0 
+        ? this.setState(({ hours }) => ({hours: hours})) 
+        : this.setState(({ hours }) => ({hours: hours - 1}))
 
     }
 
 
     incrDownM = () => {
 
-        this.state.minutes === 0 ? this.setState(({ minutes }) => ({ minutes: 59})) : this.setState(({ minutes }) => ({minutes: minutes - 1}))
+        this.state.minutes === 0 
+        ? this.setState(({ minutes }) => ({ minutes: 59})) 
+        : this.setState(({ minutes }) => ({minutes: minutes - 1}))
     
     }
 
     
     incrDownS = () => {
 
-        this.state.seconds === 0 ? this.setState(({ seconds }) => ({seconds: 59})) : this.setState(({ seconds }) => ({seconds: seconds - 1}))
+        this.state.seconds === 0 
+        ? this.setState(({ seconds }) => ({seconds: 59})) 
+        : this.setState(({ seconds }) => ({seconds: seconds - 1}))
     
     }
     
