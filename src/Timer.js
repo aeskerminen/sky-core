@@ -12,11 +12,6 @@ export default class Timer extends Component {
             }
     }
    
-
-    componentDidMount() {
-        //initialized
-    }
-
     startTimer() {
         this.myInterval = setInterval(() => {
             const { hours, minutes, seconds } = this.state
@@ -51,12 +46,6 @@ export default class Timer extends Component {
     }, 1000)    
     }
 
-
-    componentDidUpdate(){
-        // state updated
-        
-    }
-
     componentWillUnmount() {
         // destroyed
         clearInterval(this.myInterval)
@@ -71,7 +60,6 @@ export default class Timer extends Component {
         })
     }
 
-    
     turnOn = () => {
         this.startTimer()
         this.setState(({ isActive }) => ({
@@ -94,75 +82,39 @@ export default class Timer extends Component {
         
 
     incrUpM = () => {
-        if (this.state.minutes === 59){
-            this.setState(({ minutes }) => ({
-                minutes: minutes - 59
-            }))
-        }
-        else{
-            this.setState(({ minutes }) => ({
-                minutes: minutes + 1
-            }))
-        }
-        }
+
+        this.state.minutes === 59 ? this.setState(({ minutes }) => ({minutes: 0})) : this.setState(({ minutes }) => ({minutes: minutes + 1}))
+    
+    
+    }
     
     incrUpS = () => {
-        if (this.state.seconds === 59){
-            this.setState(({ seconds }) => ({
-                seconds: seconds - 59
-            }))
-        }
-    
-        else {
-            this.setState(({ seconds }) => ({
-                seconds: seconds + 1
-            }))
-        }
+
+        this.state.seconds === 59 ? this.setState(({ seconds }) => ({seconds: 0})) : this.setState(({ seconds }) => ({seconds: seconds + 1}))
+        
     }
-
-
+    
+    
     incrDownH = () => {
-        if (this.state.hours === 0){
-            this.setState(({ hours }) => ({
-                hours: hours
-            }))
-        }
-        else{
-            this.setState(({ hours }) => ({
-                hours: hours - 1
-            }))
-        }
-        }
+
+        this.state.hours === 0 ? this.setState(({ hours }) => ({hours: hours})) : this.setState(({ hours }) => ({hours: hours - 1}))
+
+    }
 
 
-   incrDownM = () => {
-    if (this.state.minutes === 0){
-        this.setState(({ minutes }) => ({
-            minutes: minutes + 59
-        }))
-    }
-    else{
-        this.setState(({ minutes }) => ({
-            minutes: minutes - 1
-        }))
-    }
+    incrDownM = () => {
+
+        this.state.minutes === 0 ? this.setState(({ minutes }) => ({ minutes: 59})) : this.setState(({ minutes }) => ({minutes: minutes - 1}))
+    
     }
 
     
-incrDownS = () => {
+    incrDownS = () => {
 
-    if (this.state.seconds === 0){
-        this.setState(({ seconds }) => ({
-            seconds: seconds + 59
-        }))
+        this.state.seconds === 0 ? this.setState(({ seconds }) => ({seconds: 59})) : this.setState(({ seconds }) => ({seconds: seconds - 1}))
+    
     }
-
-    else {
-        this.setState(({ seconds }) => ({
-            seconds: seconds - 1
-        }))
-    }
-    }
+    
 
     render() {
         const {isActive, hours, minutes, seconds } = this.state
@@ -182,7 +134,10 @@ incrDownS = () => {
                 <div>
                     <div>{  minutes === 0 && seconds === 0 && hours === 0
                             ? <h1>00:00:00 ⏯⏹</h1>
-                            : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}  <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button><button onClick={this.reset}>⏹</button></h1>
+                            : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}  
+                                <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button>
+                                <button onClick={this.reset}>⏹</button>
+                            </h1>
                         }
                     </div>
                     <div>
