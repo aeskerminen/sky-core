@@ -49,7 +49,7 @@ class App extends React.Component {
 
     this.state = {
       searchState: '',
-      noteList: [{name: 'MAA12 Kpl 3.1', id: x}, {name: 'MAA12 Kpl 4.1', id: randomId()}],
+      noteList: [{name: 'MAA12 Kpl 3.1', content: 'FEET!', id: x}, {name: 'MAA12 Kpl 4.1', content: "YEST!", id: randomId()}],
       selectedNote: x
     }
   }
@@ -57,7 +57,7 @@ class App extends React.Component {
   addNote() {
     this.setState((state) => ({
       searchState: state.searchState,
-      noteList: [...state.noteList, {name: 'NEW NOTE', id: randomId()}],
+      noteList: [...state.noteList, {name: 'NEW NOTE', content: 'YEET', id: randomId()}],
       selectedNote: state.selectedNote
     }))
   }
@@ -87,6 +87,15 @@ class App extends React.Component {
     console.log(this.state)
   }
 
+  getContent() {
+    const note = this.state.noteList.filter(note => {
+      return note.id === this.state.selectedNote
+    })
+
+    console.log(note[0].content)
+    return note[0].content
+  }
+
   render() {
     return(
       <div className='h-screen'>
@@ -111,7 +120,7 @@ class App extends React.Component {
             </div>
           </div>
           <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
-                <Editor className='h-full' value={"yes"}></Editor>
+                <Editor className='h-full' value={this.getContent()}></Editor>
           </div>
           <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
                 <ReactSketchCanvas className='p-2 h-full'
