@@ -7,6 +7,7 @@ import {initializeApp} from 'firebase/app'
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 import { ReactSketchCanvas } from 'react-sketch-canvas';
+import { randomId } from '@mantine/hooks';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnYWP06n84p_vLSQpUPYdIapnhyh2H9Zw",
@@ -57,6 +58,21 @@ class App extends React.Component {
     }))
   }
 
+  handleSearch(e) {
+    this.setState((state) => ({
+      searchState: state.searchState,
+      noteList: state.noteList.sort((b, a) => {
+        // Sort results by matching name with keyword position in name
+        if(a.name.toLowerCase().indexOf(e.target.value.toLowerCase()) > b.name.toLowerCase().indexOf(e.target.value.toLowerCase()))
+            return 1;
+        else if (a.name.toLowerCase().indexOf(e.target.value.toLowerCase()) < b.name.toLowerCase().indexOf(e.target.value.toLowerCase()))
+            return -1;
+        else 
+            if(a.name > b.name) return 1; else return -1;
+      })
+    }))
+  }
+
   render() {
     return(
       <div className='h-screen'>
@@ -69,15 +85,15 @@ class App extends React.Component {
         <div className='grid grid-cols-5 gap-2 h-full'>
           <div className='col-span-1 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto'>
           <div className='flex flex-nowrap flex-row p-2'>
-            <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 mr-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+            <input onChange={this.handleSearch.bind(this)} type="text" id="last_name" className="bg-gray-50 border border-gray-300 text-gray-900 mr-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
             </input>
-            <button onClick={this.addNote.bind(this)} class="bg-blue-500 hover:bg-blue-400 active:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <button onClick={this.addNote.bind(this)} className="bg-blue-500 hover:bg-blue-400 active:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
               +
             </button>
           </div>
             <div className='flex flex-nowrap flex-col'>
-              {this.state.noteList.map(note => <Note key={note.name} name={note.name}></Note>)}
+              {this.state.noteList.map(note => <Note key={randomId()} name={note.name}></Note>)}
             </div>
           </div>
           <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
