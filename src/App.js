@@ -77,6 +77,16 @@ class App extends React.Component {
     }))
   }
 
+  handleSelect(val) {
+    this.setState((state) => ({
+      searchState: state.searchState,
+      noteList: [...state.noteList],
+      selectedNote: val
+    }))
+
+    console.log(this.state)
+  }
+
   render() {
     return(
       <div className='h-screen'>
@@ -97,7 +107,7 @@ class App extends React.Component {
             </button>
           </div>
             <div className='flex flex-nowrap flex-col'>
-              {this.state.noteList.map(note => <Note selected={this.state.selectedNote === note.id ? true : false} key={note.id} name={note.name}></Note>)}
+              {this.state.noteList.map(note => <Note handleSelect={this.handleSelect.bind(this)} selected={this.state.selectedNote === note.id ? true : false} key={note.id} id={note.id} name={note.name}></Note>)}
             </div>
           </div>
           <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
