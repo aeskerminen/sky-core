@@ -38,27 +38,11 @@ async function getNote(db, id) {
   console.log(arr)
 }
 
-function updateRTE() {
-  let content = ""
-  const note = getNote(db, 'maa12')
-  note.then((val) => {
-    console.log(val)
-    content = val
-  })
-
-
-  return(
-    <React.Suspense fallback="loading...">
-      <Editor val={content}></Editor>
-    </React.Suspense>
-  )
-}
-
 const arr = []
 
-
-
 class App extends React.Component {
+  
+
   render() {
     return(
       <div className='h-screen'>
@@ -66,23 +50,19 @@ class App extends React.Component {
         <div className='container max-w-fit p-2 m-2 rounded'>
           <h1 className='font-sans font-bold text-white text-xl tracking-widest drop-shadow'>SKY NOTES</h1>
         </div>
-        <div className="flex flex-row-reverse">
-          {/* <div className="container bg-white rounded max-w-fit mx-2 p-2 my-0 drop-shadow-lg">
-            <p className='font-mono inline'>Notes</p>
-          </div>
-          <div className="container bg-white rounded max-w-fit mx-2 p-2 my-0 drop-shadow-lg">
-            <p className='font-mono inline'>Study</p>
-          </div>
-          <div className="container bg-white rounded max-w-fit mx-2 p-2 my-0 drop-shadow-lg">
-            <p className='font-mono inline'>Settings</p>
-          </div> */}
-        </div>
       </div>
       <div className='p-1' style={{height: '94%'}}>
         <div className='grid grid-cols-5 gap-2 h-full'>
           <div className='col-span-1 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto'>
+          <div className='flex flex-nowrap flex-row p-2'>
+            <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 mr-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
+            </input>
+            <button class="bg-blue-500 hover:bg-blue-400 active:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+              +
+            </button>
+          </div>
             <div className='flex flex-nowrap flex-col'>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
               <Note name={'MAA12 Kpl 3.1'}></Note>
               <Note name={'MAA12 Kpl 3.1'}></Note>
               <Note name={'MAA12 Kpl 3.1'}></Note>
