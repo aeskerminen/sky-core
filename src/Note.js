@@ -3,7 +3,7 @@ import React from "react"
 export default class Note extends React.Component {
     render() {
       return(
-        <div className='bg-white rounded p-3 m-2 drop-shadow flex-1 divide-y'>
+        <div className={this.props.selected ? 'border-solid border-2 border-blue-400 bg-white rounded p-3 m-2 drop-shadow flex-1 divide-y' : 'bg-white rounded p-3 m-2 drop-shadow flex-1 divide-y'}>
           <div className='flex mb-2'>
             <h1 className='py-2 inline-flex'>{this.props.name}</h1>
             

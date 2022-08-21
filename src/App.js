@@ -45,16 +45,20 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
+    const x = randomId()
+
     this.state = {
       searchState: '',
-      noteList: [{name: 'MAA12 Kpl 3.1'}, {name: 'MAA12 Kpl 4.1'}]
+      noteList: [{name: 'MAA12 Kpl 3.1', id: x}, {name: 'MAA12 Kpl 4.1', id: randomId()}],
+      selectedNote: x
     }
   }
 
   addNote() {
     this.setState((state) => ({
       searchState: state.searchState,
-      noteList: [...state.noteList, {name: 'NEW NOTE'}]
+      noteList: [...state.noteList, {name: 'NEW NOTE', id: randomId()}],
+      selectedNote: state.selectedNote
     }))
   }
 
@@ -93,11 +97,11 @@ class App extends React.Component {
             </button>
           </div>
             <div className='flex flex-nowrap flex-col'>
-              {this.state.noteList.map(note => <Note key={randomId()} name={note.name}></Note>)}
+              {this.state.noteList.map(note => <Note selected={this.state.selectedNote === note.id ? true : false} key={note.id} name={note.name}></Note>)}
             </div>
           </div>
           <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
-                <Editor className='h-full' value={"val"}></Editor>
+                <Editor className='h-full' value={"yes"}></Editor>
           </div>
           <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
                 <ReactSketchCanvas className='p-2 h-full'
