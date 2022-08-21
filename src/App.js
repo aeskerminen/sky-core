@@ -45,9 +45,16 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      search_state: '',
-      note_list: [{name: 'MAA12 Kpl 3.1'}, {name: 'MAA12 Kpl 4.1'}]
+      searchState: '',
+      noteList: [{name: 'MAA12 Kpl 3.1'}, {name: 'MAA12 Kpl 4.1'}]
     }
+  }
+
+  addNote() {
+    this.setState((state) => ({
+      searchState: state.searchState,
+      noteList: [...state.noteList, {name: 'NEW NOTE'}]
+    }))
   }
 
   render() {
@@ -65,19 +72,12 @@ class App extends React.Component {
             <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 mr-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" required>
             </input>
-            <button class="bg-blue-500 hover:bg-blue-400 active:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+            <button onClick={this.addNote.bind(this)} class="bg-blue-500 hover:bg-blue-400 active:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
               +
             </button>
           </div>
             <div className='flex flex-nowrap flex-col'>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
-              <Note name={'MAA12 Kpl 3.1'}></Note>
+              {this.state.noteList.map(note => <Note key={note.name} name={note.name}></Note>)}
             </div>
           </div>
           <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
