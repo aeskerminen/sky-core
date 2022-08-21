@@ -41,7 +41,14 @@ async function getNote(db, id) {
 const arr = []
 
 class App extends React.Component {
-  
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      search_state: '',
+      note_list: [{name: 'MAA12 Kpl 3.1'}, {name: 'MAA12 Kpl 4.1'}]
+    }
+  }
 
   render() {
     return(
