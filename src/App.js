@@ -58,9 +58,10 @@ const arr = []
 
 
 
-function App() {
-  return (
-    <div className='h-screen'>
+class App extends React.Component {
+  render() {
+    return(
+      <div className='h-screen'>
       <div className="container py-2 flex items-center max-w-full bg-slate-600 shadow" style={{height: '6%'}}>
         <div className='container max-w-fit p-2 m-2 rounded'>
           <h1 className='font-sans font-bold text-white text-xl tracking-widest drop-shadow'>SKY NOTES</h1>
@@ -108,9 +109,9 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
-    
-  );
+      </div>
+    )
+  } 
 }
 
 export default App;
