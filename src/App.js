@@ -1,14 +1,13 @@
 import React from 'react'
+import { ReactSketchCanvas } from 'react-sketch-canvas';
 
-import Editor from './Editor';
-import Note from './Note';
-
-import {initializeApp} from 'firebase/app'
+import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
-import { ReactSketchCanvas } from 'react-sketch-canvas';
-import { randomId } from '@mantine/hooks';
+import Editor from './Editor';
 import NoteExplorer from './NoteExplorer';
+
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnYWP06n84p_vLSQpUPYdIapnhyh2H9Zw",
@@ -30,7 +29,7 @@ async function getNote(db, id) {
 
   const noteList = noteSnapshot.docs.forEach(element => {
     const d = element.data()
-    if(d.name === id) {
+    if (d.name === id) {
       r = d.content
     }
   });
@@ -47,38 +46,37 @@ class App extends React.Component {
     super(props)
   }
 
-  
-
   render() {
-    return(
+    return (
       <div className='h-screen'>
-      <div className="container py-2 flex items-center max-w-full bg-slate-600 shadow" style={{height: '6%'}}>
-        <div className='container max-w-fit p-2 m-2 rounded'>
-          <h1 className='font-sans font-bold text-white text-xl tracking-widest drop-shadow'>SKY NOTES</h1>
+        <div className="container py-2 flex items-center max-w-full bg-slate-600 shadow" style={{ height: '6%' }}>
+          <div className='container max-w-fit p-2 m-2 rounded'>
+            <h1 className='font-sans font-bold text-white text-xl tracking-widest drop-shadow'>SKY NOTES</h1>
+          </div>
         </div>
-      </div>
-      <div className='p-1' style={{height: '94%'}}>
-        <div className='grid grid-cols-5 gap-2 h-full'>
+        <div className='p-1' style={{ height: '94%' }}>
+          <div className='grid grid-cols-5 gap-2 h-full'>
             <NoteExplorer></NoteExplorer>
-          <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
-                <Editor className='h-full' value={""}></Editor>
-          </div>
-          <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
-                <ReactSketchCanvas className='p-2 h-full'
-                  style={{
-                    border: "0.075rem solid #000000",
-                    borderRadius: "0.25rem"}}
-                  width="400"
-                  height="900"
-                  strokeWidth={4}
-                  strokeColor="red"
-                />
+            <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
+              <Editor className='h-full' value={""}></Editor>
+            </div>
+            <div className='col-span-2 bg-slate-200 rounded drop-shadow-lg no-scrollbar overflow-y-auto p-2'>
+              <ReactSketchCanvas className='p-2 h-full'
+                style={{
+                  border: "0.075rem solid #000000",
+                  borderRadius: "0.25rem"
+                }}
+                width="400"
+                height="900"
+                strokeWidth={4}
+                strokeColor="red"
+              />
+            </div>
           </div>
         </div>
-      </div>
       </div>
     )
-  } 
+  }
 }
 
 export default App;
