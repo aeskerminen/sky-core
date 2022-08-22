@@ -1,45 +1,8 @@
 import React from 'react'
 import { ReactSketchCanvas } from 'react-sketch-canvas';
 
-import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-
 import Editor from './Editor';
 import NoteExplorer from './NoteExplorer';
-
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBnYWP06n84p_vLSQpUPYdIapnhyh2H9Zw",
-  authDomain: "skm2022-3667a.firebaseapp.com",
-  projectId: "skm2022-3667a",
-  storageBucket: "skm2022-3667a.appspot.com",
-  messagingSenderId: "163232549889",
-  appId: "1:163232549889:web:8bf0aa897e1f9eb01e4400"
-};
-
-const app = initializeApp(firebaseConfig)
-const db = getFirestore(app)
-
-async function getNote(db, id) {
-  const notesCol = collection(db, 'notes');
-  const noteSnapshot = await getDocs(notesCol);
-
-  let r = ''
-
-  const noteList = noteSnapshot.docs.forEach(element => {
-    const d = element.data()
-    if (d.name === id) {
-      r = d.content
-    }
-  });
-
-  arr.push(r)
-
-  console.log(arr)
-}
-
-const arr = []
 
 class App extends React.Component {
   constructor(props) {
