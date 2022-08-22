@@ -12,16 +12,17 @@ export default class NoteExplorer extends React.Component {
 
         this.state = {
           searchState: '',
-          noteList: [{name: 'MAA12 Kpl 3.1', content: 'FEET!', id: x}, {name: 'MAA12 Kpl 4.1', content: "YEST!", id: randomId()}],
-          selectedNote: x
+          noteList: [],
+          selectedNote: ''
         }
     }
 
     addNote() {
+        const n_id = randomId()
         this.setState((state) => ({
             searchState: state.searchState,
-            noteList: [...state.noteList, { name: 'NEW NOTE', content: 'YEET', id: randomId() }],
-            selectedNote: state.selectedNote
+            noteList: [...state.noteList, { name: '', content: 'YEET', id: n_id }],
+            selectedNote: n_id
         }))
     }
 
