@@ -19,9 +19,9 @@ export default class Editor extends React.Component {
         this.setState({
             content: event
         })
-
-        console.log(this.state.content)
         
+        localStorage.setItem(this.props.selected, this.state.content)
+        console.log(localStorage.getItem(this.props.selected), this.props.selected)
     }
 
     render() {
