@@ -14,12 +14,23 @@ export default class Note extends React.Component {
   componentDidMount() {
   }
 
+  handleName(target) {
+      if (!this.state.init) {
+        if (target.value.length > 3) {
+          this.setState((state) => ({ name: target.value, init: true }))
+        }
+        else {
+          this.setState((state) => ({ name: "UNNAMED", init: true }))
+        }
+      }
+  }
+
   render() {
     return (
       <div className={this.props.selected ? 'border-solid border-2 border-blue-400 bg-white rounded p-3 m-2 drop-shadow flex-1 divide-y' : 'bg-white rounded p-3 m-2 drop-shadow flex-1 divide-y'}>
         <div className='flex mb-2'>
-          {this.state.init ? <h1 className='py-2 inline-flex'>{this.state.name}</h1> 
-          : <input autoFocus onBlur={({target}) => {if(!this.state.init) { if(target.value.length > 3) {this.setState((state) => ({name: target.value, init: true}))} else target.focus() } }} type="text" id="last_name" className="bg-gray-50 border-2 text-gray-900 mr-2 text-sm rounded-lg block w-full p-2.5"></input>}
+          {this.state.init ? <h1 className='py-2 inline-flex'>{this.state.name}</h1>
+            : <input autoFocus onBlur={({target}) => {this.handleName.bind(this); this.handleName(target)}} type="text" id="last_name" className="bg-gray-50 border-2 text-gray-900 mr-2 text-sm rounded-lg block w-full p-2.5"></input>}
           <div className="inline-flex items-center ml-auto px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500  transition ease-in-out duration-150" disabled="">
             <svg className="animate-spin -ml-1 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
