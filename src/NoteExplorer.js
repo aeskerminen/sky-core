@@ -24,6 +24,7 @@ export default class NoteExplorer extends React.Component {
             noteList: [...state.noteList, { name: '', content: 'YEET', id: n_id }],
             selectedNote: n_id
         }))
+        this.props.selecetdCallback(this.state.selectedNote)
     }
 
     handleSelect(val) {
@@ -32,8 +33,7 @@ export default class NoteExplorer extends React.Component {
             noteList: [...state.noteList],
             selectedNote: val
         }))
-
-        console.log(this.state)
+        this.props.selecetdCallback(this.state.selectedNote)
     }
 
     handleSearch(e) {

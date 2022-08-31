@@ -11,7 +11,8 @@ export default class Note extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
+    
   }
 
   handleName(target) {
