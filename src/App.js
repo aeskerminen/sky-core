@@ -23,7 +23,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='h-screen' style={{display: 'flex'}}>
+      <div className='h-screen grid' style={{gridTemplateColumns: 'repeat(32, minmax(0, 1fr)'}}>
         <Sidebar></Sidebar>
         <Routes>
           <Route path='/' element={<Home/>}/>
