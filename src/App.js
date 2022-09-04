@@ -23,7 +23,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='h-screen'>
+      <div className='h-screen' style={{display: 'flex'}}>
         <Sidebar></Sidebar>
         <Routes>
           <Route path='/' element={<Home/>}/>
