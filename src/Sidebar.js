@@ -5,7 +5,7 @@ import {SiBookstack} from 'react-icons/si'
 import {IoSettingsSharp} from 'react-icons/io5'
 import {IoMdPeople, IoMdPerson} from 'react-icons/io'
 
-const ICON_SIZE = 40
+const ICON_SIZE = 25
 
 export default class Sidebar extends React.Component {
 
@@ -16,39 +16,39 @@ export default class Sidebar extends React.Component {
     render() {
         return (
             <aside className='w-16' style={{ height: '100%' }} aria-label="Sidebar">
-                <div class="overflow-y-auto overflow-x-hidden py-4 px-3 bg-gray-50 rounded dark:bg-gray-800 h-full">
+                <div class="overflow-y-auto overflow-x-hidden py-4 px-2 bg-gray-50 rounded dark:bg-gray-800 h-full">
                     <a href="" class="flex items-center mb-5">
                         <img src="sn_logo_no_text.png" className="" />
                     </a>
-                    <ul class="space-y-2">
+                    <ul class="space-y-3 top-1/3 mx-auto" style={{position: 'relative'}}>
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <AiFillHome size={ICON_SIZE}></AiFillHome>
+                                <AiFillHome className="mx-auto" size={ICON_SIZE}></AiFillHome>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <SiBookstack size={ICON_SIZE}></SiBookstack>
+                                <SiBookstack className="mx-auto" size={ICON_SIZE}></SiBookstack>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <GiGraduateCap size={ICON_SIZE}></GiGraduateCap>
+                                <GiGraduateCap className="mx-auto" size={ICON_SIZE}></GiGraduateCap>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <IoMdPeople size={ICON_SIZE}></IoMdPeople>
+                                <IoMdPeople className="mx-auto" size={ICON_SIZE}></IoMdPeople>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <IoSettingsSharp size={ICON_SIZE}></IoSettingsSharp>
+                                <IoSettingsSharp className="mx-auto" size={ICON_SIZE}></IoSettingsSharp>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <IoMdPerson size={ICON_SIZE}></IoMdPerson>
+                                <IoMdPerson className="mx-auto" size={ICON_SIZE}></IoMdPerson>
                             </a>    
                         </li>
                     </ul>
