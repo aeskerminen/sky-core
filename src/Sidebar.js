@@ -17,8 +17,8 @@ export default class Sidebar extends React.Component {
         return (
             <aside className='w-16' style={{ height: '100%' }} aria-label="Sidebar">
                 <div class="overflow-y-auto overflow-x-hidden py-4 px-3 bg-gray-50 rounded dark:bg-gray-800 h-full">
-                    <a href="https://flowbite.com/" class="flex items-center mb-5">
-                        <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-7" />
+                    <a href="" class="flex items-center mb-5">
+                        <img src="sn_logo_no_text.png" className="" />
                     </a>
                     <ul class="space-y-2">
                         <li>
