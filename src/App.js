@@ -3,6 +3,9 @@ import Sidebar from './Sidebar';
 
 import { Routes, Route, Link } from "react-router-dom";
 
+import Home from './Home';
+import Books from './Books';
+
 class App extends React.Component {
   constructor(props) {
     super(props)
