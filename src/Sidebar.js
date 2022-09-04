@@ -4,6 +4,7 @@ import {AiFillHome} from 'react-icons/ai'
 import {SiBookstack} from 'react-icons/si'
 import {IoSettingsSharp} from 'react-icons/io5'
 import {IoMdPeople, IoMdPerson} from 'react-icons/io'
+import { Link } from "react-router-dom";
 
 const ICON_SIZE = 25
 
@@ -24,11 +25,13 @@ export default class Sidebar extends React.Component {
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <AiFillHome className="mx-auto" size={ICON_SIZE}></AiFillHome>
+                                <Link to="/"></Link>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <SiBookstack className="mx-auto" size={ICON_SIZE}></SiBookstack>
+                                <Link to="/books"></Link>
                             </a>
                         </li>
                         <li>
