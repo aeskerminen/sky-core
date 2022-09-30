@@ -23,11 +23,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='h-screen grid' style={{gridTemplateColumns: 'repeat(32, minmax(0, 1fr)'}}>
+      <div className='h-screen grid overflow-hidden' style={{gridTemplateColumns: 'repeat(32, minmax(0, 1fr)'}}>
         <Sidebar></Sidebar>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='books' element={<Books/>}/>
+          <Route path='books' element={
+            <div className='' style={{ height: '100%', gridColumn: 'span 31 / span 31' }}><Books></Books></div>
+          }/>
         </Routes>
       </div>
     )

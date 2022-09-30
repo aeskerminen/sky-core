@@ -1,10 +1,6 @@
 import React from "react";
 
-function note() {
-    return (
-        <div>HELLO</div>
-    )
-}
+import Note from "./Note";
 
 function tag() {
     return(
@@ -12,7 +8,7 @@ function tag() {
     )
 }
 
-class Note extends React.Component {
+class Note2 extends React.Component {
     render() {
         return(
             <div className="bg-white p-2 m-2">
@@ -33,15 +29,14 @@ class Note extends React.Component {
 export default class Books extends React.Component {
     render() {
         return (
-            <div className='' style={{ height: '100%', gridColumn: 'span 31 / span 31' }}>
                 <div className="h-full grid grid-cols-8 p-2 gap-2">
-                    <div className="bg-slate-300 col-span-1">
+                    <div className="bg-slate-600 col-span-1">
                         <div className='flex flex-nowrap flex-row p-2'>
-                            <input type="text" className="bg-gray-50 border text-gray-900 mr-2 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Search" required>
-                            </input>
-                            <button className="bg-blue-500 hover:bg-blue-400 active:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded-lg">+</button>
+                            <input type="text" className="bg-white border mr-2 text-sm w-full p-2.5" placeholder="Search books..." required/>
+                            <button className="bg-blue-400 hover:bg-blue-500 active:bg-blue-600 text-white py-2 px-4 border-b-4 border-blue-700">+</button>
                         </div>
-                        <div className="bg-slate-300">
+                        <div className="bg-slate-600">
+                            <Note></Note>
                             <Note></Note>
                             <Note></Note>
                             <Note></Note>
@@ -53,7 +48,6 @@ export default class Books extends React.Component {
                         sdsad
                     </div>
                 </div>
-            </div>
         )
     }
 }
