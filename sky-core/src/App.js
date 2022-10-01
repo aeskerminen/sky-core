@@ -9,7 +9,7 @@ function App() {
       <div className="flex-none">
         <Navbar></Navbar>
       </div>
-      <div className="grow w-1/6">
+      <div className="grow w-1/6 overflow-hidden">
         <Sidebar></Sidebar>
       </div>
     </div>
