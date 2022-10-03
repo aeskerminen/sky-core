@@ -1,4 +1,6 @@
 import React from "react";
+import Note from "./notes/Note";
+
 
 export default class Sidebar extends React.Component {
     render() {
@@ -12,14 +14,10 @@ export default class Sidebar extends React.Component {
                     <button className="p-2 bg-white rounded-lg ml-auto hover:bg-slate-100">ADD</button>
                 </div>
                 <div className="grow flex flex-col overflow-y-scroll p-2 gap-2 bg-white">
-                    <span className="block py-20 bg-slate-100">NOTE</span>
-                    <span className="block py-20 bg-slate-100">NOTE</span>
-                    <span className="block py-20 bg-slate-100">NOTE</span>
-                    <span className="block py-20 bg-slate-100">NOTE</span>
-                    <span className="block py-20 bg-slate-100">NOTE</span>
-                    <span className="block py-20 bg-slate-100">NOTE</span>
-                    <span className="block py-20 bg-slate-100">NOTE</span>
-                    <span className="block py-20 bg-slate-100">NOTE</span>
+                    <Note></Note>
+                    <Note></Note>
+                    <Note></Note>
+                    <Note></Note>
                 </div>
             </div>
         )
