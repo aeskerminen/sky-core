@@ -9,9 +9,15 @@ function App() {
       <div className="flex-none">
         <Navbar></Navbar>
       </div>
-      <div className="grow w-1/6 overflow-hidden">
-        <Sidebar></Sidebar>
+      <div className="h-screen flex flex-row">
+        <div className="grow w-1/6 overflow-hidden">
+          <Sidebar></Sidebar>
+        </div>
+        <div className="grow w-5/6 overflow-hidden">
+          
+        </div>
       </div>
+      
     </div>
   );
 }
