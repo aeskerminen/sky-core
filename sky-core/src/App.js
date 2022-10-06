@@ -5,6 +5,8 @@ import Sidebar from "./components/Sidebar";
 
 import JoditEditor from 'jodit-react';
 
+import Drawboard from "./components/widgets/Drawboard";
+
 function Jodit() {
   const editor = useRef(null);
   const [content, setContent] = useState("Start writing");
@@ -42,6 +44,7 @@ function App() {
         </div>
         <div className="grow w-5/6 overflow-hidden">
           {Jodit()}
+          <Drawboard width={window.innerWidth * 0.825} height={500}></Drawboard>
         </div>
       </div>
 
