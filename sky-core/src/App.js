@@ -42,9 +42,9 @@ function App() {
         <div className="grow w-1/6 overflow-hidden mb-2.5">
           <Sidebar></Sidebar>
         </div>
-        <div className="grow w-5/6 overflow-hidden m-2 mr-2 mb-2.5 bg-white">
+        <div className="grow w-5/6 overflow-hidden m-2 mr-2 mb-2.5 p-1 bg-white">
           {Jodit()}
-          <Drawboard width={window.innerWidth * 0.825} height={500}></Drawboard>
+          <Drawboard width={window.innerWidth * 0.818} height={500}></Drawboard>
         </div>
       </div>
 
