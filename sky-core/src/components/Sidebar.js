@@ -13,7 +13,14 @@ export default class Sidebar extends React.Component {
                     
                     <button className="p-2 bg-white rounded-lg ml-auto hover:bg-slate-100">ADD</button>
                 </div>
-                <div className="grow flex flex-col p-2 gap-3 bg-white">
+                <div className="grow flex flex-col p-2 gap-3 bg-white overflow-y-scroll">
+                    <Note></Note>
+                    <Note></Note>
+                    <Note></Note>
+                    <Note></Note>
+                    <Note></Note>
+                    <Note></Note>
+                    <Note></Note>
                     <Note></Note>
                     <Note></Note>
                     <Note></Note>

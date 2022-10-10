@@ -34,7 +34,7 @@ function Jodit() {
 
 function App() {
   return (
-    <div className="h-screen flex flex-col bg-slate-500">
+    <div className="h-screen flex flex-col bg-slate-500 overflow-hidden">
       <div className="flex-none">
         <Navbar></Navbar>
       </div>
