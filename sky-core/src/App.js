@@ -1,36 +1,11 @@
-import React, {useState, useRef} from "react";
+import React from "react";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
-import JoditEditor from 'jodit-react';
+// import Drawboard from "./components/widgets/Drawboard";
+import Editor from "./components/widgets/Editor";
 
-import Drawboard from "./components/widgets/Drawboard";
-
-function Jodit() {
-  const editor = useRef(null);
-  const [content, setContent] = useState("Start writing");
-  const config = {
-    readonly: false,
-    height: 400
-  };
-  const handleUpdate = (event) => {
-    const editorContent = event.target.innerHTML;
-    setContent(editorContent);
-  };
-
-  return (
-    <div className="App">
-      <JoditEditor
-        ref={editor}
-        value={content}
-        config={config}
-        onBlur={handleUpdate}
-        onChange={(newContent) => {}}
-      />
-    </div>
-  );
-}
 
 function App() {
   return (
@@ -43,8 +18,8 @@ function App() {
           <Sidebar></Sidebar>
         </div>
         <div className="grow w-5/6 overflow-hidden m-2 mr-2 mb-2.5 p-1 bg-white">
-          {Jodit()}
-          <Drawboard width={window.innerWidth * 0.818} height={500}></Drawboard>
+          {/* <Drawboard width={window.innerWidth * 0.818} height={500}></Drawboard> */}
+          <Editor></Editor>
         </div>
       </div>
 
