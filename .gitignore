@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 # Created by https://www.toptal.com/developers/gitignore/api/flutter,visualstudiocode,dart,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=flutter,visualstudiocode,dart,node
 
@@ -259,7 +257,6 @@ neutralino.js
 .storage
 *.log
 >>>>>>> b465682 (Add all)
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -283,3 +280,7 @@ neutralino.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+=======
+>>>>>>> sky-core
+
