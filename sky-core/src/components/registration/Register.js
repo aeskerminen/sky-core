@@ -1,5 +1,9 @@
 import { useRef, useState, useEffect } from "react";
 
+import axios from '../../api/Axios'
+
+const REGISTER_URL = '/register'
+
 const USER_REGX = /^[a-zA-Z0-9]([._](?![._])|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$/;
 const PWD_REGX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,18}$/;
 
@@ -44,9 +48,32 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        
+        if(!USER_REGX.test(user) || ! !PWD_REGX.test(pwd)) {
+            setErrMsg('Invalid entries...')
+            return
+        }
 
-        console.log(user, pwd)
-        setSuccess(true)
+        try {
+            const response = await axios.post(REGISTER_URL, 
+                JSON.stringify({user, pwd}), 
+                {
+                    headers: {'Content-Type': 'application/json'}, 
+                    withCredentials: true
+                }
+            )
+            console.log(JSON.stringify(response))
+            setSuccess(true)
+        } catch(err) {
+            if(!err?.response) {
+                setErrMsg('No server response')
+            } else if(err.response?.status === 409) {
+                setErrMsg('Username already taken')
+            } else {
+                setErrMsg('Registration failed')
+            }
+            errRef.current.focus()
+        }
     }
 
     return (
