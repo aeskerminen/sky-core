@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
 import Drawboard from "./components/widgets/Drawboard";
+import PDFViewer from "./components/widgets/PDFViewer";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         </div>
         <div className="grow w-5/6 overflow-hidden m-2 mr-2 mb-2.5 p-1 bg-white">
           <Drawboard width={window.innerWidth * 0.818} height={500}></Drawboard>
+          <PDFViewer></PDFViewer>
         </div>
       </div>
 
