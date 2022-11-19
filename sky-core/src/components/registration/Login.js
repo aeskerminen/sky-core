@@ -1,8 +1,12 @@
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
+import AuthContext from "../../ctx/AuthProvider";
 
-import React from "react";
+import axios from "axios";
+const LOGIN_URL = '/auth'
 
 const Login = () => {
+
+    const {setAuth} = useContext(AuthContext)
 
     const userRef = useRef()
     const errRef = userRef()
@@ -22,9 +26,20 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setUser('')
-        setPwd('')
-        setSuccess(true)
+        
+        try {
+            const response = await axios.post(LOGIN_URL, JSON.stringify({user, pwd}), {headers: {'Content-Type': 'application/json'}, withCredentials: true})
+
+            const accessToken = response?.data?.accessToken
+            const roles = response?.data?.roles
+            setAuth({user, pwd, roles, accessToken})
+            setUser('')
+            setPwd('')
+            setSuccess(true)
+        } catch(error) {
+            setErrMsg('Login unsuccessful')
+            errRef.current.focus()
+        } 
     }
 
     return (
