@@ -1,10 +1,8 @@
 import React from "react";
 
 import Navbar from "./components/Navbar";
-import Register from "./components/registration/Register";
 import Sidebar from "./components/Sidebar";
 import Editor from "./components/widgets/Editor";
-import Login from "./components/registration/Login";
 
 
 function App() {
@@ -21,7 +19,6 @@ function App() {
         <div className="grow w-5/6 overflow-hidden m-2 mr-2 mb-2.5 p-1 bg-white">
         </div>
       </div> */}
-      <Login></Login>
     </div>
   );
 }
