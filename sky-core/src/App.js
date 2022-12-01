@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Editor from "./components/widgets/Editor";
 
+import LoginButton from './components/login/LoginButton'
+import LogoutButton from './components/login/LogoutButton'
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <div className="grow w-5/6 overflow-hidden m-2 mr-2 mb-2.5 p-1 bg-white">
         </div>
       </div> */}
+      <LoginButton></LoginButton>
+      <LogoutButton></LogoutButton>
     </div>
   );
 }
