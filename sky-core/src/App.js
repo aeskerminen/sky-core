@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Editor from "./components/widgets/Editor";
-'import LoginButton from './components/login/LoginButton'
+import LoginButton from './components/login/LoginButton'
 
 import { useAuth0 } from "@auth0/auth0-react";
 
