@@ -5,7 +5,6 @@ import Sidebar from "./components/Sidebar";
 import Editor from "./components/widgets/Editor";
 
 import LoginButton from './components/login/LoginButton'
-import LogoutButton from './components/login/LogoutButton'
 
 import { useAuth0 } from "@auth0/auth0-react";
 
