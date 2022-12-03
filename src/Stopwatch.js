@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Countdown extends Component {
+export default class Stopwatch extends Component {
 
     constructor(props) {
         super(props);
@@ -81,7 +81,7 @@ export default class Countdown extends Component {
         const {isActive, hours, minutes, seconds } = this.state
         return (
             <div>
-                <div> Countdown 
+                <div>  Stopwatch
                     <div>{  <h1>{hours < 10 ? `0${hours}` : hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}  
                                 <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button>
                                 <button onClick={this.reset}>⏹</button>

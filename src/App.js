@@ -1,7 +1,7 @@
 import React from 'react'
 import Timer from './Timer'
 import Editor from './Editor';
-
+import Stopwatch from './Stopwatch';
 import {initializeApp} from 'firebase/app'
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
@@ -86,8 +86,9 @@ function App() {
         <div className='container max-w-fit p-2 m-2 rounded'>
           <h1 className='font-sans font-bold text-white text-xl tracking-widest drop-shadow'>SKY NOTES</h1>
         </div>
-        <div className="font-sans font-bold text-white text-xl flex flex-row"><Timer></Timer></div>
-        
+        {/* <div className="font-sans font-bold text-white text-xl flex flex-row"><Timer></Timer></div> */}
+        <div className="font-sans font-bold text-white text-xl flex flex-row"><Stopwatch></Stopwatch></div>
+
         <div className="flex flex-row-reverse">
           {/* <div className="container bg-white rounded max-w-fit mx-2 p-2 my-0 drop-shadow-lg">
             <p className='font-mono inline'>Notes</p>
