@@ -2,9 +2,9 @@ import React, {useState, useRef} from "react";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 import Drawboard from "./components/widgets/Drawboard";
-import PDFViewer from "./components/widgets/PDFViewer";
+import PDFViewer from "./components/widgets/PDF/PDFViewer";
 
 
 function App() {
@@ -18,8 +18,10 @@ function App() {
           <Sidebar></Sidebar>
         </div>
         <div className="grow w-5/6 overflow-hidden m-2 mr-2 mb-2.5 p-1 bg-white">
-          <Drawboard width={window.innerWidth * 0.818} height={500}></Drawboard>
+          <div className="flex-none">
           <PDFViewer></PDFViewer>
+          </div>
+          
         </div>
       </div>
 
