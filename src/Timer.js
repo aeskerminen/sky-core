@@ -6,7 +6,7 @@ export default class Timer extends Component {
         super(props);
         this.state = {
             isActive: false,
-            hours: 1,
+            hours: 0,
             minutes: 0, 
             seconds: 0
             }
@@ -62,14 +62,14 @@ export default class Timer extends Component {
 
     turnOn = () => {
         this.startTimer()
-        this.setState(({ isActive }) => ({
+        this.setState(() => ({
             isActive: true
         }))
     }
 
     turnOff = () => {
         clearInterval(this.myInterval)
-        this.setState(({ isActive }) => ({
+        this.setState(() => ({
             isActive: false
         }))
     }
@@ -84,7 +84,7 @@ export default class Timer extends Component {
     incrUpM = () => {
 
         this.state.minutes === 59 
-        ? this.setState(({ minutes }) => ({minutes: 0})) 
+        ? this.setState(() => ({minutes: 0})) 
         : this.setState(({ minutes }) => ({minutes: minutes + 1}))
     
     
@@ -93,7 +93,7 @@ export default class Timer extends Component {
     incrUpS = () => {
 
         this.state.seconds === 59 
-        ? this.setState(({ seconds }) => ({seconds: 0})) 
+        ? this.setState(() => ({seconds: 0})) 
         : this.setState(({ seconds }) => ({seconds: seconds + 1}))
         
     }
@@ -111,7 +111,7 @@ export default class Timer extends Component {
     incrDownM = () => {
 
         this.state.minutes === 0 
-        ? this.setState(({ minutes }) => ({ minutes: 59})) 
+        ? this.setState(() => ({ minutes: 59})) 
         : this.setState(({ minutes }) => ({minutes: minutes - 1}))
     
     }
@@ -120,7 +120,7 @@ export default class Timer extends Component {
     incrDownS = () => {
 
         this.state.seconds === 0 
-        ? this.setState(({ seconds }) => ({seconds: 59})) 
+        ? this.setState(() => ({seconds: 59})) 
         : this.setState(({ seconds }) => ({seconds: seconds - 1}))
     
     }
@@ -141,7 +141,7 @@ export default class Timer extends Component {
 
 
 
-                <div>
+                <div> Timer
                     <div>{  minutes === 0 && seconds === 0 && hours === 0
                             ? <h1>00:00:00 ⏯⏹</h1>
                             : <h1>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}  
