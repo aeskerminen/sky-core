@@ -9,6 +9,7 @@ export default function PDFViewer() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [content, setContent] = useState(0);
+  const [val, setVal] = useState(1);
 
   async function getTheFile() {
     // open file picker
@@ -21,6 +22,7 @@ export default function PDFViewer() {
     setNumPages(numPages);
   }
  
+
   return (
     <div>
             <button onClick={getTheFile}>
@@ -30,6 +32,9 @@ export default function PDFViewer() {
                 </svg>
                 <span>Upload</span>
             </button>
+            <div>
+              <input type="text" placeholder='Search...'/>
+            </div>
        
     <Document 
     file={content}
