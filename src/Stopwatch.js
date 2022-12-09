@@ -16,7 +16,7 @@ export default class Stopwatch extends Component {
         this.myInterval = setInterval(() => {
             const {minutes, seconds } = this.state
 
-            if ((seconds === 0 && minutes === 0 ) ||(seconds === 0 && minutes === 59) ){
+            if ((seconds === 0 && minutes === 0 ) || (seconds === 0 && minutes === 59) || (seconds === 0 && minutes === 1) ){
                 this.setState(({ seconds }) => ({
                     seconds: seconds + 1
                 }))
