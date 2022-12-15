@@ -7,6 +7,17 @@ import TextEditor from "./components/widgets/Editor";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
+let selection = '0'
+
+function setSelectedNote(id) {
+  selection = id
+  console.log(selection)
+}
+
+function getSelectedNote() {
+  return selection
+}
+
 const App = () => {
   const { isAuthenticated } = useAuth0()
 
@@ -20,11 +31,11 @@ const App = () => {
           </div>
           <div className="h-screen flex flex-row">
             <div className="grow w-1/6 overflow-hidden mb-2.5">
-              <Sidebar></Sidebar>
+              <Sidebar selectButtonClick={setSelectedNote}></Sidebar>
             </div>
 
             <div className="grow w-5/6 overflow-y-scroll m-2 mr-2 mb-2.5 p-1 bg-white">
-              <TextEditor></TextEditor>
+              <TextEditor id={getSelectedNote}></TextEditor>
             </div>
           </div>
         </div>
