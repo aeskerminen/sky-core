@@ -5,13 +5,11 @@ const LogoutButton = () => {
 
     return (
         isAuthenticated && (
-            <button onClick={() => logout()}>
                 <div className="bg-blue-500">
                     <button className="" onClick={() => logout()}>
                         <h1 className="text-xl text-white" style={{ textAlign: 'center' }}>Sign out</h1>
                     </button>
                 </div>
-            </button>
         )
     )
 }
