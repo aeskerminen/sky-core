@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useCallback } from "react";
+
 // Import the Slate editor factory.
 import { createEditor, Editor, Transforms, Text } from 'slate'
 // Import the Slate components and React plugin.
