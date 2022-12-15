@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import Editor from "./components/widgets/Editor";
 import LoginButton from './components/login/LoginButton'
+import TextEditor from "./components/widgets/Editor";
 
 import { useAuth0 } from "@auth0/auth0-react";
-
 
 const App = () => {
   const { isAuthenticated } = useAuth0()
@@ -24,7 +23,8 @@ const App = () => {
               <Sidebar></Sidebar>
             </div>
 
-            <div className="grow w-5/6 overflow-hidden m-2 mr-2 mb-2.5 p-1 bg-white">
+            <div className="grow w-5/6 overflow-y-scroll m-2 mr-2 mb-2.5 p-1 bg-white">
+              <TextEditor></TextEditor>
             </div>
           </div>
         </div>
