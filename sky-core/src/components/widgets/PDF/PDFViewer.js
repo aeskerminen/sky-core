@@ -34,10 +34,12 @@ export default function PDFViewer() {
     changePage(1);
   }
   function goToPage(){
-    console.log(document.getElementById('userinput').value);
-    if (!isNaN(Number(document.getElementById('userinput').value))){
-    setPageNumber(Number(document.getElementById('userinput').value));
-  }
+    
+    var toChangePage = Number(document.getElementById('userinput').value);
+
+    if ( !isNaN(toChangePage) && toChangePage <= numPages){
+    setPageNumber(toChangePage);
+    }
 }
 
   return (
@@ -49,7 +51,15 @@ export default function PDFViewer() {
           </svg>
           <span>Upload PDF</span>
       </button>
-        
+      <p>
+        <input 
+        id='userinput' 
+        type="text" 
+        size="1"
+        onChange={goToPage}
+        placeholder={pageNumber || (numPages ? 1 : "--")}/> of {numPages || "--"}
+  
+      </p> 
 
     <Document 
     file={content}
@@ -60,19 +70,10 @@ export default function PDFViewer() {
       pageNumber={pageNumber} 
       />
     </Document>
+  
 
     <div>
-      <p>
-        Page 
-        <input 
-        id='userinput' 
-        type="text" 
-        placeholder={pageNumber || (numPages ? 1 : "--")}/> of {numPages || "--"}
-        <button 
-        onClick={goToPage}
-        > change Page
-        </button>
-      </p> 
+      
         <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
           Previous
         </button>
