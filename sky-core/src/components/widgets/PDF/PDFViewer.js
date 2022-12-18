@@ -35,7 +35,7 @@ export default function PDFViewer() {
   }
   function goToPage(){
 
-    var toChangePage = Number(document.getElementById('userinput').value);
+    let toChangePage = Number(document.getElementById('userinput').value);
 
     if ( !isNaN(toChangePage) && toChangePage <= numPages){
     setPageNumber(toChangePage);
@@ -53,7 +53,7 @@ export default function PDFViewer() {
       </button>
       <p>
         Page&nbsp;
-        <input 
+        <input class="border mb-2"
         id='userinput' 
         type="text" 
         size="1"
@@ -62,24 +62,24 @@ export default function PDFViewer() {
         />
         of {numPages || "--"}
       </p> 
-
+    
     <Document 
     file={content}
     onLoadSuccess={onDocumentLoadSuccess}
     >
-      <Page 
+      <Page
       renderAnnotationLayer={false} 
       pageNumber={pageNumber} 
       />
+
     </Document>
   
 
     <div>
-      
-        <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
+        <button type="button" className="mt-2 mr-2 bg-black text-white border-none w-20 cursor-pointer shadow-md" disabled={pageNumber <= 1} onClick={previousPage}>
           Previous
         </button>
-        <button type="button" disabled={pageNumber >= numPages} onClick={nextPage}>
+        <button type="button" className="bg-black text-white border-none w-20 cursor-pointer shadow-md" disabled={pageNumber >= numPages} onClick={nextPage}>
           Next
         </button>
       </div>
