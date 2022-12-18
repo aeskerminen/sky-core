@@ -9,7 +9,8 @@ export default function PDFViewer() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [content, setContent] = useState(0);
-  const [rotation, setRotation] = useState(0);
+  // const [rotation, setRotation] = useState(0);
+
 
   async function getTheFile() {
     // open file picker
@@ -44,9 +45,9 @@ export default function PDFViewer() {
     }
   
 }
-  function rotatePDFClockWise(){
-    document.getElementById("Document Page").className = 'rotate-90';
-  }
+  // function rotatePDFClockWise(){
+  //   document.getElementById("Document Page").className = 'rotate-90';
+  // }
 
   return (
     <div>
@@ -68,7 +69,7 @@ export default function PDFViewer() {
         />
         of {numPages || "--"}
       </p> 
-    <button onClick={rotatePDFClockWise}>Rotate</button>
+    {/* <button onClick={rotatePDFClockWise}>Rotate</button> */}
     <Document 
     file={content}
     onLoadSuccess={onDocumentLoadSuccess}
