@@ -34,7 +34,7 @@ export default function PDFViewer() {
     changePage(1);
   }
   function goToPage(){
-    
+
     var toChangePage = Number(document.getElementById('userinput').value);
 
     if ( !isNaN(toChangePage) && toChangePage <= numPages){
@@ -52,13 +52,15 @@ export default function PDFViewer() {
           <span>Upload PDF</span>
       </button>
       <p>
+        Page&nbsp;
         <input 
         id='userinput' 
         type="text" 
         size="1"
         onChange={goToPage}
-        placeholder={pageNumber || (numPages ? 1 : "--")}/> of {numPages || "--"}
-  
+        placeholder={pageNumber || (numPages ? 1 : "--")}
+        />
+        of {numPages || "--"}
       </p> 
 
     <Document 
