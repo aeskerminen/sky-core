@@ -9,6 +9,7 @@ export default function PDFViewer() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [content, setContent] = useState(0);
+  const [rotation, setRotation] = useState(0);
 
   async function getTheFile() {
     // open file picker
@@ -33,6 +34,7 @@ export default function PDFViewer() {
   function nextPage() {
     changePage(1);
   }
+
   function goToPage(){
 
     let toChangePage = Number(document.getElementById('userinput').value);
@@ -40,7 +42,11 @@ export default function PDFViewer() {
     if ( !isNaN(toChangePage) && toChangePage <= numPages){
     setPageNumber(toChangePage);
     }
+  
 }
+  function rotatePDFClockWise(){
+    document.getElementById("Document Page").className = 'rotate-90';
+  }
 
   return (
     <div>
@@ -58,16 +64,16 @@ export default function PDFViewer() {
         type="text" 
         size="1"
         onChange={goToPage}
-        placeholder={pageNumber || (numPages ? 1 : "--")}
+        value={pageNumber || (numPages ? 1 : "--")}
         />
         of {numPages || "--"}
       </p> 
-    
+    <button onClick={rotatePDFClockWise}>Rotate</button>
     <Document 
     file={content}
     onLoadSuccess={onDocumentLoadSuccess}
     >
-      <Page
+      <Page id="Document Page" className=""
       renderAnnotationLayer={false} 
       pageNumber={pageNumber} 
       />
