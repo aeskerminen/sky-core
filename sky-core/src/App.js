@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar";
 
 import LoginPage from "./components/login/LoginPage";
 
-import { useAuth0, withAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 
