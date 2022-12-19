@@ -30,6 +30,25 @@ const App = () => {
     editor.onChange();
   }, [selection]);
 
+  const EditorComponent = (
+    <Slate
+      editor={editor}
+      value={initialValue}
+      onChange={(value) => {
+        const isAstChange = editor.operations.some(
+          (op) => "set_selection" !== op.type
+        );
+        if (isAstChange) {
+          // Save the value to Local Storage.
+          const content = JSON.stringify(value);
+          localStorage.setItem(selection, content);
+        }
+      }}
+    >
+      <Editable />
+    </Slate>
+  );
+
   return (
     <div className="h-screen flex flex-col bg-slate-500 overflow-hidden">
       {isAuthenticated && (
@@ -46,22 +65,7 @@ const App = () => {
               ></Sidebar>
             </div>
             <div className="grow w-5/6 overflow-y-scroll m-2 mr-2 mb-2.5 p-1 bg-white">
-              <Slate
-                editor={editor}
-                value={initialValue}
-                onChange={(value) => {
-                  const isAstChange = editor.operations.some(
-                    (op) => "set_selection" !== op.type
-                  );
-                  if (isAstChange) {
-                    // Save the value to Local Storage.
-                    const content = JSON.stringify(value);
-                    localStorage.setItem(selection, content);
-                  }
-                }}
-              >
-                <Editable />
-              </Slate>
+              {EditorComponent}
             </div>
           </div>
         </div>
