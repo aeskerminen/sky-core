@@ -75,4 +75,4 @@ const App = () => {
   );
 };
 
-export default withAuth0(App);
+export default App;
