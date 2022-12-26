@@ -11,7 +11,7 @@ import { Slate, Editable, withReact } from "slate-react";
 
 // DATABASE
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, update } from "firebase/database";
+import { get, getDatabase, ref, set, child, update } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnYWP06n84p_vLSQpUPYdIapnhyh2H9Zw",
@@ -35,6 +35,8 @@ function writeNoteData(userId, note) {
   });
 }
 
+function readNoteData(userId, selection) {}
+
 // DATABASE
 
 const App = () => {
@@ -56,7 +58,20 @@ const App = () => {
 
   useEffect(() => {
     // editor.children = JSON.parse(localStorage.getItem(selection));
-    //editor.children = JSON.parse();
+    if (user !== undefined) {
+      //editor.children = JSON.parse(readNoteData(user.sub, selection).content);
+      get(ref(db, `users/${user.sub}/notes/${selection}`))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            editor.children = JSON.parse(snapshot.val()["content"]);
+          } else {
+            console.log("No data available");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
     editor.onChange();
   }, [selection]);
 
@@ -65,15 +80,13 @@ const App = () => {
       editor={editor}
       value={initialValue}
       onChange={(value) => {
-        const { sub } = user;
-
         const isAstChange = editor.operations.some(
           (op) => "set_selection" !== op.type
         );
         if (isAstChange) {
           // Save the value to Local Storage.
           const content = JSON.stringify(value);
-          writeNoteData(sub, { selection, content });
+          writeNoteData(user.sub, { selection, content });
           //localStorage.setItem(selection, content);
         }
       }}
