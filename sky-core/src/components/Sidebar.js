@@ -7,21 +7,14 @@ export default class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: this.retrieveNotes(), //[{name: 'MAA13', id: idCounter, content: 'dsadsadas'}],
+      notes: props.notes, //[{name: 'MAA13', id: idCounter, content: 'dsadsadas'}],
       input_state: "",
     };
 
+    console.log(this.state.notes);
+
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
-  }
-
-  retrieveNotes() {
-    let notes = [];
-
-    for (var i = 0; i < localStorage.length; i++) {
-      notes.push({ name: localStorage.key(i), id: localStorage.key(i) });
-    }
-    return notes;
   }
 
   addNote(note) {

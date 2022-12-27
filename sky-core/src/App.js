@@ -31,11 +31,10 @@ const db = getDatabase(app);
 function writeNoteData(userId, note) {
   const { selection, content } = note;
   update(ref(db, "users/" + userId + "/notes/" + selection), {
+    selection: selection,
     content: content,
   });
 }
-
-function readNoteData(userId, selection) {}
 
 // DATABASE
 
@@ -44,6 +43,9 @@ const App = () => {
   const { user } = useAuth0();
   const [editor] = useState(() => withReact(createEditor()));
   const [selection, setSelection] = useState("0");
+  const [name, setName] = useState("");
+  const [notes, setNotes] = useState([]);
+  const [ready, setReady] = useState(false);
 
   const initialValue = useMemo(
     () =>
@@ -57,13 +59,40 @@ const App = () => {
   );
 
   useEffect(() => {
-    // editor.children = JSON.parse(localStorage.getItem(selection));
     if (user !== undefined) {
-      //editor.children = JSON.parse(readNoteData(user.sub, selection).content);
+      get(ref(db, `users/${user.sub}/notes/`))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const temp = [];
+
+            snapshot.forEach((val) => {
+              const json = val.val();
+              temp.push({
+                name: json["selection"],
+                id: json["selection"],
+                content: json["content"],
+              });
+            });
+
+            setNotes((arr) => [...arr, ...temp]);
+            setReady(true);
+          } else {
+            console.log("No data available");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    if (user !== undefined) {
       get(ref(db, `users/${user.sub}/notes/${selection}`))
         .then((snapshot) => {
           if (snapshot.exists()) {
             editor.children = JSON.parse(snapshot.val()["content"]);
+            setName(snapshot.val()["name"]);
           } else {
             console.log("No data available");
           }
@@ -84,10 +113,8 @@ const App = () => {
           (op) => "set_selection" !== op.type
         );
         if (isAstChange) {
-          // Save the value to Local Storage.
           const content = JSON.stringify(value);
           writeNoteData(user.sub, { selection, content });
-          //localStorage.setItem(selection, content);
         }
       }}
     >
@@ -97,25 +124,19 @@ const App = () => {
 
   return (
     <div className="h-screen flex flex-col bg-slate-500 overflow-hidden">
-      {isAuthenticated && (
+      {isAuthenticated && ready && (
         <div>
           <div className="flex-none">
             <Navbar></Navbar>
-            <button
-              onClick={() => {
-                const { sub } = user;
-                writeNoteData(sub, "Hello yes");
-              }}
-            >
-              SAVE
-            </button>
           </div>
           <div className="h-screen flex flex-row">
             <div className="grow w-1/6 overflow-hidden mb-2.5">
               <Sidebar
-                selectButtonClick={(id) => {
+                selectButtonClick={(id, name) => {
                   setSelection(id);
+                  setName(name);
                 }}
+                notes={notes}
               ></Sidebar>
             </div>
             <div className="grow w-5/6 overflow-y-scroll m-2 mr-2 mb-2.5 p-1 bg-white">
