@@ -11,7 +11,7 @@ import { Slate, Editable, withReact } from "slate-react";
 
 // DATABASE
 import { initializeApp } from "firebase/app";
-import { get, getDatabase, ref, set, child, update } from "firebase/database";
+import { get, getDatabase, ref, update, remove } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBnYWP06n84p_vLSQpUPYdIapnhyh2H9Zw",
@@ -36,6 +36,10 @@ function writeNoteData(userId, note) {
   });
 }
 
+function deleteNoteData(userId, selection) {
+  remove(ref(db, "users/" + userId + "/notes/" + selection), null);
+}
+
 // DATABASE
 
 const App = () => {
@@ -46,6 +50,7 @@ const App = () => {
   const [name, setName] = useState("");
   const [notes, setNotes] = useState([]);
   const [ready, setReady] = useState(false);
+  const [toDelete, setToDelete] = useState("");
 
   const initialValue = useMemo(
     () =>
@@ -57,6 +62,10 @@ const App = () => {
       ],
     [selection]
   );
+
+  useEffect(() => {
+    if (user !== undefined) deleteNoteData(user.sub, toDelete);
+  }, [toDelete]);
 
   useEffect(() => {
     if (user !== undefined) {
@@ -78,6 +87,7 @@ const App = () => {
             setReady(true);
           } else {
             console.log("No data available");
+            setReady(true);
           }
         })
         .catch((error) => {
@@ -137,6 +147,10 @@ const App = () => {
                   setName(name);
                 }}
                 notes={notes}
+                dbDeleteNotes={(val) => {
+                  setToDelete(val);
+                  console.log(toDelete);
+                }}
               ></Sidebar>
             </div>
             <div className="grow w-5/6 overflow-y-scroll m-2 mr-2 mb-2.5 p-1 bg-white">
