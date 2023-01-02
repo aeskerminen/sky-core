@@ -7,7 +7,7 @@ export default class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: props.notes, //[{name: 'MAA13', id: idCounter, content: 'dsadsadas'}],
+      notes: props.notes,
       input_state: "",
     };
 
@@ -31,6 +31,8 @@ export default class Sidebar extends React.Component {
         return _note.id !== note.id;
       }),
     }));
+
+    this.props.dbDeleteNotes(note.id);
   }
 
   handleInputChange(event) {
@@ -60,7 +62,6 @@ export default class Sidebar extends React.Component {
               this.addNote({
                 name: this.state.input_state,
                 id: idCounter,
-                content: "",
               });
             }}
             className="p-2 bg-white rounded-lg ml-auto hover:bg-slate-100"
@@ -74,7 +75,6 @@ export default class Sidebar extends React.Component {
               selectButtonClick={this.props.selectButtonClick}
               removeButtonClick={this.removeNote}
               id={note.id}
-              content={note.content}
               name={note.name}
             ></Note>
           ))}
