@@ -46,7 +46,7 @@ const App = () => {
   const { isAuthenticated } = useAuth0();
   const { user } = useAuth0();
   const [editor] = useState(() => withReact(createEditor()));
-  const [selection, setSelection] = useState("0");
+  const [selection, setSelection] = useState("");
   const [name, setName] = useState("");
   const [notes, setNotes] = useState([]);
   const [ready, setReady] = useState(false);
@@ -64,7 +64,12 @@ const App = () => {
   );
 
   useEffect(() => {
-    if (user !== undefined) deleteNoteData(user.sub, toDelete);
+    if (user !== undefined) {
+      deleteNoteData(user.sub, toDelete);
+      setSelection("");
+      editor.children = "";
+      editor.onChange();
+    }
   }, [toDelete]);
 
   useEffect(() => {
@@ -97,7 +102,7 @@ const App = () => {
   }, [isAuthenticated]);
 
   useEffect(() => {
-    if (user !== undefined) {
+    if (user !== undefined && selection != "") {
       get(ref(db, `users/${user.sub}/notes/${selection}`))
         .then((snapshot) => {
           if (snapshot.exists()) {
@@ -115,21 +120,25 @@ const App = () => {
   }, [selection]);
 
   const EditorComponent = (
-    <Slate
-      editor={editor}
-      value={initialValue}
-      onChange={(value) => {
-        const isAstChange = editor.operations.some(
-          (op) => "set_selection" !== op.type
-        );
-        if (isAstChange) {
-          const content = JSON.stringify(value);
-          writeNoteData(user.sub, { selection, content });
-        }
-      }}
-    >
-      <Editable />
-    </Slate>
+    <div>
+      {selection !== "" && (
+        <Slate
+          editor={editor}
+          value={initialValue}
+          onChange={(value) => {
+            const isAstChange = editor.operations.some(
+              (op) => "set_selection" !== op.type
+            );
+            if (isAstChange) {
+              const content = JSON.stringify(value);
+              writeNoteData(user.sub, { selection, content });
+            }
+          }}
+        >
+          <Editable />
+        </Slate>
+      )}
+    </div>
   );
 
   return (
