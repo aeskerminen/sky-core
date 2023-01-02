@@ -5,12 +5,11 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 
-export default function PDFViewer() {
+export default function PDFViewer(props) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [content, setContent] = useState(0);
   // const [rotation, setRotation] = useState(0);
-
 
   async function getTheFile() {
     // open file picker
@@ -48,7 +47,7 @@ export default function PDFViewer() {
   // function rotatePDFClockWise(){
   //   document.getElementById("Document Page").className = 'rotate-90';
   // }
-
+if(props.displayPDF){ // hidden or visible
   return (
     <div>
       <button onClick={getTheFile}>
@@ -93,5 +92,4 @@ export default function PDFViewer() {
     </div>
   );
 }
-
-
+} 
