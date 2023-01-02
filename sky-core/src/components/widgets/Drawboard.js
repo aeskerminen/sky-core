@@ -12,6 +12,14 @@ export default class Drawboard extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps){
+        if (prevProps.displayDrawboard !== this.props.displayDrawboard){
+            this.setState(() => ({
+                displayDrawboard: prevProps.displayDrawboard
+            }))
+        }
+    }
+
     render() {
         console.log(this.state.displayDrawboard);
         if (this.state.displayDrawboard){

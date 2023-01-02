@@ -5,6 +5,8 @@ import Sidebar from "./components/Sidebar";
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import Drawboard from "./components/widgets/Drawboard";
 import PDFViewer from "./components/widgets/PDF/PDFViewer";
+import Timer from "./components/widgets/Timer.js";
+import Stopwatch from "./components/widgets/Stopwatch";
 
 
 function App() {
@@ -32,7 +34,7 @@ function App() {
           <Drawboard displayDrawboard={displayDrawboard}/>
         </div>
         <div>
-          <button className="" onClick={() => {setDisplayDrawboard(!displayDrawboard); console.log(displayDrawboard);}}>++</button>
+          <button className="" onClick={() => setDisplayDrawboard(!displayDrawboard)}>+</button>
         </div>
       </div>
         </div>
