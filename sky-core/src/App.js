@@ -9,6 +9,7 @@ import PDFViewer from "./components/widgets/PDF/PDFViewer";
 
 function App() {
   const [displayPDF, setDisplayPDF] = useState(false);
+  const [displayDrawboard, setDisplayDrawboard] = useState(false);
 
   return (
     <div className="h-screen flex flex-col bg-slate-500 overflow-hidden">
@@ -26,6 +27,12 @@ function App() {
           </div>
           <div className="">
         <button className="" onClick={() => setDisplayPDF(!displayPDF)}>+</button>
+        </div>
+        <div>
+          <Drawboard displayDrawboard={displayDrawboard}/>
+        </div>
+        <div>
+          <button className="" onClick={() => {setDisplayDrawboard(!displayDrawboard); console.log(displayDrawboard);}}>++</button>
         </div>
       </div>
         </div>
