@@ -9,7 +9,6 @@ export default class Timer extends Component {
             hours: 0,
             minutes: 0, 
             seconds: 0,
-            displayTimer: props.displayTimer
             }
     }
    

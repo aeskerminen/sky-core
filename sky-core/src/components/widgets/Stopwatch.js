@@ -9,16 +9,9 @@ export default class Stopwatch extends Component {
             hours: 0,
             minutes: 0, 
             seconds: 0,
-            displayStopwatch: props.displayStopwatch
             }
     }
-    componentDidUpdate(prevProps){
-        if (prevProps.displayStopwatch !== this.props.displayStopwatch){
-            this.setState(() => ({
-                displayStopwatch: prevProps.displayStopwatch
-            }))
-        }
-    }
+    
     startTimer() {
         this.myInterval = setInterval(() => {
             const {minutes, seconds } = this.state
