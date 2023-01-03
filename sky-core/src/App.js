@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import Drawboard from "./components/widgets/Drawboard";
 import PDFViewer from "./components/widgets/PDF/PDFViewer";
+import D2 from "./components/widgets/D2";
 
 
 
@@ -30,22 +31,22 @@ function App() {
         </div>
         <div>
           <Drawboard displayDrawboard={displayDrawboard}/>
+          
         </div>
-        <div>
-          <button id="drawboardbtn" title="Drawboard" className="" onClick={() => {
-            setDisplayDrawboard(!displayDrawboard);
-            document.getElementById("drawboardbtn").innerHTML === "+" ? 
-            document.getElementById("drawboardbtn").innerHTML = "-" :
-            document.getElementById("drawboardbtn").innerHTML = "+" ;
-          }}>+</button>
-
-          <button id="pdfbtn" title="PDF Viewer" className="" onClick={() => {
+        <div className="">
+        <button id="pdfbtn" title="PDF Viewer" className="" onClick={() => {
             setDisplayPDF(!displayPDF);
             document.getElementById("pdfbtn").innerHTML === "+" ? 
             document.getElementById("pdfbtn").innerHTML = "-" :
             document.getElementById("pdfbtn").innerHTML = "+" ;
           }}>+</button>
 
+          <button id="drawboardbtn" title="Drawboard" className="block" onClick={() => {
+            setDisplayDrawboard(!displayDrawboard);
+            document.getElementById("drawboardbtn").innerHTML === "+" ? 
+            document.getElementById("drawboardbtn").innerHTML = "-" :
+            document.getElementById("drawboardbtn").innerHTML = "+" ;
+          }}>+</button>
         </div>
       </div>
         </div>
