@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
@@ -27,10 +27,11 @@ const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service
 const db = getDatabase(app);
 
-function writeNoteData(userId, selection, content) {
+function writeNoteData(userId, selection, content, name) {
   update(ref(db, "users/" + userId + "/notes/" + selection), {
     selection: selection,
     content: content,
+    name: name,
   });
 }
 
@@ -43,10 +44,13 @@ function deleteNoteData(userId, selection) {
 const App = () => {
   const { isAuthenticated } = useAuth0();
   const { user } = useAuth0();
-  const [selection, setSelection] = useState("");
-  const [name, setName] = useState("");
+
   const [notes, setNotes] = useState([]);
   const [ready, setReady] = useState(false);
+
+  const [selection, setSelection] = useState("");
+  const [name, setName] = useState("");
+
   const [toDelete, setToDelete] = useState("");
 
   const [html, setHtml] = useState("Notes...");
@@ -68,7 +72,7 @@ const App = () => {
             snapshot.forEach((val) => {
               const json = val.val();
               temp.push({
-                name: json["selection"],
+                name: json["name"],
                 id: json["selection"],
               });
             });
@@ -117,7 +121,7 @@ const App = () => {
               <Sidebar
                 selectButtonClick={(id, name) => {
                   setSelection(id);
-                  setName(name);
+                  setName((name = name));
                 }}
                 notes={notes}
                 dbDeleteNotes={(val) => {
@@ -134,7 +138,7 @@ const App = () => {
                     setHtml(e.target.value);
                     console.log(user.sub, selection, html);
 
-                    writeNoteData(user.sub, selection, html);
+                    writeNoteData(user.sub, selection, html, name);
                   }}
                 />
               )}
