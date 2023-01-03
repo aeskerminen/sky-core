@@ -24,14 +24,25 @@ export default function Navbar(){
                 </div>
                 <div>
                     <Timer displayTimer={displayTimer}/>
-                    <button className="" onClick={() => setDisplayTimer(!displayTimer)}>+</button>
                 </div>
-
                 <div>
                     <Stopwatch displayStopwatch={displayStopwatch}/></div>
-                    <button className="" onClick={() => setDisplayStopwatch(!displayStopwatch)}>+</button>
-                
                 <div className="flex ml-auto">
+                  <div className="">
+                <button id="timerbtn" title="Timer" className="block pr-5" onClick={() => {
+                  setDisplayTimer(!displayTimer);
+                  document.getElementById("timerbtn").innerHTML === "+" ? 
+                  document.getElementById("timerbtn").innerHTML = "-" :
+                  document.getElementById("timerbtn").innerHTML = "+" ;
+                  
+                  }}>+</button>
+                <button id="stopwatchbtn" title="Stopwatch" className="" onClick={() => {
+                  setDisplayStopwatch(!displayStopwatch);
+                  document.getElementById("stopwatchbtn").innerHTML === "+" ? 
+                  document.getElementById("stopwatchbtn").innerHTML = "-" :
+                  document.getElementById("stopwatchbtn").innerHTML = "+" ;
+                  }}>+</button>
+                </div>
                     <button type="button" className="button bg-blue-700 text-white rounded-xl pt-2 pb-2 pl-4 pr-4">
                         <span className="font-semibold text-base tracking-wide">Kerminen</span>
                     </button>

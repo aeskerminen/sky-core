@@ -21,7 +21,6 @@ export default class Drawboard extends React.Component {
     }
 
     render() {
-        console.log(this.state.displayDrawboard);
         if (this.state.displayDrawboard){
         return(
             <div className="p-2 bg-slate-100 w-full">
