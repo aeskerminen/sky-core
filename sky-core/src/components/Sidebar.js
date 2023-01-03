@@ -9,17 +9,21 @@ export default class Sidebar extends React.Component {
     this.state = {
       notes: props.notes,
       input_state: "",
+      selected: "",
     };
 
     console.log(this.state.notes);
 
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
+    this.handleSelectButtonClick = this.handleSelectButtonClick.bind(this);
   }
 
   addNote(note) {
     this.setState((state) => ({
       notes: [...state.notes, note],
+      input_state: state.input_state,
+      selecetd: state.selected,
     }));
   }
 
@@ -30,6 +34,8 @@ export default class Sidebar extends React.Component {
       notes: state.notes.filter((_note) => {
         return _note.id !== note.id;
       }),
+      input_state: state.input_state,
+      selecetd: state.selected,
     }));
 
     this.props.dbDeleteNotes(note.id);
@@ -39,7 +45,18 @@ export default class Sidebar extends React.Component {
     this.setState((state) => ({
       notes: state.notes,
       input_state: event.target.value,
+      selecetd: state.selected,
     }));
+  }
+
+  handleSelectButtonClick(name, id, key) {
+    this.setState((state) => ({
+      notes: state.notes,
+      input_state: state.input_state,
+      selected: key,
+    }));
+
+    this.props.selectButtonClick(name, id);
   }
 
   render() {
@@ -72,7 +89,9 @@ export default class Sidebar extends React.Component {
         <div className="grow flex flex-col p-2 gap-3 bg-white overflow-y-scroll">
           {this.state.notes.map((note) => (
             <Note
-              selectButtonClick={this.props.selectButtonClick}
+              key={note.id}
+              selected={note.id === this.state.selected}
+              selectButtonClick={this.handleSelectButtonClick}
               removeButtonClick={this.removeNote}
               id={note.id}
               name={note.name}

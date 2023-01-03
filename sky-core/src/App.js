@@ -132,6 +132,8 @@ const App = () => {
                   value={html}
                   onChange={(e) => {
                     setHtml(e.target.value);
+                    console.log(user.sub, selection, html);
+
                     writeNoteData(user.sub, selection, html);
                   }}
                 />
