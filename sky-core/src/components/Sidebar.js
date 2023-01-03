@@ -1,7 +1,7 @@
 import React from "react";
 import Note from "./notes/Note";
 
-let idCounter = "0";
+import { v4 as uuidv4 } from "uuid";
 
 export default class Sidebar extends React.Component {
   constructor(props) {
@@ -75,10 +75,9 @@ export default class Sidebar extends React.Component {
 
           <button
             onClick={() => {
-              idCounter += 1;
               this.addNote({
                 name: this.state.input_state,
-                id: idCounter,
+                id: uuidv4(),
               });
             }}
             className="p-2 bg-white rounded-lg ml-auto hover:bg-slate-100"
