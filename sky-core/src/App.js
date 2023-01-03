@@ -28,13 +28,24 @@ function App() {
             <PDFViewer displayPDF={displayPDF}/>
           </div>
           <div className="">
-        <button className="" onClick={() => setDisplayPDF(!displayPDF)}>+</button>
+        <button id="pdfbtn" title="PDF Viewer" className="" onClick={() => {
+            setDisplayPDF(!displayPDF);
+            document.getElementById("pdfbtn").innerHTML === "+" ? 
+            document.getElementById("pdfbtn").innerHTML = "-" :
+            document.getElementById("pdfbtn").innerHTML = "+" ;
+          }}>+</button>
+        
         </div>
         <div>
           <Drawboard displayDrawboard={displayDrawboard}/>
         </div>
         <div>
-          <button className="" onClick={() => setDisplayDrawboard(!displayDrawboard)}>+</button>
+          <button id="drawboardbtn" title="Drawboard" className="" onClick={() => {
+            setDisplayDrawboard(!displayDrawboard);
+            document.getElementById("drawboardbtn").innerHTML === "+" ? 
+            document.getElementById("drawboardbtn").innerHTML = "-" :
+            document.getElementById("drawboardbtn").innerHTML = "+" ;
+          }}>+</button>
         </div>
       </div>
         </div>
