@@ -81,8 +81,16 @@ if(props.displayPDF){ // hidden or visible
         />
         of {numPages || "--"}
       </p> 
+      <div>
+        <button type="button" className="mt-2 mr-2 bg-black text-white border-none w-20 cursor-pointer shadow-md" disabled={pageNumber <= 1} onClick={previousPage}>
+          Previous
+        </button>
+        <button type="button" className="bg-black text-white border-none w-20 cursor-pointer shadow-md" disabled={pageNumber >= numPages} onClick={nextPage}>
+          Next
+        </button>
+      </div>
     {/* <button onClick={rotatePDFClockWise}>Rotate</button> */}
-    <Document 
+    <Document className="mt-5"
     file={content}
     onLoadSuccess={onDocumentLoadSuccess}
     >
@@ -92,16 +100,6 @@ if(props.displayPDF){ // hidden or visible
       />
 
     </Document>
-  
-
-    <div>
-        <button type="button" className="mt-2 mr-2 bg-black text-white border-none w-20 cursor-pointer shadow-md" disabled={pageNumber <= 1} onClick={previousPage}>
-          Previous
-        </button>
-        <button type="button" className="bg-black text-white border-none w-20 cursor-pointer shadow-md" disabled={pageNumber >= numPages} onClick={nextPage}>
-          Next
-        </button>
-      </div>
     </div>
   );
 }
