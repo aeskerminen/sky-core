@@ -4,7 +4,6 @@ import Sidebar from "./components/Sidebar";
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import Drawboard from "./components/widgets/Drawboard";
 import PDFViewer from "./components/widgets/PDF/PDFViewer";
-import D2 from "./components/widgets/D2";
 
 
 
