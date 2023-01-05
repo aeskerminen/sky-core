@@ -117,7 +117,7 @@ const App = () => {
   return (
     <div className="h-full bg-slate-500">
       {isAuthenticated && ready && (
-        <div className="h-full flex flex-col">
+        <div className="h-full flex flex-col overflow-y-hidden">
           <Navbar></Navbar>
           <div className="flex flex-row flex-grow p-1 overflow-hidden">
             <div className="w-1/6">
