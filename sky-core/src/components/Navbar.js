@@ -27,9 +27,10 @@ const Navbar = () => {
           className="block pr-5"
           onClick={() => {
             setDisplayTimer(!displayTimer);
-            document.getElementById("timerbtn").innerHTML === "+"
-              ? (document.getElementById("timerbtn").innerHTML = "-")
-              : (document.getElementById("timerbtn").innerHTML = "+");
+            const elem = document.getElementById("timerbtn");
+            elem.innerHTML === "+"
+              ? (elem.innerHTML = "-")
+              : (elem.innerHTML = "+");
           }}
         >
           +
@@ -40,9 +41,10 @@ const Navbar = () => {
           className=""
           onClick={() => {
             setDisplayStopwatch(!displayStopwatch);
-            document.getElementById("stopwatchbtn").innerHTML === "+"
-              ? (document.getElementById("stopwatchbtn").innerHTML = "-")
-              : (document.getElementById("stopwatchbtn").innerHTML = "+");
+            const elem = document.getElementById("stopwatchbtn");
+            elem.innerHTML === "+"
+              ? (elem.innerHTML = "-")
+              : (elem.innerHTML = "+");
           }}
         >
           +
