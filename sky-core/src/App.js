@@ -122,15 +122,14 @@ const App = () => {
           <div className="flex flex-row flex-grow p-1 overflow-hidden">
             <div className="w-1/6">
               <Sidebar
-                selectButtonClick={(id, name) => {
+                selectButtonClick={(name, id) => {
                   setSelection(id);
-                  setName((name = name));
+                  setName(name);
                 }}
-                notes={notes}
                 dbDeleteNotes={(val) => {
                   setToDelete(val);
-                  console.log(toDelete);
                 }}
+                notes={notes}
               ></Sidebar>
             </div>
             <div className="w-5/6 bg-slate-300 flex-1 overflow-y-auto p-2">
@@ -140,8 +139,6 @@ const App = () => {
                     value={html}
                     onChange={(e) => {
                       setHtml(e.target.value);
-                      console.log(user.sub, selection, html);
-
                       writeNoteData(user.sub, selection, html, name);
                     }}
                   />
