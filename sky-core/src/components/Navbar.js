@@ -7,8 +7,8 @@ import Stopwatch from "./widgets/Stopwatch";
 
 const Navbar = () => {
   const { user } = useAuth0();
-  const [displayStopwatch, setDisplayStopwatch] = useState(true);
-  const [displayTimer, setDisplayTimer] = useState(true);
+  const [displayStopwatch, setDisplayStopwatch] = useState(false);
+  const [displayTimer, setDisplayTimer] = useState(false);
 
   return (
     <div className="flex items-center p-3 bg-blue-500 shadow-lg">
@@ -20,6 +20,34 @@ const Navbar = () => {
       </div>
       <Timer displayTimer={displayTimer} />
       <Stopwatch displayStopwatch={displayStopwatch} />
+      <div className="">
+        <button
+          id="timerbtn"
+          title="Timer"
+          className="block pr-5"
+          onClick={() => {
+            setDisplayTimer(!displayTimer);
+            document.getElementById("timerbtn").innerHTML === "+"
+              ? (document.getElementById("timerbtn").innerHTML = "-")
+              : (document.getElementById("timerbtn").innerHTML = "+");
+          }}
+        >
+          +
+        </button>
+        <button
+          id="stopwatchbtn"
+          title="Stopwatch"
+          className=""
+          onClick={() => {
+            setDisplayStopwatch(!displayStopwatch);
+            document.getElementById("stopwatchbtn").innerHTML === "+"
+              ? (document.getElementById("stopwatchbtn").innerHTML = "-")
+              : (document.getElementById("stopwatchbtn").innerHTML = "+");
+          }}
+        >
+          +
+        </button>
+      </div>
       <div className="flex ml-auto">
         <button
           type="button"
