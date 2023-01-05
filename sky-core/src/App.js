@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import PDFViewer from "./components/widgets/PDFViewer";
+import Drawboard from "./components/widgets/Drawboard";
 
 import LoginPage from "./components/login/LoginPage";
 
@@ -54,6 +56,9 @@ const App = () => {
   const [toDelete, setToDelete] = useState("");
 
   const [html, setHtml] = useState("Notes...");
+
+  const [displayPDF, setDisplayPDF] = useState(true);
+  const [displayDrawboard, setDisplayDrawboard] = useState(true);
 
   useEffect(() => {
     if (user !== undefined) {
@@ -130,15 +135,19 @@ const App = () => {
             </div>
             <div className="w-5/6 bg-slate-300 flex-1 overflow-y-auto p-2">
               {selection !== "" && (
-                <DefaultEditor
-                  value={html}
-                  onChange={(e) => {
-                    setHtml(e.target.value);
-                    console.log(user.sub, selection, html);
+                <div>
+                  <DefaultEditor
+                    value={html}
+                    onChange={(e) => {
+                      setHtml(e.target.value);
+                      console.log(user.sub, selection, html);
 
-                    writeNoteData(user.sub, selection, html, name);
-                  }}
-                />
+                      writeNoteData(user.sub, selection, html, name);
+                    }}
+                  />
+                  <PDFViewer className="" displayPDF={displayPDF} />
+                  <Drawboard displayDrawboard={displayDrawboard} />
+                </div>
               )}
             </div>
           </div>
