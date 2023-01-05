@@ -1,65 +1,49 @@
+// Core React imports
 import React, { useState, useEffect } from "react";
 
+// Bigger components
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+
+// Widgets
 import PDFViewer from "./components/widgets/PDFViewer";
 import Drawboard from "./components/widgets/Drawboard";
 
-import LoginPage from "./components/login/LoginPage";
-
-import { useAuth0 } from "@auth0/auth0-react";
+// Text editor
 import { DefaultEditor } from "react-simple-wysiwyg";
 
-// DATABASE
-import { initializeApp } from "firebase/app";
-import { get, getDatabase, ref, update, remove } from "firebase/database";
+// Authentication
+import LoginPage from "./components/login/LoginPage";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBnYWP06n84p_vLSQpUPYdIapnhyh2H9Zw",
-  authDomain: "skm2022-3667a.firebaseapp.com",
-  projectId: "skm2022-3667a",
-  storageBucket: "skm2022-3667a.appspot.com",
-  messagingSenderId: "163232549889",
-  appId: "1:163232549889:web:8bf0aa897e1f9eb01e4400",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-// Initialize Realtime Database and get a reference to the service
-const db = getDatabase(app);
-
-function writeNoteData(userId, selection, content, name) {
-  update(ref(db, "users/" + userId + "/notes/" + selection), {
-    selection: selection,
-    content: content,
-    name: name,
-  });
-}
-
-function deleteNoteData(userId, selection) {
-  remove(ref(db, "users/" + userId + "/notes/" + selection), null);
-}
-
-// DATABASE
+// Database
+import { get, ref } from "firebase/database";
+import { db, deleteNoteData, writeNoteData } from "./DatabaseWrapper";
 
 const App = () => {
+  // State for tracking auth status
   const { isAuthenticated } = useAuth0();
   const { user } = useAuth0();
 
+  // State for holding note data retrieved from server and boolean for loading status
   const [notes, setNotes] = useState([]);
   const [ready, setReady] = useState(false);
 
+  // Selection ID and name for current note (saving reasons)
   const [selection, setSelection] = useState("");
   const [name, setName] = useState("");
 
+  // State for the selection ID of the note to be deleted
   const [toDelete, setToDelete] = useState("");
 
+  // Holds data from the WYSIWYG editor
   const [html, setHtml] = useState("Notes...");
 
+  // Booleans for displaying the two widgets
   const [displayPDF, setDisplayPDF] = useState(false);
   const [displayDrawboard, setDisplayDrawboard] = useState(false);
 
+  // Hook that listens for a change in toDelete. Handles deletion of notes.
   useEffect(() => {
     if (user !== undefined) {
       deleteNoteData(user.sub, toDelete);
@@ -67,6 +51,7 @@ const App = () => {
     }
   }, [toDelete]);
 
+  // Hooks that listens for change in auth state. Handles loading note data for the Sidebar.
   useEffect(() => {
     if (user !== undefined) {
       get(ref(db, `users/${user.sub}/notes/`))
@@ -95,6 +80,7 @@ const App = () => {
     }
   }, [isAuthenticated]);
 
+  // Hooks that listens for change in selection. Handles loading notes from databse to WYSIWYG to be edited
   useEffect(() => {
     if (user !== undefined && selection !== "") {
       get(ref(db, `users/${user.sub}/notes/${selection}`))
