@@ -13,25 +13,23 @@ const Sidebar = (props) => {
     setNotes((notes = [...notes, note]));
   }
 
-  function removeNote(note) {
-    console.log(note);
-
+  function handleRemoveButtonClick(id) {
     setNotes(
       (notes = notes.filter((_note) => {
-        return _note.id !== note.id;
+        return _note.id !== id;
       }))
     );
 
-    props.dbDeleteNotes(note.id);
+    props.dbDeleteNotes(id);
   }
 
   function handleInputChange(event) {
     setInput(event.target.value);
   }
 
-  function handleSelectButtonClick(name, id, key) {
-    setSelected(key);
+  function handleSelectButtonClick(name, id) {
     props.selectButtonClick(name, id);
+    setSelected(id);
   }
 
   return (
@@ -65,7 +63,7 @@ const Sidebar = (props) => {
             key={note.id}
             selected={note.id === selected}
             selectButtonClick={handleSelectButtonClick}
-            removeButtonClick={removeNote}
+            removeButtonClick={handleRemoveButtonClick}
             id={note.id}
             name={note.name}
           ></Note>
