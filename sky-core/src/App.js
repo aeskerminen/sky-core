@@ -57,8 +57,8 @@ const App = () => {
 
   const [html, setHtml] = useState("Notes...");
 
-  const [displayPDF, setDisplayPDF] = useState(true);
-  const [displayDrawboard, setDisplayDrawboard] = useState(true);
+  const [displayPDF, setDisplayPDF] = useState(false);
+  const [displayDrawboard, setDisplayDrawboard] = useState(false);
 
   useEffect(() => {
     if (user !== undefined) {
@@ -147,6 +147,38 @@ const App = () => {
                   />
                   <PDFViewer className="" displayPDF={displayPDF} />
                   <Drawboard displayDrawboard={displayDrawboard} />
+                  <div className="">
+                    <button
+                      id="pdfbtn"
+                      title="PDF Viewer"
+                      className=""
+                      onClick={() => {
+                        setDisplayPDF(!displayPDF);
+                        document.getElementById("pdfbtn").innerHTML === "+"
+                          ? (document.getElementById("pdfbtn").innerHTML = "-")
+                          : (document.getElementById("pdfbtn").innerHTML = "+");
+                      }}
+                    >
+                      +
+                    </button>
+
+                    <button
+                      id="drawboardbtn"
+                      title="Drawboard"
+                      className="block"
+                      onClick={() => {
+                        setDisplayDrawboard(!displayDrawboard);
+                        document.getElementById("drawboardbtn").innerHTML ===
+                        "+"
+                          ? (document.getElementById("drawboardbtn").innerHTML =
+                              "-")
+                          : (document.getElementById("drawboardbtn").innerHTML =
+                              "+");
+                      }}
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
