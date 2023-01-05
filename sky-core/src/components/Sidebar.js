@@ -61,7 +61,7 @@ export default class Sidebar extends React.Component {
 
   render() {
     return (
-      <div className="flex flex-col bg-slate-300 h-full m-2 p-1 mr-1 shadow-md overflow-hidden">
+      <div className="flex flex-col bg-slate-300 h-full p-2 shadow-md overflow-hidden">
         <div className=" flex items-center p-1.5 bg-white">
           <input
             onChange={this.handleInputChange.bind(this)}

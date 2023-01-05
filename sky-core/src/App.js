@@ -110,14 +110,12 @@ const App = () => {
   }, [selection]);
 
   return (
-    <div className="h-screen flex flex-col bg-slate-500 overflow-hidden">
+    <div className="h-full bg-slate-500">
       {isAuthenticated && ready && (
-        <div>
-          <div className="flex-none">
-            <Navbar></Navbar>
-          </div>
-          <div className="h-screen flex flex-row">
-            <div className="grow w-1/6 overflow-hidden mb-2.5">
+        <div className="h-full flex flex-col">
+          <Navbar></Navbar>
+          <div className="flex flex-row flex-grow p-1 overflow-hidden">
+            <div className="w-1/6">
               <Sidebar
                 selectButtonClick={(id, name) => {
                   setSelection(id);
@@ -130,7 +128,7 @@ const App = () => {
                 }}
               ></Sidebar>
             </div>
-            <div className="grow w-5/6 overflow-y-scroll m-2 mr-2 mb-2.5 p-1 bg-white">
+            <div className="w-5/6 bg-slate-300 flex-1 overflow-y-auto p-2">
               {selection !== "" && (
                 <DefaultEditor
                   value={html}
