@@ -154,9 +154,11 @@ const App = () => {
                       className=""
                       onClick={() => {
                         setDisplayPDF(!displayPDF);
-                        document.getElementById("pdfbtn").innerHTML === "+"
-                          ? (document.getElementById("pdfbtn").innerHTML = "-")
-                          : (document.getElementById("pdfbtn").innerHTML = "+");
+                        const elem = document.getElementById("pdfbtn");
+
+                        elem.innerHTML === "+"
+                          ? (elem.innerHTML = "-")
+                          : (elem.innerHTML = "+");
                       }}
                     >
                       +
@@ -168,12 +170,11 @@ const App = () => {
                       className="block"
                       onClick={() => {
                         setDisplayDrawboard(!displayDrawboard);
-                        document.getElementById("drawboardbtn").innerHTML ===
-                        "+"
-                          ? (document.getElementById("drawboardbtn").innerHTML =
-                              "-")
-                          : (document.getElementById("drawboardbtn").innerHTML =
-                              "+");
+                        const elem = document.getElementById("drawboardbtn");
+
+                        elem.innerHTML === "+"
+                          ? (elem.innerHTML = "-")
+                          : (elem.innerHTML = "+");
                       }}
                     >
                       +
