@@ -6,11 +6,7 @@
     height: 100vh;
 }
 
-/* #logo {
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    transform: translate(-50%, -50%);
+#logo {
     animation: fill 0.5s ease forwards 0.9s;
 }
 
@@ -21,4 +17,4 @@
     to{
         fill: white;
     }
-} */
+} 
