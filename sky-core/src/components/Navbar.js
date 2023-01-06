@@ -16,7 +16,9 @@ const Navbar = () => {
         <LogoutButton></LogoutButton>
       </div>
       <div className="flex items-center flex-shrink-1 text-white mr-6">
-        <span className="font-semibold text-2xl tracking-normal">Sky Core</span>
+        <span className="font-semibold text-2xl tracking-normal">
+          Sky Notes
+        </span>
       </div>
       <Timer displayTimer={displayTimer} />
       <Stopwatch displayStopwatch={displayStopwatch} />
