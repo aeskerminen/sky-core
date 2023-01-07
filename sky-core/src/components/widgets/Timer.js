@@ -123,8 +123,15 @@ export default class Timer extends Component {
 
           <div>
             <div>
-              {minutes === 0 && seconds === 0 && hours === 0 ? (
-                <h1>00:00:00 ⏯⏹</h1>
+              {minutes === 0 &&
+              seconds === 0 &&
+              hours === 0 &&
+              isActive === true ? (
+                <h1>
+                  00:00:00 ⏯⏹
+                  {this.setState(() => ({ isActive: false }))}
+                  {window.alert("Time is up!")}
+                </h1>
               ) : (
                 <h1>
                   {hours}:{minutes < 10 ? `0${minutes}` : minutes}:
