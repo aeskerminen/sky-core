@@ -134,7 +134,8 @@ export default class Timer extends Component {
                 </h1>
               ) : (
                 <h1>
-                  {hours}:{minutes < 10 ? `0${minutes}` : minutes}:
+                  {hours < 10 ? `0${hours}` : hours}:
+                  {minutes < 10 ? `0${minutes}` : minutes}:
                   {seconds < 10 ? `0${seconds}` : seconds}
                   <button onClick={isActive ? this.turnOff : this.turnOn}>
                     ⏯
