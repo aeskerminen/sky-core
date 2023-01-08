@@ -105,7 +105,7 @@ const App = () => {
       {isAuthenticated && ready && (
         <div className="h-full flex flex-col overflow-y-hidden">
           <Navbar></Navbar>
-          <div className="flex flex-row flex-grow p-1 overflow-hidden">
+          <div className="flex flex-row flex-grow overflow-hidden">
             <div className="w-1/6">
               <Sidebar
                 selectButtonClick={(name, id) => {
@@ -119,9 +119,14 @@ const App = () => {
               ></Sidebar>
             </div>
             <div
-              className="w-5/6 bg-slate-300 overflow-y-scroll p-2"
+              className="w-5/6 bg-white overflow-y-scroll p-2 m-2"
               style={{ caretColor: "transparent" }}
             >
+              {selection === "" && (
+                <div className="bg-white p-2 h-full text-center">
+                  <h1>Please select or create a note...</h1>
+                </div>
+              )}
               {selection !== "" && (
                 <div style={{ caretColor: "black" }}>
                   <DefaultEditor
