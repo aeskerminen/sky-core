@@ -41,7 +41,7 @@ const App = () => {
 
   // Booleans for displaying the two widgets
   const [displayPDF, setDisplayPDF] = useState(false);
-  const [displayDrawboard, setDisplayDrawboard] = useState(true);
+  const [displayDrawboard, setDisplayDrawboard] = useState(false);
 
   // Hook that listens for a change in toDelete. Handles deletion of notes.
   useEffect(() => {
@@ -118,7 +118,7 @@ const App = () => {
                 notes={notes}
               ></Sidebar>
             </div>
-            <div className="w-5/6 bg-slate-300 flex-1 overflow-y-auto p-2">
+            <div className="w-5/6 bg-slate-300 overflow-y-scroll p-2">
               {selection !== "" && (
                 <div>
                   <DefaultEditor
@@ -128,11 +128,15 @@ const App = () => {
                       writeNoteData(user.sub, selection, html, name);
                     }}
                   />
-                  <PDFViewer className="" displayPDF={displayPDF} />
-                  <Drawboard
-                    width={"200"}
-                    displayDrawboard={displayDrawboard}
-                  />
+                  {displayDrawboard && (
+                    <Drawboard
+                      width={"200"}
+                      displayDrawboard={displayDrawboard}
+                    ></Drawboard>
+                  )}
+
+                  {displayPDF && <PDFViewer className="" />}
+
                   <div className="">
                     <button
                       id="pdfbtn"
