@@ -102,6 +102,7 @@ const App = () => {
 
   return (
     <div className="h-full bg-slate-500">
+      {!isAuthenticated && <LoginPage></LoginPage>}
       {isAuthenticated && ready && (
         <div className="h-full flex flex-col overflow-y-hidden">
           <Navbar></Navbar>
@@ -124,7 +125,7 @@ const App = () => {
             >
               {selection === "" && (
                 <div className="bg-white p-2 h-full text-center">
-                  <h1>Please select or create a note...</h1>
+                  <h1 className="text-xl">Please select or create a note...</h1>
                 </div>
               )}
               {selection !== "" && (
@@ -184,7 +185,6 @@ const App = () => {
           </div>
         </div>
       )}
-      {!isAuthenticated && <LoginPage></LoginPage>}
     </div>
   );
 };
