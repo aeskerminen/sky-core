@@ -11,7 +11,10 @@ const Navbar = () => {
   const [displayTimer, setDisplayTimer] = useState(false);
 
   return (
-    <div className="flex items-center p-3 bg-blue-500 shadow-lg">
+    <div
+      className="flex items-center p-3 bg-blue-500 shadow-lg"
+      style={{ caretColor: "transparent" }}
+    >
       <div className="flex mr-auto">
         <LogoutButton></LogoutButton>
       </div>

@@ -57,7 +57,10 @@ const Sidebar = (props) => {
           ADD
         </button>
       </div>
-      <div className="grow flex flex-col p-2 gap-3 bg-white overflow-y-scroll">
+      <div
+        className="grow flex flex-col p-2 gap-3 bg-white overflow-y-scroll"
+        style={{ caretColor: "transparent" }}
+      >
         {notes.map((note) => (
           <Note
             key={note.id}

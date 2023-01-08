@@ -118,9 +118,12 @@ const App = () => {
                 notes={notes}
               ></Sidebar>
             </div>
-            <div className="w-5/6 bg-slate-300 overflow-y-scroll p-2">
+            <div
+              className="w-5/6 bg-slate-300 overflow-y-scroll p-2"
+              style={{ caretColor: "transparent" }}
+            >
               {selection !== "" && (
-                <div>
+                <div style={{ caretColor: "black" }}>
                   <DefaultEditor
                     value={html}
                     onChange={(e) => {
