@@ -41,7 +41,7 @@ const App = () => {
 
   // Booleans for displaying the two widgets
   const [displayPDF, setDisplayPDF] = useState(false);
-  const [displayDrawboard, setDisplayDrawboard] = useState(false);
+  const [displayDrawboard, setDisplayDrawboard] = useState(true);
 
   // Hook that listens for a change in toDelete. Handles deletion of notes.
   useEffect(() => {
@@ -129,7 +129,10 @@ const App = () => {
                     }}
                   />
                   <PDFViewer className="" displayPDF={displayPDF} />
-                  <Drawboard displayDrawboard={displayDrawboard} />
+                  <Drawboard
+                    width={"200"}
+                    displayDrawboard={displayDrawboard}
+                  />
                   <div className="">
                     <button
                       id="pdfbtn"
