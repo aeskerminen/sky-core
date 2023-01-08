@@ -134,7 +134,7 @@ const App = () => {
                     value={html}
                     onChange={(e) => {
                       setHtml(e.target.value);
-                      writeNoteData(user.sub, selection, html, name);
+                      writeNoteData(user.sub, selection, e.target.value, name);
                     }}
                   />
                   {displayDrawboard && (
