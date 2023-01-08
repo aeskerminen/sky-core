@@ -40,7 +40,7 @@ const Sidebar = (props) => {
           className="placeholder:text-slate-400 block w-full mr-2 bg-white border 
                     border-black rounded-lg py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:ring-1 
                     sm:text-sm"
-          placeholder="Search for anything..."
+          placeholder="Name your note..."
           type="text"
           name="search"
         />
