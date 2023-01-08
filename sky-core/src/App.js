@@ -144,7 +144,7 @@ const App = () => {
                     ></Drawboard>
                   )}
 
-                  {displayPDF && <PDFViewer className="" />}
+                  {displayPDF && <PDFViewer />}
 
                   <div className="">
                     <button
