@@ -24,9 +24,9 @@ export default class Drawboard extends React.Component {
           hideGrid={true}
           enablePanAndZoom={false}
         />
-        <div>
+        <div className="flex flex-row justify-center gap-x-4 mt-2 items-center">
           <button
-            className="pr-10"
+            className="p-2 bg-white shadow-md"
             onClick={() => {
               this.modify.undo();
             }}
@@ -34,6 +34,7 @@ export default class Drawboard extends React.Component {
             UNDO
           </button>
           <button
+            className="p-2 bg-white shadow-md"
             onClick={() => {
               this.modify.eraseAll();
             }}
@@ -41,30 +42,32 @@ export default class Drawboard extends React.Component {
             CLEAR
           </button>
 
-          <input
-            className="block"
-            value={this.state.brushRadius}
-            type="range"
-            min="2"
-            max="50"
-            onChange={(e) => {
-              this.setState({
-                brushRadius: e.target.value,
-              });
-            }}
-          />
-        </div>
-        <div>
-          {/* <label>Color picker</label> */}
-          <input
-            type="color"
-            value={this.state.brushColor}
-            onChange={(e) => {
-              this.setState({
-                brushColor: e.target.value,
-              });
-            }}
-          />
+          <div className="p-2 bg-white shadow-md">
+            <input
+              className="align-middle"
+              value={this.state.brushRadius}
+              type="range"
+              min="2"
+              max="50"
+              onChange={(e) => {
+                this.setState({
+                  brushRadius: e.target.value,
+                });
+              }}
+            />
+          </div>
+          <div className="p-2 bg-white shadow-md">
+            <input
+              className="align-middle"
+              type="color"
+              value={this.state.brushColor}
+              onChange={(e) => {
+                this.setState({
+                  brushColor: e.target.value,
+                });
+              }}
+            />
+          </div>
         </div>
       </div>
     );
