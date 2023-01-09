@@ -83,6 +83,7 @@ export default class Timer extends Component {
               className="w-12"
               type={"number"}
               value={hours}
+              min={0}
               onChange={(e) => {
                 this.setState(() => ({
                   hours: e.target.value,
