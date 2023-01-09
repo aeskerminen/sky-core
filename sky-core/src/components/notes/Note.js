@@ -10,7 +10,7 @@ const Note = (props) => {
   }
 
   let classAttrs = props.selected
-    ? "flex flex-col mr-1 ml-1 bg-slate-400 hover:bg-slate-300 space-y-2 shadow-md rounded-lg"
+    ? "flex flex-col mr-1 ml-1 bg-slate-400 hover:bg-slate-400 space-y-2 shadow-md rounded-lg"
     : "flex flex-col mr-1 ml-1 bg-slate-100 hover:bg-slate-300 space-y-2 shadow-md rounded-lg";
 
   return (
