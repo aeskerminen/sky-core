@@ -81,22 +81,15 @@ export default class Stopwatch extends Component {
     if (this.props.displayStopwatch) {
       const { isActive, hours, minutes, seconds } = this.state;
       return (
-        <div>
+        <div className="flex flex-row gap-x-2 bg-white rounded-md shadow-md p-1">
+          <h1>
+            {hours < 10 ? `0${hours}` : hours}:
+            {minutes < 10 ? `0${minutes}` : minutes}:
+            {seconds < 10 ? `0${seconds}` : seconds}
+          </h1>
           <div>
-            <div>
-              {
-                <h1>
-                  {hours < 10 ? `0${hours}` : hours}:
-                  {minutes < 10 ? `0${minutes}` : minutes}:
-                  {seconds < 10 ? `0${seconds}` : seconds}
-                  <button onClick={isActive ? this.turnOff : this.turnOn}>
-                    ⏯
-                  </button>
-                  <button onClick={this.reset}>⏹</button>
-                </h1>
-              }
-            </div>
-            <div></div>
+            <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button>
+            <button onClick={this.reset}>⏹</button>
           </div>
         </div>
       );
