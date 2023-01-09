@@ -107,7 +107,7 @@ const App = () => {
         <div className="h-full flex flex-col overflow-y-hidden">
           <Navbar></Navbar>
           <div className="flex flex-row flex-grow overflow-hidden">
-            <div className="w-1/6">
+            <div className="w-1/6 p-2 pb-3">
               <Sidebar
                 selectButtonClick={(name, id) => {
                   setSelection(id);
@@ -120,7 +120,7 @@ const App = () => {
               ></Sidebar>
             </div>
             <div
-              className="w-5/6 bg-white overflow-y-scroll p-2 m-2 mb-3"
+              className="w-5/6 bg-white overflow-y-scroll p-2 m-2 mb-3 ml-1 rounded-md"
               style={{ caretColor: "transparent" }}
             >
               {selection === "" && (

@@ -33,8 +33,8 @@ const Sidebar = (props) => {
   }
 
   return (
-    <div className="flex flex-col h-full overflow-hidden p-2 pb-3 pr-1">
-      <div className=" flex items-center p-1.5 bg-white">
+    <div className="flex flex-col h-full overflow-hidden p-2 bg-white rounded-md">
+      <div className=" flex items-center p-1.5">
         <input
           onChange={handleInputChange}
           className="placeholder:text-slate-400 block w-full mr-2 bg-white border 
