@@ -120,11 +120,11 @@ const App = () => {
               ></Sidebar>
             </div>
             <div
-              className="w-5/6 bg-white overflow-y-scroll p-2 m-2"
+              className="w-5/6 bg-white overflow-y-scroll p-2 m-2 mb-3"
               style={{ caretColor: "transparent" }}
             >
               {selection === "" && (
-                <div className="bg-white p-2 h-full text-center">
+                <div className="bg-white p-2 pb-3 h-full text-center">
                   <h1 className="text-xl">Please select or create a note...</h1>
                 </div>
               )}
