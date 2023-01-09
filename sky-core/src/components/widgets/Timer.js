@@ -37,6 +37,11 @@ export default class Timer extends Component {
           seconds: 59,
         }));
       }
+
+      if (seconds === 0 && minutes === 0 && hours === 0) {
+        this.setState(() => ({ isActive: false }));
+        window.alert("Time is up!");
+      }
     }, 1000);
   }
 
@@ -68,95 +73,50 @@ export default class Timer extends Component {
     }));
   };
 
-  incrUpH = () => {
-    this.setState(({ hours }) => ({
-      hours: hours + 1,
-    }));
-  };
-
-  incrUpM = () => {
-    this.state.minutes === 59
-      ? this.setState(() => ({ minutes: 0 }))
-      : this.setState(({ minutes }) => ({ minutes: minutes + 1 }));
-  };
-
-  incrUpS = () => {
-    this.state.seconds === 59
-      ? this.setState(() => ({ seconds: 0 }))
-      : this.setState(({ seconds }) => ({ seconds: seconds + 1 }));
-  };
-
-  incrDownH = () => {
-    this.state.hours === 0
-      ? this.setState(({ hours }) => ({ hours: hours }))
-      : this.setState(({ hours }) => ({ hours: hours - 1 }));
-  };
-
-  incrDownM = () => {
-    this.state.minutes === 0
-      ? this.setState(() => ({ minutes: 59 }))
-      : this.setState(({ minutes }) => ({ minutes: minutes - 1 }));
-  };
-
-  incrDownS = () => {
-    this.state.seconds === 0
-      ? this.setState(() => ({ seconds: 59 }))
-      : this.setState(({ seconds }) => ({ seconds: seconds - 1 }));
-  };
-
   render() {
     if (this.props.displayTimer) {
       const { isActive, hours, minutes, seconds } = this.state;
       return (
-        <div>
-          <div>
-            <button onClick={this.incrUpH}>
-              <small>⌃&nbsp;&nbsp;</small>
-            </button>
-            <button onClick={this.incrUpM}>
-              <small>⌃&nbsp;</small>
-            </button>
-            <button onClick={this.incrUpS}>
-              <small>&nbsp;&nbsp;⌃</small>
-            </button>
+        <div className="flex flex-row gap-x-2 bg-white rounded-md shadow-md p-1">
+          <div className="flex flex-row">
+            <input
+              className="w-12"
+              type={"number"}
+              value={hours}
+              onChange={(e) => {
+                this.setState(() => ({
+                  hours: e.target.value,
+                }));
+              }}
+            ></input>
+            <input
+              className="w-12"
+              type={"number"}
+              value={minutes}
+              min={0}
+              max={59}
+              onChange={(e) => {
+                this.setState(() => ({
+                  minutes: e.target.value,
+                }));
+              }}
+            ></input>
+            <input
+              className="w-12"
+              type={"number"}
+              value={seconds}
+              min={0}
+              max={59}
+              onChange={(e) => {
+                this.setState(() => ({
+                  seconds: e.target.value,
+                }));
+              }}
+            ></input>
           </div>
-
           <div>
-            <div>
-              {minutes === 0 &&
-              seconds === 0 &&
-              hours === 0 &&
-              isActive === true ? (
-                <h1>
-                  00:00:00 ⏯⏹
-                  {this.setState(() => ({ isActive: false }))}
-                  {window.alert("Time is up!")}
-                </h1>
-              ) : (
-                <h1>
-                  {hours < 10 ? `0${hours}` : hours}:
-                  {minutes < 10 ? `0${minutes}` : minutes}:
-                  {seconds < 10 ? `0${seconds}` : seconds}
-                  <button onClick={isActive ? this.turnOff : this.turnOn}>
-                    ⏯
-                  </button>
-                  <button onClick={this.reset}>⏹</button>
-                </h1>
-              )}
-            </div>
-            <div></div>
-          </div>
-
-          <div>
-            <button onClick={this.incrDownH}>
-              <small>⌄&nbsp;&nbsp;</small>
-            </button>
-            <button onClick={this.incrDownM}>
-              <small>⌄&nbsp;</small>
-            </button>
-            <button onClick={this.incrDownS}>
-              <small>&nbsp;&nbsp;⌄</small>
-            </button>
+            <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button>
+            <button onClick={this.reset}>⏹</button>
           </div>
         </div>
       );
