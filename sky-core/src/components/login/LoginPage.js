@@ -104,7 +104,7 @@ const LoginPage = () => {
             </span> */}
           </div>
         </div>
-        <div className="bg-white rounded-md m-2">
+        <div className="m-2">
           <LoginButton></LoginButton>
         </div>
       </div>

@@ -5,13 +5,13 @@ const LoginButton = () => {
 
   return (
     !isAuthenticated && (
-      <div className="flex p-1 align-middle justify-center w-60 bg-blue-500">
+      <div className="flex p-1 align-middle justify-center w-60 bg-blue-500 rounded-md shadow-md">
         <button
           className="align-middle p-2"
           onClick={() => loginWithRedirect()}
         >
           <h1 className="text-xl text-white" style={{ textAlign: "center" }}>
-            Sign in
+            Sign In
           </h1>
         </button>
       </div>
