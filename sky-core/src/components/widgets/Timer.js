@@ -82,7 +82,7 @@ export default class Timer extends Component {
             <input
               className="w-12"
               type={"number"}
-              value={hours}
+              value={hours < 10 ? "0" + hours : hours}
               min={0}
               onChange={(e) => {
                 this.setState(() => ({
@@ -93,7 +93,7 @@ export default class Timer extends Component {
             <input
               className="w-12"
               type={"number"}
-              value={minutes}
+              value={minutes < 10 ? "0" + minutes : minutes}
               min={0}
               max={59}
               onChange={(e) => {
@@ -105,7 +105,7 @@ export default class Timer extends Component {
             <input
               className="w-12"
               type={"number"}
-              value={seconds}
+              value={seconds < 10 ? "0" + seconds : seconds}
               min={0}
               max={59}
               onChange={(e) => {
