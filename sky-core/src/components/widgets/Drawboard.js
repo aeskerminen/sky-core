@@ -54,6 +54,7 @@ export default class Drawboard extends React.Component {
                   brushRadius: e.target.value,
                 });
               }}
+              title={this.state.brushRadius}
             />
           </div>
           <div className="p-2 bg-white shadow-md">
