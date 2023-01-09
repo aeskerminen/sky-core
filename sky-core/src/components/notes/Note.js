@@ -17,7 +17,12 @@ const Note = (props) => {
     <div className={classAttrs}>
       <button onClick={handleSelectButtonClick} className="m-1 p-1">
         <div className="flex flex-row items-center">
-          <span className="font-normal tracking-normal">{props.name}</span>
+          <span
+            className="font-normal tracking-normal overflow-ellipsis whitespace-nowrap overflow-hidden"
+            style={{ maxWidth: "25ch" }}
+          >
+            {props.name}
+          </span>
           <button
             onClick={handleRemoveButtonClick}
             className="bg-white hover:bg-red-400 active:bg-gray-10 p-2 ml-auto rounded-full"
