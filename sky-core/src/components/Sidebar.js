@@ -37,8 +37,8 @@ const Sidebar = (props) => {
       <div className=" flex items-center p-1.5">
         <input
           onChange={handleInputChange}
-          className="placeholder:text-slate-400 block w-full mr-2 bg-white border 
-                    border-black rounded-lg py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:ring-1 
+          className="placeholder:text-slate-400 block w-full mr-2 bg-white border-2
+                    border-black rounded-lg py-2 pl-3 pr-3 shadow focus:outline-none focus:ring-1 
                     sm:text-sm"
           placeholder="Name your note..."
           type="text"
@@ -52,7 +52,7 @@ const Sidebar = (props) => {
               id: uuidv4(),
             });
           }}
-          className="p-2 bg-white rounded-lg ml-auto hover:bg-slate-100"
+          className="p-2 bg-slate-200 rounded-md ml-auto hover:bg-slate-100"
         >
           ADD
         </button>
