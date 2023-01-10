@@ -18,7 +18,7 @@ export default class Stopwatch extends Component {
       if (
         (seconds === 0 && minutes === 0) ||
         (seconds === 0 && minutes === 59) ||
-        (seconds === 0 && minutes === 1)
+        (seconds === 0 && minutes !== 0)
       ) {
         this.setState(({ seconds }) => ({
           seconds: seconds + 1,
