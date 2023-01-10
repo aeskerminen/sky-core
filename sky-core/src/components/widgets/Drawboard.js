@@ -5,7 +5,7 @@ export default class Drawboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      c_width: props.width,
+      c_width: "200",
       c_height: props.height,
       brushColor: "#3B82F6",
       brushRadius: 5,
@@ -14,7 +14,7 @@ export default class Drawboard extends React.Component {
 
   render() {
     return (
-      <div className="p-2 bg-slate-100 relative">
+      <div className="p-2 mt-2 bg-slate-100 relative">
         <CanvasDraw
           ref={(canvasDraw) => (this.modify = canvasDraw)}
           canvasWidth={this.state.c_width}
@@ -26,7 +26,7 @@ export default class Drawboard extends React.Component {
         />
         <div className="flex flex-row justify-center gap-x-4 mt-2 items-center">
           <button
-            className="p-2 bg-white shadow-md"
+            className="p-2 bg-white shadow-md rounded-md"
             onClick={() => {
               this.modify.undo();
             }}
@@ -34,7 +34,7 @@ export default class Drawboard extends React.Component {
             UNDO
           </button>
           <button
-            className="p-2 bg-white shadow-md"
+            className="p-2 bg-white shadow-md rounded-md"
             onClick={() => {
               this.modify.eraseAll();
             }}
@@ -42,7 +42,7 @@ export default class Drawboard extends React.Component {
             CLEAR
           </button>
 
-          <div className="p-2 bg-white shadow-md">
+          <div className="p-2 bg-white shadow-md rounded-md">
             <input
               className="align-middle"
               value={this.state.brushRadius}
@@ -57,7 +57,7 @@ export default class Drawboard extends React.Component {
               title={this.state.brushRadius}
             />
           </div>
-          <div className="p-2 bg-white shadow-md">
+          <div className="p-2 bg-white shadow-md rounded-md">
             <input
               className="align-middle"
               type="color"
