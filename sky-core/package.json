@@ -10,6 +10,7 @@
     "react-canvas-draw": "^1.2.1",
     "react-dom": "^18.2.0",
     "react-pdf": "^6.2.1",
+    "react-quill": "^2.0.0",
     "react-scripts": "5.0.1",
     "react-simple-wysiwyg": "^2.1.4",
     "slate": "^0.87.0",

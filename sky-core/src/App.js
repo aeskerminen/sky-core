@@ -20,6 +20,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { get, ref } from "firebase/database";
 import { db, deleteNoteData, writeNoteData } from "./DatabaseWrapper";
 
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 const App = () => {
   // State for tracking auth status
   const { isAuthenticated } = useAuth0();
@@ -100,6 +103,11 @@ const App = () => {
     }
   }, [selection]);
 
+  useEffect(() => {
+    console.log(html);
+    if (user !== undefined) writeNoteData(user?.sub, selection, html, name);
+  }, [html]);
+
   return (
     <div className="h-full bg-slate-500">
       {!isAuthenticated && <LoginPage></LoginPage>}
@@ -130,22 +138,21 @@ const App = () => {
               )}
               {selection !== "" && (
                 <div style={{ caretColor: "black" }}>
-                  <DefaultEditor
+                  {/*<DefaultEditor
                     value={html}
                     onChange={(e) => {
                       setHtml(e.target.value);
                       writeNoteData(user.sub, selection, e.target.value, name);
                     }}
-                  />
+                  />*/}
+                  <ReactQuill theme="snow" value={html} onChange={setHtml} />
                   {displayDrawboard && (
                     <Drawboard
                       width={"200"}
                       displayDrawboard={displayDrawboard}
                     ></Drawboard>
                   )}
-
                   {displayPDF && <PDFViewer />}
-
                   <div className="flex flex-row justify-center gap-x-2 m-2">
                     <button
                       id="pdfbtn"
