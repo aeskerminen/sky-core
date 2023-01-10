@@ -51,7 +51,6 @@ export default function PDFViewer(props) {
         <input
           type="file"
           accept=".pdf"
-          class="hidden"
           id="pdffile"
           onChange={(e) => {
             const file = e.target.files[0];
@@ -106,7 +105,7 @@ export default function PDFViewer(props) {
       </div>
       <div className="flex flex-col items-center">
         <Document
-          className="shadow-md"
+          className="shadow-md p-1"
           file={content}
           onLoadSuccess={onDocumentLoadSuccess}
         >
