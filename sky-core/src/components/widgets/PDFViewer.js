@@ -52,6 +52,7 @@ export default function PDFViewer(props) {
           type="file"
           accept=".pdf"
           id="pdffile"
+          className="hidden"
           onChange={(e) => {
             const file = e.target.files[0];
             const reader = new FileReader();
