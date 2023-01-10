@@ -165,13 +165,14 @@ const App = () => {
                     }}
                     bounds={".bound"}
                   />
+                  {displayPDF && <PDFViewer />}
+
                   {displayDrawboard && (
                     <Drawboard
                       width={"200"}
                       displayDrawboard={displayDrawboard}
                     ></Drawboard>
                   )}
-                  {displayPDF && <PDFViewer />}
                   <div className="flex flex-row justify-center gap-x-2 m-2">
                     <button
                       id="pdfbtn"
