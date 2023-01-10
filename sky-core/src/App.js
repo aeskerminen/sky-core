@@ -9,9 +9,6 @@ import Sidebar from "./components/Sidebar";
 import PDFViewer from "./components/widgets/PDFViewer";
 import Drawboard from "./components/widgets/Drawboard";
 
-// Text editor
-import { DefaultEditor } from "react-simple-wysiwyg";
-
 // Authentication
 import LoginPage from "./components/login/LoginPage";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -22,6 +19,11 @@ import { db, deleteNoteData, writeNoteData } from "./DatabaseWrapper";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
+import katex from "katex";
+import "katex/dist/katex.min.css";
+
+window.katex = katex;
 
 const App = () => {
   // State for tracking auth status
@@ -128,7 +130,7 @@ const App = () => {
               ></Sidebar>
             </div>
             <div
-              className="w-5/6 bg-white overflow-y-scroll p-2 m-2 mb-3 ml-1 rounded-md"
+              className="w-5/6 bg-white overflow-y-scroll p-2 m-2 mb-3 ml-1 rounded-md bound"
               style={{ caretColor: "transparent" }}
             >
               {selection === "" && (
@@ -138,14 +140,29 @@ const App = () => {
               )}
               {selection !== "" && (
                 <div style={{ caretColor: "black" }}>
-                  {/*<DefaultEditor
+                  <ReactQuill
+                    theme="snow"
                     value={html}
-                    onChange={(e) => {
-                      setHtml(e.target.value);
-                      writeNoteData(user.sub, selection, e.target.value, name);
+                    onChange={setHtml}
+                    modules={{
+                      toolbar: [
+                        ["bold", "italic", "underline", "strike"],
+                        ["blockquote", "code-block"],
+
+                        [{ list: "ordered" }, { list: "bullet" }],
+                        [{ script: "sub" }, { script: "super" }],
+                        [{ header: [1, 2, 3, false] }],
+
+                        ["link", "image", "formula"],
+
+                        [{ color: [] }, { background: [] }],
+                        [{ align: [] }],
+
+                        ["clean"],
+                      ],
                     }}
-                  />*/}
-                  <ReactQuill theme="snow" value={html} onChange={setHtml} />
+                    bounds={"bound"}
+                  />
                   {displayDrawboard && (
                     <Drawboard
                       width={"200"}
