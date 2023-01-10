@@ -163,7 +163,7 @@ const App = () => {
                         ["clean"],
                       ],
                     }}
-                    bounds={"bound"}
+                    bounds={".bound"}
                   />
                   {displayDrawboard && (
                     <Drawboard
