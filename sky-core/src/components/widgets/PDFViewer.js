@@ -120,10 +120,9 @@ export default function PDFViewer(props) {
       <div className="text-center flex flex-row items-center gap-x-2">
         <span>Page</span>
         <input
-          class="border"
+          class="border-2 w-16"
           id="userinput"
           type="text"
-          size="1"
           onChange={goToPage}
           value={pageNumber || (numPages ? 1 : "--")}
         />
