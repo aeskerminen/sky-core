@@ -113,7 +113,7 @@ const App = () => {
   }, [html]);
 
   return (
-    <div className="h-full bg-slate-500">
+    <div className="h-full bg-blue-900">
       {!isAuthenticated && <LoginPage></LoginPage>}
       {isAuthenticated && ready && (
         <div className="h-full flex flex-col overflow-y-hidden">
