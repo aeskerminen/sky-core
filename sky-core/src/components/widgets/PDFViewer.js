@@ -46,8 +46,8 @@ export default function PDFViewer(props) {
   // }
   // hidden or visible
   return (
-    <div className="p-2 bg-slate-100 mt-1">
-      <div className="flex flex-col items-center gap-y-2">
+    <div className="p-2 bg-slate-100 mt-1 flex flex-col items-center gap-y-2">
+      <div className="flex flex-col items-center">
         <input
           type="file"
           accept=".pdf"
@@ -62,7 +62,10 @@ export default function PDFViewer(props) {
             };
           }}
         />
-        <label className="cursor-grab bg-white p-2 shadow-md" for="pdffile">
+        <label
+          className="cursor-grab bg-white p-2 shadow-md rounded-md"
+          for="pdffile"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -81,24 +84,12 @@ export default function PDFViewer(props) {
             />
           </svg>
         </label>
-        <div className="text-center flex flex-row items-center mb-2 gap-x-2">
-          <span>Page</span>
-          <input
-            class="border"
-            id="userinput"
-            type="text"
-            size="1"
-            onChange={goToPage}
-            value={pageNumber || (numPages ? 1 : "--")}
-          />
-          <span>of {numPages || "--"}</span>
-        </div>
       </div>
 
       <div className="flex flex-row gap-x-2 justify-center">
         <button
           type="button"
-          className="p-2 bg-white cursor-pointer shadow-md"
+          className="p-2 bg-white cursor-pointer shadow-md rounded-md"
           disabled={pageNumber <= 1}
           onClick={previousPage}
         >
@@ -106,7 +97,7 @@ export default function PDFViewer(props) {
         </button>
         <button
           type="button"
-          className="p-2 bg-white cursor-pointer shadow-md"
+          className="p-2 bg-white cursor-pointer shadow-md rounded-md"
           disabled={pageNumber >= numPages}
           onClick={nextPage}
         >
@@ -115,17 +106,28 @@ export default function PDFViewer(props) {
       </div>
       <div className="flex flex-col items-center">
         <Document
-          className="mt-5"
+          className="shadow-md"
           file={content}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page
             id="Document Page"
-            className=""
             renderAnnotationLayer={false}
             pageNumber={pageNumber}
           />
         </Document>
+      </div>
+      <div className="text-center flex flex-row items-center gap-x-2">
+        <span>Page</span>
+        <input
+          class="border"
+          id="userinput"
+          type="text"
+          size="1"
+          onChange={goToPage}
+          value={pageNumber || (numPages ? 1 : "--")}
+        />
+        <span>of {numPages || "--"}</span>
       </div>
     </div>
   );
