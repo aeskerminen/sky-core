@@ -51,8 +51,9 @@ const App = () => {
   // Hook that listens for a change in toDelete. Handles deletion of notes.
   useEffect(() => {
     if (user !== undefined) {
+      if (toDelete === selection) setSelection("");
+
       deleteNoteData(user.sub, toDelete);
-      setSelection("");
     }
   }, [toDelete]);
 
@@ -106,8 +107,9 @@ const App = () => {
   }, [selection]);
 
   useEffect(() => {
-    console.log(html);
-    if (user !== undefined) writeNoteData(user?.sub, selection, html, name);
+    if (user !== undefined && selection !== toDelete) {
+      writeNoteData(user?.sub, selection, html, name);
+    }
   }, [html]);
 
   return (
