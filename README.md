@@ -3,3 +3,7 @@
 
 ## What is it?
 Sky Core is the 1st MVP (minimum viable product) for the upcoming note-taking ecosystem, Sky Notes.
+
+## Deployed on Netlify
+
+[Sky Notes](https://www.skynotesapp.netlify.app)
