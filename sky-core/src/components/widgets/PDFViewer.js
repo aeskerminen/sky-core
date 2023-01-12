@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Document, Page, Outline } from "react-pdf/dist/esm/entry.webpack";
 import { pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
 
 export default function PDFViewer(props) {
   const [numPages, setNumPages] = useState(null);
@@ -39,6 +41,10 @@ export default function PDFViewer(props) {
     rotation < 270 ?
     setRotation((prevRotation) => prevRotation + 90) :
     setRotation(0);
+  }
+  function changeToClickedPage(props){
+    console.log(props);
+    setPageNumber(props.pageNumber);
   }
   
   return (
@@ -112,12 +118,13 @@ export default function PDFViewer(props) {
       <div className="flex flex-col items-center">
         <Document
           className="shadow-md p-1"
+          onItemClick={changeToClickedPage}
           rotate={rotation}
           file={content}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page
-            renderAnnotationLayer={false}
+            renderAnnotationLayer={true}
             pageNumber={pageNumber}
           />
         </Document>
