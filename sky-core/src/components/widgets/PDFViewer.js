@@ -8,14 +8,7 @@ export default function PDFViewer(props) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [content, setContent] = useState(0);
-  // const [rotation, setRotation] = useState(0);
-
-  // async function getTheFile() {
-  // // open file picker
-  //   let [fileHandle] = await window.showOpenFilePicker();
-  //   let fileData = await fileHandle.getFile();
-  //   setContent(URL.createObjectURL(fileData));
-  // }
+  const [rotation, setRotation] = useState(0);
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -41,10 +34,11 @@ export default function PDFViewer(props) {
       setPageNumber(toChangePage);
     }
   }
-  // function rotatePDFClockWise(){
-  //   document.getElementById("Document Page").className = 'rotate-90';
-  // }
-  // hidden or visible
+  
+  function rotatePDFClockWise(){
+    setRotation((prevRotation) => prevRotation + 90);
+  }
+  
   return (
     <div className="p-2 bg-slate-100 mt-1 flex flex-col items-center gap-y-2">
       <div className="flex flex-col items-center">
@@ -103,15 +97,18 @@ export default function PDFViewer(props) {
         >
           {">"}
         </button>
+        <button type="button" onClick={rotatePDFClockWise}>
+         Rotate
+        </button>
       </div>
       <div className="flex flex-col items-center">
         <Document
           className="shadow-md p-1"
+          rotate={rotation}
           file={content}
           onLoadSuccess={onDocumentLoadSuccess}
         >
           <Page
-            id="Document Page"
             renderAnnotationLayer={false}
             pageNumber={pageNumber}
           />
