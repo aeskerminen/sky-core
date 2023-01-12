@@ -43,13 +43,14 @@ export default class Drawboard extends React.Component {
           <button
             className="p-2 bg-white shadow-md rounded-md"
             onClick={() => {
+              /*
               localStorage.setItem(
                 "savedDrawing",
                 this.modify.getDataURL()
-              );
+              ); */
               var a = document.createElement("a");
               a.href =
-              localStorage.getItem("savedDrawing");
+              this.modify.getDataURL();
               a.download = "Drawing.png";
               a.click();
             }}
