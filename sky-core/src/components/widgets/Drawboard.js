@@ -11,7 +11,6 @@ export default class Drawboard extends React.Component {
       brushRadius: 5,
     };
   }
-
   render() {
     return (
       <div className="p-2 mt-2 bg-slate-100 relative">
@@ -40,6 +39,22 @@ export default class Drawboard extends React.Component {
             }}
           >
             CLEAR
+          </button>
+          <button
+            className="p-2 bg-white shadow-md rounded-md"
+            onClick={() => {
+              localStorage.setItem(
+                "savedDrawing",
+                this.modify.getDataURL()
+              );
+              var a = document.createElement("a");
+              a.href =
+              localStorage.getItem("savedDrawing");
+              a.download = "Drawing.png";
+              a.click();
+            }}
+          >
+            SAVE
           </button>
 
           <div className="p-2 bg-white shadow-md rounded-md">
