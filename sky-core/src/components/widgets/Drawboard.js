@@ -60,11 +60,13 @@ export default class Drawboard extends React.Component {
 
           <div className="p-2 bg-white shadow-md rounded-md">
             <input
+              style={{accentColor: this.state.brushColor}}
               className="align-middle"
               value={this.state.brushRadius}
               type="range"
               min="2"
               max="50"
+              
               onChange={(e) => {
                 this.setState({
                   brushRadius: e.target.value,
