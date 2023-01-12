@@ -42,8 +42,7 @@ export default function PDFViewer(props) {
     setRotation((prevRotation) => prevRotation + 90) :
     setRotation(0);
   }
-  function changeToClickedPage(props){
-    console.log(props);
+  function handleItemClick(props){
     setPageNumber(props.pageNumber);
   }
   
@@ -118,7 +117,7 @@ export default function PDFViewer(props) {
       <div className="flex flex-col items-center">
         <Document
           className="shadow-md p-1"
-          onItemClick={changeToClickedPage}
+          onItemClick={handleItemClick}
           rotate={rotation}
           file={content}
           onLoadSuccess={onDocumentLoadSuccess}
