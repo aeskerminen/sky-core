@@ -36,7 +36,9 @@ export default function PDFViewer(props) {
   }
   
   function rotatePDFClockWise(){
-    setRotation((prevRotation) => prevRotation + 90);
+    rotation < 270 ?
+    setRotation((prevRotation) => prevRotation + 90) :
+    setRotation(0);
   }
   
   return (
