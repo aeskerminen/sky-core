@@ -5,7 +5,6 @@ import "react-pdf/dist/esm/Page/TextLayer.css";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-
 export default function PDFViewer(props) {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(null);
@@ -31,11 +30,11 @@ export default function PDFViewer(props) {
 
   function goToPage() {
     let toChangePage = Number(document.getElementById("userinput").value);
-
-    if (!isNaN(toChangePage) && toChangePage <= numPages) {
+    if (toChangePage >= 1 && !isNaN(toChangePage) && toChangePage <= numPages) {
       setPageNumber(toChangePage);
     }
   }
+  
   
   function rotatePDFClockWise(){
     rotation < 270 ?
@@ -65,7 +64,7 @@ export default function PDFViewer(props) {
         />
         <label
           className="cursor-grab bg-white p-2 shadow-md rounded-md"
-          for="pdffile"
+          htmlFor="pdffile"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -128,16 +127,25 @@ export default function PDFViewer(props) {
           />
         </Document>
       </div>
-      <div className="text-center flex flex-row items-center gap-x-2">
-        <span>Page</span>
-        <input
-          class="border-2 w-16"
+      <div className="text-center flex flex-row items-center gap-x-1">
+      <label htmlFor="userinput"> {<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>}</label>
+          <input
+          class="border-2 w-10 "
           id="userinput"
           type="text"
-          onChange={goToPage}
-          value={pageNumber || (numPages ? 1 : "--")}
+          onKeyUp={event => {
+            if (event.key === 'Enter'){
+              goToPage()
+            }
+          }}
         />
+        <span>Page</span>
+        <span>{pageNumber || (numPages ? 1 : "--")}</span>
         <span>of {numPages || "--"}</span>
+        
+        
       </div>
     </div>
   );
