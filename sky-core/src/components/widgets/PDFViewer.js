@@ -133,6 +133,7 @@ export default function PDFViewer() {
           type="button"
           className="p-2 bg-white cursor-pointer shadow-md rounded-md"
           onClick={rotatePDFClockWise}
+          title="Rotate"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -153,6 +154,7 @@ export default function PDFViewer() {
           type="button"
           className="p-2 bg-white cursor-pointer shadow-md rounded-md"
           onClick={() => setShowSecondPage(!showSecondPage)}
+          title="Toggle Dual Page"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +179,7 @@ export default function PDFViewer() {
         >
           <div className="flex flex-row">
             <Page renderAnnotationLayer={true} pageNumber={pageNumber} />
-            {showSecondPage && (
+            {showSecondPage && pageNumber !== numPages && (
               <Page
                 id="secondpage"
                 renderAnnotationLayer={true}
