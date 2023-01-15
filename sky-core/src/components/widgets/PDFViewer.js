@@ -6,7 +6,7 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function PDFViewer() {
-  //current pdf document
+  //hook for current pdf document
   const [content, setContent] = useState(null);
   //hook for the number of pages of the current document
   const [numPages, setNumPages] = useState(null);
@@ -14,6 +14,8 @@ export default function PDFViewer() {
   const [pageNumber, setPageNumber] = useState(null);
   //hook for the rotation of the page
   const [rotation, setRotation] = useState(0);
+  //hook for dual page view
+  const [showSecondPage, setShowSecondPage] = useState(false);
 
   //changes pageinput to the right page as pageNumber updates
   useEffect(() => {
@@ -147,6 +149,22 @@ export default function PDFViewer() {
             />
           </svg>
         </button>
+        <button
+          type="button"
+          className="p-2 bg-white cursor-pointer shadow-md rounded-md"
+          onClick={() => setShowSecondPage(!showSecondPage)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-files"
+            viewBox="0 0 16 16"
+          >
+            <path d="M13 0H6a2 2 0 0 0-2 2 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2 2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 13V4a2 2 0 0 0-2-2H5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1zM3 4a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z" />
+          </svg>
+        </button>
       </div>
       <div className="flex flex-col items-center">
         <Document
@@ -155,8 +173,18 @@ export default function PDFViewer() {
           rotate={rotation}
           file={content}
           onLoadSuccess={onDocumentLoadSuccess}
+          Outline={true}
         >
-          <Page renderAnnotationLayer={true} pageNumber={pageNumber} />
+          <div className="flex flex-row">
+            <Page renderAnnotationLayer={true} pageNumber={pageNumber} />
+            {showSecondPage && (
+              <Page
+                id="secondpage"
+                renderAnnotationLayer={true}
+                pageNumber={pageNumber + 1}
+              />
+            )}
+          </div>
         </Document>
       </div>
       <div className="text-center flex flex-row items-center gap-x-1">
