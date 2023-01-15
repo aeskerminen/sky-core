@@ -26,7 +26,6 @@ const Navbar = (props) => {
       <div className="flex flex-row justify-center ml-auto gap-x-2">
         <Timer displayTimer={displayTimer} />
         <button
-          id="timerbtn"
           title="Timer"
           className="bg-white rounded-md shadow-md p-1"
           onClick={() => {
@@ -36,7 +35,6 @@ const Navbar = (props) => {
           <TOGGLE_ICON bool={displayTimer}></TOGGLE_ICON>
         </button>
         <button
-          id="stopwatchbtn"
           title="Stopwatch"
           className="bg-white rounded-md shadow-md p-1"
           onClick={() => {
