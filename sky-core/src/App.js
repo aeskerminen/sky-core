@@ -196,8 +196,7 @@ const App = () => {
                         setDisplayPDF(!displayPDF);
                       }}
                     >
-                      {!displayPDF && <PLUS_ICON></PLUS_ICON>}
-                      {displayPDF && <X_ICON></X_ICON>}
+                      {displayPDF ? <X_ICON></X_ICON> : <PLUS_ICON></PLUS_ICON>}
                     </button>
 
                     <button
@@ -207,8 +206,11 @@ const App = () => {
                         setDisplayDrawboard(!displayDrawboard);
                       }}
                     >
-                      {!displayDrawboard && <PLUS_ICON></PLUS_ICON>}
-                      {displayDrawboard && <X_ICON></X_ICON>}
+                      {displayDrawboard ? (
+                        <X_ICON></X_ICON>
+                      ) : (
+                        <PLUS_ICON></PLUS_ICON>
+                      )}
                     </button>
                   </div>
                 </div>
