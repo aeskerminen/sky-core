@@ -1,22 +1,14 @@
 import React, { useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-
 import LogoutButton from "./login/LogoutButton";
 import Timer from "./widgets/Timer";
 import Stopwatch from "./widgets/Stopwatch";
 import {
   LIST_ICON,
-  PLUS_ICON,
-  TOGGLE_ICON,
-  X_ICON,
   TOGGLE_STOPWATCH_ICON,
-  STOPWATCH_ICON,
-  STOPWATCH_ICON_FILL,
   TOGGLE_TIMER_ICON,
 } from "../helpers/icons";
 
 const Navbar = (props) => {
-  const { user } = useAuth0();
   const [displayStopwatch, setDisplayStopwatch] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
 
@@ -27,11 +19,11 @@ const Navbar = (props) => {
     >
       <div
         onClick={props.toggleSidebar}
-        className="bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 shadow-md rounded-md text-white mr-2 p-2"
+        className="bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 rounded-md text-white mr-2 p-2"
       >
         <LIST_ICON></LIST_ICON>
       </div>
-      <LogoutButton></LogoutButton>
+
       <div className="flex flex-row justify-center ml-auto gap-x-2">
         <Timer displayTimer={displayTimer} />
         <button
@@ -63,7 +55,7 @@ const Navbar = (props) => {
           className="button bg-blue-700 text-white rounded-xl pt-2 pb-2 pl-4 pr-4"
         >
           <span className="font-semibold text-base tracking-wide">
-            {user?.name}
+            <LogoutButton></LogoutButton>
           </span>
         </button>
       </div>
