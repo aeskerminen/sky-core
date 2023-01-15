@@ -35,8 +35,8 @@ export const LIST_ICON = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       fill="currentColor"
       class="bi bi-list"
       viewBox="0 0 16 16"
@@ -109,8 +109,8 @@ export const SIGNOUT_ICON = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       fill="currentColor"
       class="bi bi-box-arrow-right"
       viewBox="0 0 16 16"
@@ -135,8 +135,8 @@ export const STOPWATCH_ICON = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       fill="currentColor"
       class="bi bi-stopwatch"
       viewBox="0 0 16 16"
@@ -151,8 +151,8 @@ export const STOPWATCH_ICON_FILL = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       fill="currentColor"
       class="bi bi-stopwatch-fill"
       viewBox="0 0 16 16"
@@ -219,8 +219,8 @@ export const TIMER_ICON = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       fill="currentColor"
       class="bi bi-alarm"
       viewBox="0 0 16 16"
@@ -235,8 +235,8 @@ export const TIMER_ICON_FILL = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       fill="currentColor"
       class="bi bi-alarm-fill"
       viewBox="0 0 16 16"
