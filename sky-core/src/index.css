@@ -10,6 +10,15 @@
     animation: fill 0.5s ease forwards 0.9s;
 }
 
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
 @keyframes fill {
     from{
         fill: transparent;
