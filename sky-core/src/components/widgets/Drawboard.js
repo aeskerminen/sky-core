@@ -29,56 +29,60 @@ export default class Drawboard extends React.Component {
           enablePanAndZoom={false}
         />
         <div className="flex flex-row justify-center gap-x-4 mt-2 items-center">
-          <button
-            className="p-2 bg-white shadow-md rounded-md"
-            onClick={() => {
-              this.modify.undo();
-            }}
-          >
-            UNDO
-          </button>
-          <button
-            className="p-2 bg-white shadow-md rounded-md"
-            onClick={() => {
-              this.modify.eraseAll();
-            }}
-          >
-            CLEAR
-          </button>
-          <button
-            className="p-2 bg-white shadow-md rounded-md"
-            onClick={() => {
-              /*
+          <div>
+            <div className="flex flex-row gap-x-4 mt-2 pb-2">
+              <button
+                className="p-2 bg-white shadow-md rounded-md"
+                onClick={() => {
+                  this.modify.undo();
+                }}
+              >
+                UNDO
+              </button>
+              <button
+                className="p-2 bg-white shadow-md rounded-md"
+                onClick={() => {
+                  this.modify.eraseAll();
+                }}
+              >
+                CLEAR
+              </button>
+              <button
+                className="p-2 bg-white shadow-md rounded-md"
+                onClick={() => {
+                  /*
 localStorage.setItem(
 "savedDrawing",
 this.modify.getDataURL()
 ); */
-              var a = document.createElement("a");
-              a.href = this.modify.getDataURL();
-              a.download = "Drawing.png";
-              a.click();
-            }}
-          >
-            SAVE
-          </button>
+                  var a = document.createElement("a");
+                  a.href = this.modify.getDataURL();
+                  a.download = "Drawing.png";
+                  a.click();
+                }}
+              >
+                SAVE
+              </button>
+            </div>
 
-          <div className="p-2 bg-white shadow-md rounded-md">
-            <input
-              style={{ accentColor: this.state.brushColor }}
-              className="align-middle"
-              value={this.state.brushRadius}
-              type="range"
-              min="2"
-              max="50"
-              onChange={(e) => {
-                this.setState({
-                  brushRadius: e.target.value,
-                });
-              }}
-              title={this.state.brushRadius}
-            />
+            <div className="p-2 bg-white shadow-md rounded-md">
+              <input
+                style={{ accentColor: this.state.brushColor }}
+                className="align-middle"
+                value={this.state.brushRadius}
+                type="range"
+                min="2"
+                max="50"
+                onChange={(e) => {
+                  this.setState({
+                    brushRadius: e.target.value,
+                  });
+                }}
+                title={this.state.brushRadius}
+              />
+            </div>
           </div>
-          <div className="p-2 bg-white shadow-md rounded-md">
+          <div>
             <CompactPicker
               color={this.state.brushColor}
               onChangeComplete={this.handleChangeComplete}
