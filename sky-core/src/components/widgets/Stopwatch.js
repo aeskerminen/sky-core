@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { PAUSE_ICON, PLAY_ICON, STOP_ICON } from "../../helpers/icons";
 
 export default class Stopwatch extends Component {
   constructor(props) {
@@ -88,8 +89,18 @@ export default class Stopwatch extends Component {
             {seconds < 10 ? `0${seconds}` : seconds}
           </h1>
           <div>
-            <button onClick={isActive ? this.turnOff : this.turnOn}>⏯</button>
-            <button onClick={this.reset}>⏹</button>
+            <button
+              className="bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 shadow-md rounded-md text-white mr-0.5 p-1"
+              onClick={isActive ? this.turnOff : this.turnOn}
+            >
+              {isActive ? <PAUSE_ICON /> : <PLAY_ICON />}
+            </button>
+            <button
+              className="bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 shadow-md rounded-md text-white p-1"
+              onClick={this.reset}
+            >
+              <STOP_ICON />
+            </button>
           </div>
         </div>
       );
