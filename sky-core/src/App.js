@@ -190,7 +190,6 @@ const App = () => {
                   )}
                   <div className="flex flex-row justify-center gap-x-2 m-2">
                     <button
-                      id="pdfbtn"
                       title="PDF Viewer"
                       className="p-2 bg-white rounded-md shadow-md"
                       onClick={() => {
@@ -202,7 +201,6 @@ const App = () => {
                     </button>
 
                     <button
-                      id="drawboardbtn"
                       title="Drawboard"
                       className="p-2 bg-white rounded-md shadow-md"
                       onClick={() => {
