@@ -5,7 +5,7 @@ import LogoutButton from "./login/LogoutButton";
 import Timer from "./widgets/Timer";
 import Stopwatch from "./widgets/Stopwatch";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const { user } = useAuth0();
   const [displayStopwatch, setDisplayStopwatch] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
@@ -15,6 +15,22 @@ const Navbar = () => {
       className="flex justify-between items-center  p-3 bg-blue-500 shadow-lg"
       style={{ caretColor: "transparent" }}
     >
+      <div className="bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 shadow-md rounded-md text-white mr-2 p-2">
+        <svg
+          onClick={props.toggleSidebar}
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-list"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          />
+        </svg>
+      </div>
       <LogoutButton></LogoutButton>
       <div className="flex flex-row justify-center ml-auto gap-x-2">
         <Timer displayTimer={displayTimer} />

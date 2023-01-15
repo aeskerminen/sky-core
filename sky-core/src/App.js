@@ -48,6 +48,8 @@ const App = () => {
   const [displayPDF, setDisplayPDF] = useState(false);
   const [displayDrawboard, setDisplayDrawboard] = useState(false);
 
+  const [showSidebar, setShowSidebar] = useState(true);
+
   // Hook that listens for a change in toDelete. Handles deletion of notes.
   useEffect(() => {
     if (user !== undefined) {
@@ -117,9 +119,13 @@ const App = () => {
       {!isAuthenticated && <LoginPage></LoginPage>}
       {isAuthenticated && ready && (
         <div className="h-full flex flex-col overflow-y-hidden">
-          <Navbar></Navbar>
+          <Navbar
+            toggleSidebar={() => {
+              setShowSidebar(!showSidebar);
+            }}
+          ></Navbar>
           <div className="flex flex-row flex-grow overflow-hidden">
-            <div className="w-1/6 p-2 pb-3">
+            <div className={`${showSidebar ? "w-1/6" : "hidden"} p-2 pb-3`}>
               <Sidebar
                 selectButtonClick={(name, id) => {
                   setSelection(id);
@@ -132,7 +138,9 @@ const App = () => {
               ></Sidebar>
             </div>
             <div
-              className="w-5/6 bg-white overflow-y-scroll p-2 m-2 mb-3 ml-1 rounded-md bound"
+              className={`${
+                showSidebar ? "w-5/6" : "w-full"
+              } bg-white overflow-y-scroll p-2 m-2 mb-3 ml-1 rounded-md bound`}
               style={{ caretColor: "transparent" }}
             >
               {selection === "" && (
