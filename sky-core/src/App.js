@@ -17,6 +17,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { get, ref } from "firebase/database";
 import { db, deleteNoteData, writeNoteData } from "./DatabaseWrapper";
 
+// ICONS
+import { PLUS_ICON, X_ICON } from "./helpers/icons";
+
 // WYSIWYG
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -24,7 +27,6 @@ import "react-quill/dist/quill.snow.css";
 // LaTeX
 import katex from "katex";
 import "katex/dist/katex.min.css";
-import { PLUS_ICON, X_ICON } from "./helpers/icons";
 
 window.katex = katex;
 
