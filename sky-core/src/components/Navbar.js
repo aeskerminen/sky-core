@@ -12,6 +12,7 @@ import {
   TOGGLE_STOPWATCH_ICON,
   STOPWATCH_ICON,
   STOPWATCH_ICON_FILL,
+  TOGGLE_TIMER_ICON,
 } from "../helpers/icons";
 
 const Navbar = (props) => {
@@ -35,16 +36,16 @@ const Navbar = (props) => {
         <Timer displayTimer={displayTimer} />
         <button
           title="Timer"
-          className="bg-white rounded-md shadow-md p-1"
+          className="bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 shadow-md rounded-md text-white p-2"
           onClick={() => {
             setDisplayTimer(!displayTimer);
           }}
         >
-          <TOGGLE_ICON bool={displayTimer}></TOGGLE_ICON>
+          <TOGGLE_TIMER_ICON bool={displayTimer}></TOGGLE_TIMER_ICON>
         </button>
         <button
           title="Stopwatch"
-          className="bg-white rounded-md shadow-md p-1"
+          className="bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 shadow-md rounded-md text-white p-2"
           onClick={() => {
             setDisplayStopwatch(!displayStopwatch);
           }}
