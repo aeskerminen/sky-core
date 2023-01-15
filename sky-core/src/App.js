@@ -18,7 +18,12 @@ import { get, ref } from "firebase/database";
 import { db, deleteNoteData, writeNoteData } from "./DatabaseWrapper";
 
 // ICONS
-import { PLUS_ICON, TOGGLE_ICON, X_ICON } from "./helpers/icons";
+import {
+  PLUS_ICON,
+  TOGGLE_ICON,
+  TOGGLE_PDF_ICON,
+  X_ICON,
+} from "./helpers/icons";
 
 // WYSIWYG
 import ReactQuill from "react-quill";
@@ -191,12 +196,12 @@ const App = () => {
                   <div className="flex flex-row justify-center gap-x-2 m-2">
                     <button
                       title="PDF Viewer"
-                      className="p-2 bg-white rounded-md shadow-md"
+                      className="p-4 bg-white rounded-md shadow-md"
                       onClick={() => {
                         setDisplayPDF(!displayPDF);
                       }}
                     >
-                      <TOGGLE_ICON bool={displayPDF}></TOGGLE_ICON>
+                      <TOGGLE_PDF_ICON bool={displayPDF}></TOGGLE_PDF_ICON>
                     </button>
 
                     <button
