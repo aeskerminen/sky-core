@@ -139,7 +139,7 @@ const App = () => {
             </div>
             <div
               className={`${
-                showSidebar ? "w-5/6" : "w-full"
+                showSidebar ? "w-5/6" : "w-full ml-2"
               } bg-white overflow-y-scroll p-2 m-2 mb-3 ml-1 rounded-md bound`}
               style={{ caretColor: "transparent" }}
             >
