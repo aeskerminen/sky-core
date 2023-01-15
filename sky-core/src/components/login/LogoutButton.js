@@ -7,10 +7,7 @@ const LogoutButton = () => {
     isAuthenticated && (
       <div className="bg-blue-700 hover:bg-blue-800 active:bg-blue-900 shadow-md rounded-md">
         <button className="" onClick={() => logout()}>
-          <h1
-            className="text-lg text-white p-1.5"
-            style={{ textAlign: "center" }}
-          >
+          <h1 className=" text-white p-1.5" style={{ textAlign: "center" }}>
             Sign out
           </h1>
         </button>
