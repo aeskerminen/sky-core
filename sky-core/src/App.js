@@ -18,7 +18,7 @@ import { get, ref } from "firebase/database";
 import { db, deleteNoteData, writeNoteData } from "./DatabaseWrapper";
 
 // ICONS
-import { PLUS_ICON, X_ICON } from "./helpers/icons";
+import { PLUS_ICON, TOGGLE_ICON, X_ICON } from "./helpers/icons";
 
 // WYSIWYG
 import ReactQuill from "react-quill";
@@ -196,7 +196,7 @@ const App = () => {
                         setDisplayPDF(!displayPDF);
                       }}
                     >
-                      {displayPDF ? <X_ICON></X_ICON> : <PLUS_ICON></PLUS_ICON>}
+                      <TOGGLE_ICON bool={displayPDF}></TOGGLE_ICON>
                     </button>
 
                     <button
@@ -206,11 +206,7 @@ const App = () => {
                         setDisplayDrawboard(!displayDrawboard);
                       }}
                     >
-                      {displayDrawboard ? (
-                        <X_ICON></X_ICON>
-                      ) : (
-                        <PLUS_ICON></PLUS_ICON>
-                      )}
+                      <TOGGLE_ICON bool={displayDrawboard}></TOGGLE_ICON>
                     </button>
                   </div>
                 </div>

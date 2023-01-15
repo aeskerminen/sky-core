@@ -48,3 +48,7 @@ export const LIST_ICON = () => {
     </svg>
   );
 };
+
+export const TOGGLE_ICON = (props) => {
+  return props.bool ? <X_ICON></X_ICON> : <PLUS_ICON></PLUS_ICON>;
+};
