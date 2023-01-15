@@ -35,8 +35,8 @@ export const LIST_ICON = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
+      width="25"
+      height="25"
       fill="currentColor"
       class="bi bi-list"
       viewBox="0 0 16 16"
@@ -109,8 +109,8 @@ export const SIGNOUT_ICON = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
+      width="20"
+      height="20"
       fill="currentColor"
       class="bi bi-box-arrow-right"
       viewBox="0 0 16 16"
@@ -258,8 +258,8 @@ export const PDF_ICON_FILL = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
+      width="25"
+      height="25"
       fill="currentColor"
       class="bi bi-file-pdf-fill"
       viewBox="0 0 16 16"
@@ -277,8 +277,8 @@ export const PDF_ICON = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
+      width="25"
+      height="25"
       fill="currentColor"
       class="bi bi-file-pdf"
       viewBox="0 0 16 16"
@@ -297,8 +297,8 @@ export const DRAWBOARD_ICON = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
+      width="25"
+      height="25"
       fill="currentColor"
       class="bi bi-palette"
       viewBox="0 0 16 16"
@@ -313,8 +313,8 @@ export const DRAWBOARD_ICON_FILL = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
+      width="25"
+      height="25"
       fill="currentColor"
       class="bi bi-palette-fill"
       viewBox="0 0 16 16"
