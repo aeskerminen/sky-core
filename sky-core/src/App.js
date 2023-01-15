@@ -47,7 +47,7 @@ const App = () => {
   const [toDelete, setToDelete] = useState("");
 
   // Holds data from the WYSIWYG editor
-  const [html, setHtml] = useState("Notes...");
+  const [html, setHtml] = useState("");
 
   // Booleans for displaying the two widgets
   const [displayPDF, setDisplayPDF] = useState(false);
