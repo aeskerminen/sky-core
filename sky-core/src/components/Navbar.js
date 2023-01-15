@@ -19,7 +19,7 @@ const Navbar = (props) => {
     >
       <div
         onClick={props.toggleSidebar}
-        className="bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 rounded-md text-white mr-2 p-2"
+        className="hover:bg-blue-800 cursor-pointer active:bg-blue-900 rounded-md text-white mr-2 p-2"
       >
         <LIST_ICON></LIST_ICON>
       </div>
