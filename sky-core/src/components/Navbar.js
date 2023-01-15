@@ -18,6 +18,7 @@ const Navbar = (props) => {
       style={{ caretColor: "transparent" }}
     >
       <div
+        title="Toggle Notes"
         onClick={props.toggleSidebar}
         className="hover:bg-blue-800 cursor-pointer active:bg-blue-900 rounded-md text-white mr-2 p-2"
       >
