@@ -4,7 +4,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./login/LogoutButton";
 import Timer from "./widgets/Timer";
 import Stopwatch from "./widgets/Stopwatch";
-import { LIST_ICON, PLUS_ICON, TOGGLE_ICON, X_ICON } from "../helpers/icons";
+import {
+  LIST_ICON,
+  PLUS_ICON,
+  TOGGLE_ICON,
+  X_ICON,
+  TOGGLE_STOPWATCH_ICON,
+  STOPWATCH_ICON,
+  STOPWATCH_ICON_FILL,
+} from "../helpers/icons";
 
 const Navbar = (props) => {
   const { user } = useAuth0();
@@ -41,7 +49,9 @@ const Navbar = (props) => {
             setDisplayStopwatch(!displayStopwatch);
           }}
         >
-          <TOGGLE_ICON bool={displayStopwatch}></TOGGLE_ICON>
+          <TOGGLE_STOPWATCH_ICON
+            bool={displayStopwatch}
+          ></TOGGLE_STOPWATCH_ICON>
         </button>
         <Stopwatch displayStopwatch={displayStopwatch} />
       </div>
