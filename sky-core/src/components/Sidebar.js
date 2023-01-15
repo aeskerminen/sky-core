@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Note from "./notes/Note";
 
 import { v4 as uuidv4 } from "uuid";
+import { PLUS_ICON } from "../helpers/icons";
 
 const Sidebar = (props) => {
   let [notes, setNotes] = useState(props.notes);
@@ -54,7 +55,7 @@ const Sidebar = (props) => {
           }}
           className="p-2 bg-slate-200 rounded-md ml-auto hover:bg-slate-300 active:bg-slate-400"
         >
-          ADD
+          <PLUS_ICON></PLUS_ICON>
         </button>
       </div>
       <div
