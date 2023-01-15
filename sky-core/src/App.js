@@ -138,8 +138,8 @@ const App = () => {
                   setSelection(id);
                   setName(name);
                 }}
-                dbDeleteNotes={(val) => {
-                  setToDelete(val);
+                dbDeleteNotes={(id) => {
+                  setToDelete(id);
                 }}
                 notes={notes}
               ></Sidebar>
