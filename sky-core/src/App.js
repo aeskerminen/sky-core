@@ -23,6 +23,7 @@ import {
   TOGGLE_ICON,
   TOGGLE_PDF_ICON,
   X_ICON,
+  TOGGLE_DRAWBOARD_ICON,
 } from "./helpers/icons";
 
 // WYSIWYG
@@ -211,7 +212,9 @@ const App = () => {
                         setDisplayDrawboard(!displayDrawboard);
                       }}
                     >
-                      <TOGGLE_ICON bool={displayDrawboard}></TOGGLE_ICON>
+                      <TOGGLE_DRAWBOARD_ICON
+                        bool={displayDrawboard}
+                      ></TOGGLE_DRAWBOARD_ICON>
                     </button>
                   </div>
                 </div>
