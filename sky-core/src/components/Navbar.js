@@ -52,7 +52,7 @@ const Navbar = (props) => {
       <div className="flex ml-auto">
         <button
           type="button"
-          className="button bg-blue-700 text-white rounded-xl pt-2 pb-2 pl-4 pr-4"
+          className="button bg-blue-700 hover:bg-blue-800 text-white rounded-xl pt-2 pb-2 pl-4 pr-4"
         >
           <span className="font-semibold text-base tracking-wide">
             <LogoutButton></LogoutButton>

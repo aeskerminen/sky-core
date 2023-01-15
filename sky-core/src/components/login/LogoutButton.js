@@ -6,15 +6,10 @@ const LogoutButton = () => {
 
   return (
     isAuthenticated && (
-      <div
-        title="Log Out"
-        className="flex flew-row bg-blue-700 hover:bg-blue-800 cursor-pointer active:bg-blue-900 rounded-md text-white"
-        onClick={() => logout()}
-      >
+      <div className="flex flex-row" title="Log Out" onClick={() => logout()}>
         <div className="pr-2 pt-0.5">
           <SIGNOUT_ICON></SIGNOUT_ICON>
         </div>
-
         {user?.name}
       </div>
     )
