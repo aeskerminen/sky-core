@@ -90,6 +90,7 @@ export default class Timer extends Component {
                 }));
               }}
             ></input>
+            <span>:</span>
             <input
               className="w-12"
               type={"number"}
@@ -102,6 +103,7 @@ export default class Timer extends Component {
                 }));
               }}
             ></input>
+            <span>:</span>
             <input
               className="w-12"
               type={"number"}
