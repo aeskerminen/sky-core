@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Document, Page, Outline } from "react-pdf/dist/esm/entry.webpack";
 import { pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function PDFViewer(props) {
+export default function PDFViewer() {
+  //current pdf document
+  const [content, setContent] = useState(null);
+  //hook for the number of pages of the current document
   const [numPages, setNumPages] = useState(null);
+  //hook for the current page
   const [pageNumber, setPageNumber] = useState(null);
-  const [content, setContent] = useState(0);
+  //hook for the rotation of the page
   const [rotation, setRotation] = useState(0);
 
+  //changes pageinput to the right page as pageNumber updates
+  useEffect(() => {
+    document.getElementById("pageinput").value = pageNumber;
+  }, [pageNumber]);
+
+  //when a new pdf-file is rendered
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
     setPageNumber(1);
   }
 
+  //basic page navigation functions
   function changePage(offset) {
     setPageNumber((prevPageNumber) => prevPageNumber + offset);
   }
@@ -28,23 +39,36 @@ export default function PDFViewer(props) {
     changePage(1);
   }
 
+  //updates pageNumber hook to pageinput if it is valid
   function goToPage() {
-    let toChangePage = Number(document.getElementById("userinput").value);
+    let toChangePage = Number(document.getElementById("pageinput").value);
     if (toChangePage >= 1 && !isNaN(toChangePage) && toChangePage <= numPages) {
       setPageNumber(toChangePage);
     }
   }
-  
-  
-  function rotatePDFClockWise(){
-    rotation < 270 ?
-    setRotation((prevRotation) => prevRotation + 90) :
-    setRotation(0);
-  }
-  function handleItemClick(props){
+
+  //handle for internal links
+  function handleItemClick(props) {
     setPageNumber(props.pageNumber);
   }
-  
+
+  //clears pageinput when it is clicked
+  function clearPageInput() {
+    document.getElementById("pageinput").value = "";
+  }
+
+  //sets pageinput to pageNumber when it loses focus
+  function setPageInput() {
+    document.getElementById("pageinput").value = pageNumber;
+  }
+
+  //sets the correct rotation for the page when the button is clicked
+  function rotatePDFClockWise() {
+    rotation < 270
+      ? setRotation((prevRotation) => prevRotation + 90)
+      : setRotation(0);
+  }
+
   return (
     <div className="p-2 bg-slate-100 mt-1 flex flex-col items-center gap-y-2">
       <div className="flex flex-col items-center">
@@ -103,14 +127,25 @@ export default function PDFViewer(props) {
         >
           {">"}
         </button>
-        <button 
-        type="button"
-        className="p-2 bg-white cursor-pointer shadow-md rounded-md"
-        onClick={rotatePDFClockWise}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
-          <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
-          <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
-        </svg>
+        <button
+          type="button"
+          className="p-2 bg-white cursor-pointer shadow-md rounded-md"
+          onClick={rotatePDFClockWise}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-arrow-repeat"
+            viewBox="0 0 16 16"
+          >
+            <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+            <path
+              fill-rule="evenodd"
+              d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+            />
+          </svg>
         </button>
       </div>
       <div className="flex flex-col items-center">
@@ -121,31 +156,25 @@ export default function PDFViewer(props) {
           file={content}
           onLoadSuccess={onDocumentLoadSuccess}
         >
-          <Page
-            renderAnnotationLayer={true}
-            pageNumber={pageNumber}
-          />
+          <Page renderAnnotationLayer={true} pageNumber={pageNumber} />
         </Document>
       </div>
       <div className="text-center flex flex-row items-center gap-x-1">
-      <label htmlFor="userinput"> {<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>}</label>
-          <input
+        <span>Page</span>
+        <input
           class="border-2 w-10 "
-          id="userinput"
+          id="pageinput"
           type="text"
-          onKeyUp={event => {
-            if (event.key === 'Enter'){
-              goToPage()
+          onKeyUp={(event) => {
+            if (event.key === "Enter") {
+              goToPage();
             }
           }}
+          onFocus={clearPageInput}
+          onBlur={setPageInput}
+          placeholder={pageNumber || (numPages ? 1 : "--")}
         />
-        <span>Page</span>
-        <span>{pageNumber || (numPages ? 1 : "--")}</span>
         <span>of {numPages || "--"}</span>
-        
-        
       </div>
     </div>
   );
