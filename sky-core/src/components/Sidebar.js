@@ -39,7 +39,7 @@ const Sidebar = (props) => {
         <input
           onChange={handleInputChange}
           className="placeholder:text-slate-400 block w-full mr-2 bg-white
-                    rounded-lg py-2 pl-3 pr-3 focus:outline-none focus:ring-1 
+                    rounded-md py-2 pl-3 pr-3 focus:outline-none focus:ring-1 
                     sm:text-sm"
           placeholder="Name your note..."
           type="text"
