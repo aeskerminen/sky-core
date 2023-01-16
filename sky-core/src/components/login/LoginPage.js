@@ -2,7 +2,7 @@ import LoginButton from "./LoginButton";
 
 const LoginPage = () => {
   return (
-    <div className="bg-blue-300">
+    <div className="bg-blue-900">
       <div
         style={{
           display: "flex",
