@@ -164,9 +164,9 @@ export const STOPWATCH_ICON_FILL = () => {
 
 export const TOGGLE_STOPWATCH_ICON = (props) => {
   return props.bool ? (
-    <STOPWATCH_ICON></STOPWATCH_ICON>
-  ) : (
     <STOPWATCH_ICON_FILL></STOPWATCH_ICON_FILL>
+  ) : (
+    <STOPWATCH_ICON></STOPWATCH_ICON>
   );
 };
 
@@ -248,9 +248,9 @@ export const TIMER_ICON_FILL = () => {
 
 export const TOGGLE_TIMER_ICON = (props) => {
   return props.bool ? (
-    <TIMER_ICON></TIMER_ICON>
-  ) : (
     <TIMER_ICON_FILL></TIMER_ICON_FILL>
+  ) : (
+    <TIMER_ICON></TIMER_ICON>
   );
 };
 
