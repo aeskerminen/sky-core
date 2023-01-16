@@ -138,7 +138,7 @@ const App = () => {
             }}
           ></Navbar>
           <div className="flex flex-row flex-grow overflow-hidden">
-            <div className={`${showSidebar ? "w-1/6" : "hidden"} p-2 pb-2`}>
+            <div className={`${showSidebar ? "w-1/6" : "hidden"} p-2 pb-2.5`}>
               <Sidebar
                 selectButtonClick={(name, id) => {
                   setSelection(id);
@@ -153,7 +153,7 @@ const App = () => {
             <div
               className={`${
                 showSidebar ? "w-5/6 ml-1" : "w-full ml-2"
-              } bg-white overflow-y-scroll p-2 m-2 mb-2 bound`}
+              } bg-white overflow-y-scroll p-2 m-2 mb-2.5 bound`}
               style={{ caretColor: "transparent" }}
             >
               {selection === "" && (
