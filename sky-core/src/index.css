@@ -19,6 +19,19 @@ html {
     display: none;
 }
 
+#hamburger {
+    transition-property: transform;
+    transition-duration: 0.25s;
+}
+
+.hamburger-turned {
+    transform: rotate(90deg);
+}
+
+.hamburger-idle {
+    transform: rotate(0deg);
+}
+
 @keyframes fill {
     from{
         fill: transparent;

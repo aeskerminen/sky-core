@@ -12,14 +12,30 @@ const Navbar = (props) => {
   const [displayStopwatch, setDisplayStopwatch] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
 
+  const [turned, setTurned] = useState(false);
+
   return (
     <div
       className="flex justify-between items-center  p-3 bg-blue-500 shadow-lg"
       style={{ caretColor: "transparent" }}
     >
       <div
+        id="hamburger"
         title="Toggle Notes"
-        onClick={props.toggleSidebar}
+        onClick={() => {
+          props.toggleSidebar();
+          var element = document.getElementById("hamburger");
+
+          if (turned) {
+            element.classList.remove("hambuger-turned");
+            element.classList.add("hamburger-idle");
+            setTurned(false);
+          } else {
+            element.classList.remove("hamburger-idle");
+            element.classList.add("hamburger-turned");
+            setTurned(true);
+          }
+        }}
         className="hover:bg-blue-800 cursor-pointer active:bg-blue-900 rounded-md text-white mr-2 p-2"
       >
         <LIST_ICON></LIST_ICON>
