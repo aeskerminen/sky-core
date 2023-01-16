@@ -53,7 +53,7 @@ const Sidebar = (props) => {
               id: uuidv4(),
             });
           }}
-          className="p-2 bg-slate-200 rounded-md ml-auto hover:bg-slate-300 active:bg-slate-400"
+          className="p-2 bg-white rounded-md ml-auto hover:bg-slate-200 active:bg-slate-300"
         >
           <PLUS_ICON></PLUS_ICON>
         </button>
