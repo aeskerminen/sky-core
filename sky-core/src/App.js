@@ -197,7 +197,7 @@ const App = () => {
                   <div className="flex flex-row justify-center gap-x-2 m-2">
                     <button
                       title="PDF Viewer"
-                      className="p-4 bg-white rounded-md shadow-md"
+                      className="p-2 bg-white rounded-md shadow-md"
                       onClick={() => {
                         setDisplayPDF(!displayPDF);
                       }}

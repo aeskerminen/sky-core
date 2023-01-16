@@ -257,9 +257,10 @@ export const TOGGLE_TIMER_ICON = (props) => {
 export const PDF_ICON_FILL = () => {
   return (
     <svg
+      style={{ width: 25, height: 25 }}
       xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="25"
+      width="16"
+      height="16"
       fill="currentColor"
       class="bi bi-file-pdf-fill"
       viewBox="0 0 16 16"
@@ -276,9 +277,10 @@ export const PDF_ICON_FILL = () => {
 export const PDF_ICON = () => {
   return (
     <svg
+      style={{ width: 25, height: 25 }}
       xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="25"
+      width="16"
+      height="16"
       fill="currentColor"
       class="bi bi-file-pdf"
       viewBox="0 0 16 16"
@@ -296,9 +298,10 @@ export const TOGGLE_PDF_ICON = (props) => {
 export const DRAWBOARD_ICON = () => {
   return (
     <svg
+      style={{ width: 25, height: 25 }}
       xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="25"
+      width="16"
+      height="16"
       fill="currentColor"
       class="bi bi-palette"
       viewBox="0 0 16 16"
@@ -312,9 +315,10 @@ export const DRAWBOARD_ICON = () => {
 export const DRAWBOARD_ICON_FILL = () => {
   return (
     <svg
+      style={{ width: 25, height: 25 }}
       xmlns="http://www.w3.org/2000/svg"
-      width="25"
-      height="25"
+      width="16"
+      height="16"
       fill="currentColor"
       class="bi bi-palette-fill"
       viewBox="0 0 16 16"
