@@ -38,9 +38,10 @@ const Sidebar = (props) => {
       <div className=" flex items-center p-1.5 bg-blue-500 mb-2 rounded-md shadow">
         <input
           onChange={handleInputChange}
+          minLength={3}
           className="placeholder:text-slate-400 block w-full mr-2 bg-white
                     rounded-md py-2 pl-3 pr-3 focus:outline-none focus:ring-1 
-                    sm:text-sm"
+                    sm:text-sm invalid:border-red-500 invalid:border-2"
           placeholder="Name your note..."
           type="text"
           name="search"
@@ -48,10 +49,13 @@ const Sidebar = (props) => {
 
         <button
           onClick={() => {
-            addNote({
-              name: input,
-              id: uuidv4(),
-            });
+            if (input.length > 2) {
+              addNote({
+                name: input,
+                id: uuidv4(),
+              });
+            } else {
+            }
           }}
           className="p-2 bg-white rounded-md ml-auto hover:bg-slate-200 active:bg-slate-300"
         >
