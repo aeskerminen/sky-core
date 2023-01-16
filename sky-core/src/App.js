@@ -153,7 +153,7 @@ const App = () => {
             <div
               className={`${
                 showSidebar ? "w-5/6 ml-1" : "w-full ml-2"
-              } bg-white overflow-y-scroll p-2 m-2 mb-2 rounded-md bound`}
+              } bg-white overflow-y-scroll p-2 m-2 mb-2 bound`}
               style={{ caretColor: "transparent" }}
             >
               {selection === "" && (
