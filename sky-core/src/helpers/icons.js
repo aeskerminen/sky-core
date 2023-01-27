@@ -292,7 +292,7 @@ export const PDF_ICON = () => {
 };
 
 export const TOGGLE_PDF_ICON = (props) => {
-  return props.bool ? <PDF_ICON></PDF_ICON> : <PDF_ICON_FILL></PDF_ICON_FILL>;
+  return props.bool ? <PDF_ICON_FILL></PDF_ICON_FILL> : <PDF_ICON></PDF_ICON>;
 };
 
 export const DRAWBOARD_ICON = () => {
@@ -330,8 +330,8 @@ export const DRAWBOARD_ICON_FILL = () => {
 
 export const TOGGLE_DRAWBOARD_ICON = (props) => {
   return props.bool ? (
-    <DRAWBOARD_ICON></DRAWBOARD_ICON>
-  ) : (
     <DRAWBOARD_ICON_FILL></DRAWBOARD_ICON_FILL>
+  ) : (
+    <DRAWBOARD_ICON></DRAWBOARD_ICON>
   );
 };
