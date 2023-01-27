@@ -68,10 +68,10 @@ this.modify.getDataURL()
             <div className="p-2 bg-white shadow-md rounded-md">
               <input
                 style={{ accentColor: this.state.brushColor }}
-                className="align-middle"
+                className="align-middle w-44"
                 value={this.state.brushRadius}
                 type="range"
-                min="2"
+                min="1"
                 max="50"
                 onChange={(e) => {
                   this.setState({
@@ -80,6 +80,7 @@ this.modify.getDataURL()
                 }}
                 title={this.state.brushRadius}
               />
+              <span className="pl-2.5">{this.state.brushRadius}</span>
             </div>
           </div>
           <div>
