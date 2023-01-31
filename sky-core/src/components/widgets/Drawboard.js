@@ -80,7 +80,9 @@ this.modify.getDataURL()
                 }}
                 title={this.state.brushRadius}
               />
-              <span className="pl-2.5">{this.state.brushRadius}</span>
+              <span className="pl-2.5">
+                <strong>{this.state.brushRadius}</strong>
+              </span>
             </div>
           </div>
           <div>
