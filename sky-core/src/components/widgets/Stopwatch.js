@@ -82,8 +82,8 @@ export default class Stopwatch extends Component {
     if (this.props.displayStopwatch) {
       const { isActive, hours, minutes, seconds } = this.state;
       return (
-        <div className="flex flex-row gap-x-2 bg-white rounded-md shadow-md p-1">
-          <h1>
+        <div className="flex flex-row gap-x-2 bg-white rounded-md shadow-md p-1 ">
+          <h1 className="pt-0.5">
             {hours < 10 ? `0${hours}` : hours}:
             {minutes < 10 ? `0${minutes}` : minutes}:
             {seconds < 10 ? `0${seconds}` : seconds}
