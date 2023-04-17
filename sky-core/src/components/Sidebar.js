@@ -77,6 +77,20 @@ const Sidebar = (props) => {
           ></Note>
         ))}
       </div>
+      <input
+        type="file"
+        accept=".html"
+        id="getHtmlFile"
+        className=""
+        onChange={(e) => {
+          const file = e.target.files[0];
+          const reader = new FileReader();
+          reader.readAsText(file);
+          reader.onload = () => {
+            console.log(reader.result);
+          };
+        }}
+      />
     </div>
   );
 };
