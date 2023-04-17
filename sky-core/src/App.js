@@ -163,6 +163,20 @@ const App = () => {
               )}
               {selection !== "" && (
                 <div style={{ caretColor: "black" }}>
+                  {" "}
+                  <button
+                    className="text-xs"
+                    onClick={() => {
+                      const blob = new Blob([html], { type: "text/html" });
+                      const url = URL.createObjectURL(blob);
+                      var a = document.createElement("a");
+                      a.href = url;
+                      a.download = `${name}.html`;
+                      a.click();
+                    }}
+                  >
+                    Save as HTML
+                  </button>
                   <ReactQuill
                     theme="snow"
                     value={html}
@@ -187,7 +201,6 @@ const App = () => {
                     bounds={".bound"}
                   />
                   {displayPDF && <PDFViewer />}
-
                   {displayDrawboard && (
                     <Drawboard
                       width={"200"}
